@@ -1,0 +1,8 @@
+{
+  "name": "orbit-control-plane-tests",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Optional DOM integration tests; the application has no npm runtime dependency.",
+  "scripts": {"test": "node tests/ui.test.cjs"},
+  "devDependencies": {"jsdom": "26.1.0"}
+}

@@ -8,6 +8,12 @@ Aim for **one selected site per day with one complete, scoped project**: assess 
 
 Daily cadence is a target, not a completion guarantee or an automatic background schedule. The next site is not yet selected. Ask only for requirements/access that actually block implementation; do not invent endpoints or claim an offline scaffold is a completed live integration.
 
+## Larger operation goal — owner update, 2026-10-15
+
+The owner wants one dashboard managing 100+ site/integration instances and targets 50,000 daily Snap user acquisitions. Treat these numbers as business ambitions, not measured performance, achievable guarantees or instructions to send unsolicited messages. Follow `docs/SCALE_OPERATION_GOAL.md`. Keep the daily complete-scoped-delivery workflow as the execution unit. Differentiate integration instances from distinct platform adapters; reuse a tested adapter across authorized instances instead of creating unnecessary forks.
+
+Resolve routine engineering gaps independently using supported alternatives, and report material blockers briefly while continuing useful work. Do not repeatedly request a target URL when discovery is assigned to the agent. Do not turn this preference into permission to bypass anti-bot protections, disregard access restrictions, automate bulk unsolicited promotion, fabricate acquisition metrics or claim work runs in the background.
+
 ## Engineering operating standard
 
 Read `docs/ENGINEERING_OPERATING_STANDARD.md`. The owner wants stronger evidence-led targeting, planning, network diagnostics, reusable techniques, testing and durable project notes. Apply explicit evidence/uncertainty labels, separate design/implementation/review passes and a reproduce -> fix -> regression-test loop. Use only available/authorized tools. Do not claim model self-upgrades, perfect memory, automatic skill installation, live capture or autonomous scheduling that has not actually been implemented.
