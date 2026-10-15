@@ -13,6 +13,10 @@ GitHub owner: [rajuvbygyuiythh](https://github.com/rajuvbygyuiythh?tab=repositor
 
 Workflow: [DAILY_SITE_DELIVERY.md](knowledge-pack/docs/DAILY_SITE_DELIVERY.md)।
 
+## কাজের মান — সর্বশেষ preference
+
+আপনি আরও শক্ত targeted analysis, planning, networking diagnostics, accuracy, testing ও durable memory চান। এগুলো [ENGINEERING_OPERATING_STANDARD.md](docs/ENGINEERING_OPERATING_STANDARD.md)-এ কাজের নিয়ম হিসেবে রাখা হয়েছে: source/evidence আলাদা করা, actual capture capability যাচাই, minimal relevant data, design/code/review pass এবং reproduce → fix → regression test। এটি model upgrade, perfect memory, নতুন plugin installation বা live capture হয়েছে—এমন দাবি নয়।
+
 ## কী দেখা হয়েছে
 
 - GitHub-এ দৃশ্যমান **২৩টি repository**-র file tree দেখা হয়েছে।

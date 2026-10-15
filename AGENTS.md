@@ -8,6 +8,10 @@ Aim for **one selected site per day with one complete, scoped project**: assess 
 
 Daily cadence is a target, not a completion guarantee or an automatic background schedule. The next site is not yet selected. Ask only for requirements/access that actually block implementation; do not invent endpoints or claim an offline scaffold is a completed live integration.
 
+## Engineering operating standard
+
+Read `docs/ENGINEERING_OPERATING_STANDARD.md`. The owner wants stronger evidence-led targeting, planning, network diagnostics, reusable techniques, testing and durable project notes. Apply explicit evidence/uncertainty labels, separate design/implementation/review passes and a reproduce -> fix -> regression-test loop. Use only available/authorized tools. Do not claim model self-upgrades, perfect memory, automatic skill installation, live capture or autonomous scheduling that has not actually been implemented.
+
 ## Evidence and delivery
 
 The knowledge pack documents 23 source repositories and 19 archives. It is not a runnable common engine and does not prove all historical code was read or tested. Source/method references require inspection of the chosen snapshot. Preserve honest distinction between observations, owner requirements and recommendations.
