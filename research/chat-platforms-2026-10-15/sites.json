@@ -1,0 +1,1338 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-15",
+  "phase": "passive_public_source_screening",
+  "completion": "partial_not_runtime_audit",
+  "methodology": {
+    "performed": [
+      "Public-source search",
+      "Official documentation and page-text retrieval",
+      "Review of relevant public terms",
+      "Evidence classification and candidate selection"
+    ],
+    "not_performed": [
+      "Google 100-page review",
+      "Shodan/Censys/crt.sh/Wayback analysis",
+      "Wappalyzer/BuiltWith/WhatWeb execution",
+      "Raw HTTP header capture or TLS/cipher/JA3 measurement",
+      "Interactive signup/login or guest-room join",
+      "Browser XHR/Fetch/WebSocket capture",
+      "Runtime cookie/localStorage/IndexedDB inspection",
+      "User messaging or account auto-signup"
+    ],
+    "limitation": "Sandbox outbound direct networking is restricted; available page tools return text, not browser DevTools traces or raw response headers. No active third-party scanner was run."
+  },
+  "security_note": "No security grades assigned. not_measured means unknown, not absent or secure. JA3 fingerprints client TLS behavior, not a server security grade.",
+  "recommendation": {
+    "engineering_first": "Minnit owner-controlled/authorized room, contingent on access and feature entitlement",
+    "engineering_second": "DeadSimpleChat owner-controlled/authorized room, contingent on access and entitlement",
+    "existing_stranger_audience": "No candidate verified for both permitted automation and working chat delivery",
+    "not_selected_without_owner_approval": true
+  },
+  "sources": {
+    "minnit_bot": "https://docs.minnit.chat/bot/",
+    "minnit_api": "https://docs.minnit.chat/organizations/api/",
+    "minnit_hooks": "https://docs.minnit.chat/chat-settings/webhooks/",
+    "minnit_guests": "https://docs.minnit.chat/chat-settings/guests/",
+    "minnit_cookies": "https://docs.minnit.chat/cookies/",
+    "minnit_embed": "https://docs.minnit.chat/integration-guide/",
+    "dsc_send": "https://deadsimplechat.com/support/rest-api/bots/post-send-message-bot",
+    "dsc_join": "https://deadsimplechat.com/support/platform-guides/new-join-modal-guide",
+    "dsc_bot": "https://deadsimplechat.com/support/bots/quiz-bot-using-action-buttons",
+    "rumble_api": "https://dev.rumbletalk.com/rest",
+    "rumble_auth": "https://dev.rumbletalk.com/rest/authentication",
+    "rumble_messages": "https://dev.rumbletalk.com/rest/messages",
+    "rumble_login": "https://rumbletalk.com/blog/index.php/knowledge-base/how-do-i-join-a-chat/",
+    "chatwee_register": "https://chatwee.com/http-api/sso-user/register",
+    "chatwee_login": "https://chatwee.com/http-api/sso-user/login",
+    "chatwee_js": "https://chatwee.com/javascript-api",
+    "chatwee_faq": "https://chatwee.com/faq",
+    "chatblink_home": "https://www.chatblink.com/",
+    "chatblink_terms": "https://www.chatblink.com/terms-of-use",
+    "stranger_home": "https://strangermeetup.com/",
+    "stranger_terms": "https://strangermeetup.com/terms",
+    "chatango_home": "https://chatango.com/",
+    "chatango_terms": "https://chatango.com/page?full_terms",
+    "chatzy_terms": "https://www.chatzy.com/terms.htm",
+    "chatzy_faq": "https://www.chatzy.com/faq.htm",
+    "chatzy_create": "https://www.chatzy.com/advanced.htm",
+    "chatiw_home": "https://www.chatiw.com/",
+    "chatiw_terms": "https://www.chatiw.com/disclaimer_and_tos.php",
+    "chitchat_terms": "https://www.chitchat.gg/terms/"
+  },
+  "sites": [
+    {
+      "name": "Minnit",
+      "url": "https://minnit.chat/",
+      "category": "owner_managed_chat_service",
+      "source_ids": [
+        "minnit_bot",
+        "minnit_api",
+        "minnit_hooks",
+        "minnit_guests",
+        "minnit_cookies",
+        "minnit_embed"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "documented_controls": {
+          "classification": "documented",
+          "summary": "Embedding-domain allowlist, optional SSO/guest restrictions and room passwords; CSRF cookie purpose documented. These are not measured CSP/header results.",
+          "source_ids": [
+            "minnit_embed",
+            "minnit_cookies"
+          ]
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "documented",
+          "summary": "Guests can view/talk by default; room owner can disable or require nicknames. Guest IDs are disposable, not registered accounts.",
+          "source_ids": [
+            "minnit_guests"
+          ]
+        },
+        "login": {
+          "classification": "documented",
+          "summary": "Registered/guest authentication cookies documented; SSO integration is described for an existing host user base.",
+          "source_ids": [
+            "minnit_cookies",
+            "minnit_embed"
+          ]
+        },
+        "auto_signup": {
+          "classification": "documented",
+          "summary": "No platform account auto-signup tested. Owner-managed guest access/SSO is distinct from registering provider accounts.",
+          "source_ids": [
+            "minnit_guests",
+            "minnit_embed"
+          ]
+        }
+      },
+      "features": {
+        "classification": "documented",
+        "summary": "Rooms/channels, embedding, bot responses, join/leave events and owner-controlled access.",
+        "source_ids": [
+          "minnit_bot",
+          "minnit_embed"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [
+          {
+            "classification": "documented",
+            "summary": "Organization-specific HTTP API endpoint from dashboard; X-Key header; action-based POST requests. API Basic+; message/join/leave webhooks Community+. Custom reply bots are explicitly described.",
+            "source_ids": [
+              "minnit_api",
+              "minnit_hooks",
+              "minnit_bot"
+            ]
+          }
+        ],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "documented",
+          "summary": "Documented names include r_auth_v, g_auth_v, minnitid, minnitcsrf and connid-chat; no values or actual cookie attributes inspected.",
+          "source_ids": [
+            "minnit_cookies"
+          ]
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No server implementation or datastore inspected."
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "documented_integration_candidate",
+        "priority": "first_owned_room_candidate",
+        "reason": "Explicit receive-event + bot-reply path reduces private-protocol dependence.",
+        "requirements": [
+          "Owner-controlled organization/room",
+          "Confirm Community+ entitlement for custom webhooks",
+          "Configure API key via environment/secret store, not chat",
+          "Verify webhook authenticity/replay handling and rate limits",
+          "Two consenting synthetic participants"
+        ],
+        "audience_caveat": "No built-in Chitchat-equivalent stranger pool established."
+      }
+    },
+    {
+      "name": "DeadSimpleChat",
+      "url": "https://deadsimplechat.com/",
+      "category": "owner_managed_chat_service",
+      "source_ids": [
+        "dsc_send",
+        "dsc_join",
+        "dsc_bot"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "documented_controls": {
+          "classification": "documented",
+          "summary": "Room permission levels and scoped bot/room access checks documented. Auth-in-query requires URL redaction in our proxy/logging; not a demonstrated vulnerability.",
+          "source_ids": [
+            "dsc_join",
+            "dsc_send"
+          ]
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "documented",
+          "summary": "Public room permission allows username-based join; provider provisions a guest_ identifier. Provisioned/members-only modes differ.",
+          "source_ids": [
+            "dsc_join"
+          ]
+        },
+        "login": {
+          "classification": "documented",
+          "summary": "SSO/basic username and provisioned-user identifiers/access tokens documented; privileged users require separate consideration.",
+          "source_ids": [
+            "dsc_join"
+          ]
+        },
+        "auto_signup": {
+          "classification": "documented",
+          "summary": "Create Users API/dashboard/CSV provisioning is documented for the customer account; not public provider-account mass signup.",
+          "source_ids": [
+            "dsc_join"
+          ]
+        }
+      },
+      "features": {
+        "classification": "documented",
+        "summary": "Room roles, public/provisioned/members permissions, bot messages, targeted/private bot responses and action-button webhooks.",
+        "source_ids": [
+          "dsc_join",
+          "dsc_bot",
+          "dsc_send"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [
+          {
+            "classification": "documented",
+            "summary": "POST /consumer/api/v2/bot/:botId/chatroom/:roomId/message; auth query carries private key. Bot/join webhooks documented. API docs label Advanced API Business Plan. No live API call made.",
+            "source_ids": [
+              "dsc_send",
+              "dsc_bot"
+            ]
+          }
+        ],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "documented",
+          "summary": "Provider documents provisioned users and room membership state; database product/schema and retention not established.",
+          "source_ids": [
+            "dsc_join"
+          ]
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "documented_integration_candidate",
+        "priority": "second_owned_room_candidate",
+        "reason": "Official bot/webhook workflow and managed users; entitlement must be confirmed.",
+        "requirements": [
+          "Owner-controlled room/customer account",
+          "Verify Business plan/API entitlement before purchase",
+          "Configure bot and authenticated inbound-webhook handling",
+          "Confirm event types and delivery/retry contracts",
+          "Two consenting synthetic participants"
+        ],
+        "audience_caveat": "Managed rooms are not an existing random-stranger audience."
+      }
+    },
+    {
+      "name": "RumbleTalk",
+      "url": "https://rumbletalk.com/",
+      "category": "owner_managed_chat_service",
+      "source_ids": [
+        "rumble_api",
+        "rumble_auth",
+        "rumble_messages",
+        "rumble_login"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "documented",
+          "summary": "Owner-enabled guest nickname login described; user/member login and SSO also described.",
+          "source_ids": [
+            "rumble_login"
+          ]
+        },
+        "login": {
+          "classification": "documented",
+          "summary": "Admin integration key+secret exchanged for expiring token, used as bearer auth. Actual token issuance not tested.",
+          "source_ids": [
+            "rumble_auth"
+          ]
+        },
+        "auto_signup": {
+          "classification": "documented",
+          "summary": "Managed-user capabilities documented at overview level; no provider signup automation or user creation call executed.",
+          "source_ids": [
+            "rumble_api"
+          ]
+        }
+      },
+      "features": {
+        "classification": "documented",
+        "summary": "Group rooms, managed users, moderation, reading messages and sending system messages.",
+        "source_ids": [
+          "rumble_api",
+          "rumble_messages"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [
+          {
+            "classification": "documented",
+            "summary": "POST https://api.rumbletalk.com/token; POST /chats/{chatId}/messages sends a SYSTEM message. Documented read route uses fast=true; old read route deprecated. Not proof of ordinary-user/private-DM parity.",
+            "source_ids": [
+              "rumble_auth",
+              "rumble_messages"
+            ]
+          }
+        ],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "documented",
+          "summary": "Stored chat message retrieval is documented; exact datastore, retention and browser storage not inspected.",
+          "source_ids": [
+            "rumble_messages"
+          ]
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "partial_integration_candidate",
+        "priority": "secondary",
+        "reason": "Official REST APIs exist, but system-message route is not necessarily the desired conversational/private-message interface.",
+        "requirements": [
+          "Owner room/API credentials",
+          "Clarify ordinary reply vs system-message requirement",
+          "Check supported inbound events/SDK and plan",
+          "Consented delivery test"
+        ],
+        "audience_caveat": "No shared random-stranger pool established."
+      }
+    },
+    {
+      "name": "Chatwee",
+      "url": "https://chatwee.com/",
+      "category": "owner_managed_chat_service",
+      "source_ids": [
+        "chatwee_register",
+        "chatwee_login",
+        "chatwee_js",
+        "chatwee_faq"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "documented",
+          "summary": "FAQ documents guests, chat account, Facebook and SSO options; actual deployed availability must be checked.",
+          "source_ids": [
+            "chatwee_faq"
+          ]
+        },
+        "login": {
+          "classification": "documented",
+          "summary": "SSO login returns session ID; host forwards session via chatwee-SID-[CHAT_ID] cookie.",
+          "source_ids": [
+            "chatwee_login"
+          ]
+        },
+        "auto_signup": {
+          "classification": "documented",
+          "summary": "Official /v2/sso-user/register provisions a host user in Chatwee database using chatId/clientKey; not anonymous provider-account signup.",
+          "source_ids": [
+            "chatwee_register"
+          ]
+        }
+      },
+      "features": {
+        "classification": "documented",
+        "summary": "Public/private/group chats, room management, 1:1-only configuration and embedded/full-screen UI documented.",
+        "source_ids": [
+          "chatwee_faq"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [
+          {
+            "classification": "documented",
+            "summary": "chatwee-api.com/v2/sso-user/register and /login; clientKey authentication documented. JS runtime control via static.chatwee-api.com/script.js. Full bot send/receive coverage not established by reviewed docs.",
+            "source_ids": [
+              "chatwee_register",
+              "chatwee_login",
+              "chatwee_js"
+            ]
+          }
+        ],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "documented",
+          "summary": "chatwee-SID-[CHAT_ID] stores session ID according to SSO docs; flags/TTL/domain not measured.",
+          "source_ids": [
+            "chatwee_login"
+          ]
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "documented",
+          "summary": "SSO user creation explicitly stored in provider database; no engine/schema inference.",
+          "source_ids": [
+            "chatwee_register"
+          ]
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "partial_integration_candidate",
+        "priority": "secondary",
+        "reason": "Good documented SSO boundary; need supported message receive/send bot contract.",
+        "requirements": [
+          "Owner-controlled chat and integration secret",
+          "Confirm conversational bot support with provider",
+          "Review entitlement/cookie handling",
+          "Consented delivery test"
+        ],
+        "audience_caveat": "Community embed, not a verified random pairing service."
+      }
+    },
+    {
+      "name": "Chatblink",
+      "url": "https://www.chatblink.com/",
+      "category": "existing_public_chat_community",
+      "source_ids": [
+        "chatblink_home",
+        "chatblink_terms"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "Turnstile presence is not proof of WAF/CDN deployment or its rules."
+        },
+        "captcha": {
+          "classification": "observed_page_text",
+          "summary": "Cloudflare Turnstile challenge/widget text and links appear in retrieved page. Does not establish challenge outcome for a particular browser.",
+          "source_ids": [
+            "chatblink_home"
+          ]
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "unknown",
+          "summary": "Anonymous guest join was not established by retrieved signup/login page.",
+          "source_ids": [
+            "chatblink_home"
+          ]
+        },
+        "login": {
+          "classification": "observed_page_text",
+          "summary": "Retrieved page contains email/password signup and login plus Continue with Google link; successful flow not exercised.",
+          "source_ids": [
+            "chatblink_home"
+          ]
+        },
+        "auto_signup": {
+          "classification": "not_tested",
+          "summary": "No supported auto-signup API verified. Turnstile markup is present; no form was submitted or challenge solved.",
+          "source_ids": [
+            "chatblink_home"
+          ]
+        }
+      },
+      "features": {
+        "classification": "observed_page_text",
+        "summary": "Retrieved homepage links Random Chat, Talk to Strangers and Chat Rooms. Actual feature operations not tested.",
+        "source_ids": [
+          "chatblink_home"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [
+          {
+            "classification": "unknown",
+            "summary": "Google sign-in navigation link is visible; no supported messaging/auth API or WS contract verified. Navigation URL is not a captured XHR endpoint.",
+            "source_ids": [
+              "chatblink_home"
+            ]
+          }
+        ],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No server implementation or datastore inspected."
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "permission_and_runtime_unverified",
+        "priority": "existing_audience_enquiry_only",
+        "reason": "Existing random/room feature overlap, but no supported bot contract and auth challenge visible.",
+        "requirements": [
+          "Operator integration approval",
+          "Permitted account and manual completion of required human verification",
+          "Sanitized runtime trace or authorized browser capability",
+          "Two consenting test accounts"
+        ],
+        "audience_caveat": "Existing community advertised; no audience size/availability or automated delivery verified."
+      }
+    },
+    {
+      "name": "StrangerMeetup",
+      "url": "https://strangermeetup.com/",
+      "category": "existing_public_chat_community",
+      "source_ids": [
+        "stranger_home",
+        "stranger_terms"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "observed_page_text",
+          "summary": "Homepage advertises anonymous/no-registration service, but says PUBLIC ROOMS require an account. Modes must be checked separately.",
+          "source_ids": [
+            "stranger_home"
+          ]
+        },
+        "login": {
+          "classification": "observed_page_text",
+          "summary": "Registration/member paths advertised; successful login and auth mechanism untested.",
+          "source_ids": [
+            "stranger_home"
+          ]
+        },
+        "auto_signup": {
+          "classification": "not_tested",
+          "summary": "No supported signup/provisioning API located in reviewed material; no signup requests sent.",
+          "source_ids": [
+            "stranger_home",
+            "stranger_terms"
+          ]
+        }
+      },
+      "features": {
+        "classification": "observed_page_text",
+        "summary": "Random stranger chat, public rooms and membership/friend notifications advertised; homepage says it keeps bots out.",
+        "source_ids": [
+          "stranger_home"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No server implementation or datastore inspected."
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "permission_and_runtime_unverified",
+        "priority": "existing_audience_enquiry_only",
+        "reason": "Strong product overlap, but no approved bot API; anti-bot positioning and mode-specific access.",
+        "requirements": [
+          "Operator approval and supported integration details",
+          "Separate random-mode vs public-room test scope",
+          "Consented test accounts and capture environment"
+        ],
+        "audience_caveat": "No ready-to-automate audience or successful chat session established."
+      }
+    },
+    {
+      "name": "Chatango",
+      "url": "https://chatango.com/",
+      "category": "embeddable_public_communities",
+      "source_ids": [
+        "chatango_home",
+        "chatango_terms"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "observed_page_text",
+          "summary": "Homepage says administrators decide whether signup is needed. Actual room restrictions not inspected.",
+          "source_ids": [
+            "chatango_home"
+          ]
+        },
+        "login": {
+          "classification": "observed_page_text",
+          "summary": "Homepage exposes login/signup paths; auth protocol untested.",
+          "source_ids": [
+            "chatango_home"
+          ]
+        },
+        "auto_signup": {
+          "classification": "unknown",
+          "summary": "No official provider signup API verified; third-party bots/tutorials are not evidence of permission.",
+          "source_ids": [
+            "chatango_home",
+            "chatango_terms"
+          ]
+        }
+      },
+      "features": {
+        "classification": "observed_page_text",
+        "summary": "Embeddable group chats, moderation, per-user message-rate controls and optional anonymity advertised.",
+        "source_ids": [
+          "chatango_home"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No server implementation or datastore inspected."
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "permission_and_runtime_unverified",
+        "priority": "not_first_build",
+        "reason": "No supported bot API established; room-owner restrictions apply. Published terms allow users 13+, so historical adult/contact funnel must not be transplanted.",
+        "requirements": [
+          "Provider and room-owner approval",
+          "Explicit safe user/content scope",
+          "Supported integration contract",
+          "Consented participants"
+        ],
+        "audience_caveat": "Publicly visible groups do not grant access to automate each group."
+      }
+    },
+    {
+      "name": "Chatzy",
+      "url": "https://www.chatzy.com/",
+      "category": "private_and_public_room_service",
+      "source_ids": [
+        "chatzy_terms",
+        "chatzy_faq",
+        "chatzy_create"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "documented",
+          "summary": "FAQ describes private chats for known people/website visitors; room access/password/email settings vary. No live join tested.",
+          "source_ids": [
+            "chatzy_faq",
+            "chatzy_create"
+          ]
+        },
+        "login": {
+          "classification": "observed_page_text",
+          "summary": "Retrieved terms page links login/signup and social providers. Provider flows not exercised.",
+          "source_ids": [
+            "chatzy_terms"
+          ]
+        },
+        "auto_signup": {
+          "classification": "documented",
+          "summary": "No supported automation signup API verified; technical restrictions prohibit scripts modifying behavior and temporary-email accounts.",
+          "source_ids": [
+            "chatzy_terms"
+          ]
+        }
+      },
+      "features": {
+        "classification": "documented",
+        "summary": "Quick/virtual rooms, invitations, commands and configurable permissions; references to third-party APIs concern integrations such as video/social providers, not an exposed bot API.",
+        "source_ids": [
+          "chatzy_terms",
+          "chatzy_faq"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "documented",
+          "summary": "Terms treat chat contents as confidential. This is a policy statement, not a verified storage/encryption implementation.",
+          "source_ids": [
+            "chatzy_terms"
+          ]
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "restricted_scripts_not_first_target",
+        "priority": "exclude_default",
+        "reason": "Explicit user-script restriction; no documented approved bot receive/reply integration verified.",
+        "requirements": [
+          "Explicit operator exception or supported alternative API"
+        ],
+        "audience_caveat": "Private-room product is not equivalent to random matching."
+      }
+    },
+    {
+      "name": "Chatiw",
+      "url": "https://www.chatiw.com/",
+      "category": "existing_public_chat_community",
+      "source_ids": [
+        "chatiw_home",
+        "chatiw_terms"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "observed_page_text",
+          "summary": "Retrieved homepage shows nickname, age, gender, country/state and Start Chat Now; advertises no email/confirmation required. Form not submitted.",
+          "source_ids": [
+            "chatiw_home"
+          ]
+        },
+        "login": {
+          "classification": "documented",
+          "summary": "Terms also describe registered-member passwords. Guest UI and member auth are separate, untested paths.",
+          "source_ids": [
+            "chatiw_terms"
+          ]
+        },
+        "auto_signup": {
+          "classification": "not_tested",
+          "summary": "A no-registration form does not establish a supported guest API or permission for automated account creation. No request executed.",
+          "source_ids": [
+            "chatiw_home",
+            "chatiw_terms"
+          ]
+        }
+      },
+      "features": {
+        "classification": "observed_page_text",
+        "summary": "Homepage advertises text/private conversations, photo sharing and mobile use. No messages or uploads tested.",
+        "source_ids": [
+          "chatiw_home"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "observed_page_text",
+          "summary": "Homepage displays a cookie-use notice; cookie names, values and flags are not known.",
+          "source_ids": [
+            "chatiw_home"
+          ]
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No server implementation or datastore inspected."
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "permission_and_runtime_unverified",
+        "priority": "existing_audience_enquiry_only",
+        "reason": "Guest-style text workflow visible; no supported bot API. Terms restrict unapproved commercial use and solicitation.",
+        "requirements": [
+          "Operator approval for intended automation",
+          "Permitted synthetic guest/member test scope",
+          "Runtime capture environment",
+          "No unsolicited message delivery"
+        ],
+        "audience_caveat": "Guest form is not evidence of successful chat access or reliable bot integration."
+      }
+    },
+    {
+      "name": "Chitchat reference",
+      "url": "https://www.chitchat.gg/",
+      "category": "reference_not_new_candidate",
+      "source_ids": [
+        "chitchat_terms"
+      ],
+      "security": {
+        "response_headers": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "tls_handshake": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "csp": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "waf": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        },
+        "captcha": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No raw response-header/TLS/browser measurement in this session."
+        }
+      },
+      "authentication": {
+        "guest": {
+          "classification": "not_tested",
+          "summary": "Not re-tested in this research pass. Historical project behavior is not current authentication evidence.",
+          "source_ids": [
+            "chitchat_terms"
+          ]
+        },
+        "login": {
+          "classification": "documented",
+          "summary": "Terms describe account responsibility and 18+ eligibility; no session created.",
+          "source_ids": [
+            "chitchat_terms"
+          ]
+        },
+        "auto_signup": {
+          "classification": "not_tested",
+          "summary": "Not tested or approved; historical source is not provider permission.",
+          "source_ids": [
+            "chitchat_terms"
+          ]
+        }
+      },
+      "features": {
+        "classification": "documented",
+        "summary": "Current terms describe instant messaging and chat/video moderation; historical archive not runtime-certified.",
+        "source_ids": [
+          "chitchat_terms"
+        ]
+      },
+      "network": {
+        "documented_interfaces": [],
+        "observed_xhr_fetch": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser/DevTools trace captured."
+        },
+        "observed_websocket": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No WS connection or frames captured."
+        }
+      },
+      "storage": {
+        "cookies": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No runtime cookie inventory captured."
+        },
+        "localStorage": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "indexedDB": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No browser storage inspected."
+        },
+        "server_side_hints": {
+          "classification": "not_measured",
+          "value": null,
+          "reason": "No server implementation or datastore inspected."
+        }
+      },
+      "chat_delivery_test": {
+        "result": "not_run",
+        "reason": "No operator-authorized test room/accounts, interactive browser or configured API access in this session.",
+        "messages_sent": 0
+      },
+      "decision": {
+        "status": "reference_only",
+        "priority": "not_selected",
+        "reason": "Baseline for architecture comparison, not a verified new integration. Current terms restrict reverse engineering, bypass and automated content access.",
+        "requirements": [
+          "Current permitted integration and authorized runtime verification"
+        ],
+        "audience_caveat": "Existing source ZIP does not prove current service compatibility."
+      }
+    }
+  ]
+}

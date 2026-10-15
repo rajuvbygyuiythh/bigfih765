@@ -44,6 +44,16 @@ Workflow: [DAILY_SITE_DELIVERY.md](knowledge-pack/docs/DAILY_SITE_DELIVERY.md)�
 - কিছু public archive/tree-তে session/storage/token-জাতীয় filename আছে। এগুলো valid বা exposed secret কি না যাচাই করা হয়নি। প্রকাশের আগে review/redaction; বাস্তব credential প্রকাশিত হয়ে থাকলে revoke/rotate করা দরকার।
 - Source পড়া মানেই app verified নয়। কোনো live login, message send, bot run, Go build বা integration test করা হয়নি।
 
+## Site discovery — 2026-10-15 update
+
+Owner correction: owner জানেন না কোন site বেছে নিতে হবে; agent-কে discovery/recommendation করতে হবে। বারবার target URL চেয়ে discovery আটকে রাখবেন না। নতুন [research report](research/chat-platforms-2026-10-15/REPORT.md) ও [field-level matrix](research/chat-platforms-2026-10-15/sites.json)-এ নয়টি alternative + Chitchat reference আছে।
+
+- Provisional engineering recommendation: **Minnit, owner-controlled/explicitly authorized room**, Community+ webhooks + official bot reply API; backup DeadSimpleChat (advanced API entitlement যাচাই প্রয়োজন)। এটি owner-approved target/purchase বা completed implementation নয়।
+- এই owned-room services **Chitchat-এর existing stranger audience-এর equivalent নয়**। Existing-audience automation-এর কোনো permitted + live-working target এখনও যাচাই হয়নি। Chatblink/StrangerMeetup/Chatiw কেবল operator-enquiry shortlist।
+- Chatblink retrieved signup/login text-এ Turnstile আছে; challenge solve/login test হয়নি। StrangerMeetup homepage-এ anonymous service ও account-required public rooms আলাদা। Chatzy behavior-modifying user scripts restrict করে।
+- Public docs/page-text review হয়েছে; raw headers/TLS/CSP/WAF measurement, runtime XHR/WS, browser storage, signup/API access ও user-chat delivery হয়নি। **Zero messages sent**। Shodan/Censys/crt.sh/Wayback/WhatWeb/JA3 tools run হয়নি।
+- Matrix validator passed + four deliberately invalid-record rejection checks passed; এগুলো research-artifact consistency checks, application/live-chat tests নয়। Existing knowledge ZIPs অপরিবর্তিত।
+
 ## পরের project শুরু করার নিয়ম
 
 প্রথমে platform, UI, প্রয়োজনীয় feature, transport, data/privacy এবং acceptance test নির্ধারণ করুন। তারপর একটি নির্দিষ্ট baseline snapshot বেছে নিয়ে একটি worker + একটি conversation-এর offline test তৈরি করুন। এরপর UI, persistence ও সীমাবদ্ধ concurrency যোগ করুন। পুরোনো সব version একসঙ্গে copy করবেন না।
