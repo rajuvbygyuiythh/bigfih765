@@ -2,6 +2,10 @@
 
 Date: 2026-10-15 UTC.
 
+## Daily-goal revision
+
+The owner clarified the main cadence target: one selected site per day with a complete scoped project. Goal/agent/memory documents now reflect that target, and daily-delivery gates plus a delivery-report template were added. The original input ZIP is retained unchanged; this revision is packaged separately as `project-build-knowledge-daily-goal-2026-10-15.zip`. See [GOAL_ALIGNMENT_2026-10-15.md](GOAL_ALIGNMENT_2026-10-15.md) for input hash, re-read scope and next-action status. No new site-specific app was implemented in this revision.
+
 ## Contents and scope
 
 The handoff contains owner-goal notes, incoming-agent instructions, architecture/method maps, chat-state/routing explanations, feature/build plans, security limitations, new-project templates and offline lookup/validation/build tools. The source inventory covers 23 repositories and 19 historical ZIPs. Original ZIPs and runtime data are not included.

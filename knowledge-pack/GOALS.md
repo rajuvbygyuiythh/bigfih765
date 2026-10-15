@@ -9,6 +9,15 @@ The owner asked, in Banglish, to:
 - Put methods, patterns, systems, logic, chat-system explanations and future-use information in a separate GitHub repository.
 - Provide one ZIP containing that knowledge.
 - Make the handoff clear enough for another agent to understand the building goal and how the existing chat systems work.
+- **Latest clarification (2026-10-15): aim for one site per day with a complete, scoped project**, not a continuing list of research-only suggestions. Use the existing knowledge to assess, think, plan, implement, test, fix and package each selected site integration.
+
+### Main operating goal: one site, one complete scoped delivery
+
+Reuse the common chat engine, conversation state, settings, diagnostics and lifecycle where appropriate; implement and test the selected site's adapter and explicit feature requirements. Research is an input to delivery, not a substitute for a working project.
+
+The daily cadence is the owner's target, not a guaranteed 24-hour completion or an autonomous scheduled service. Site selection, permission/access and achievable scope must be checked for each cycle. If blocked, provide the exact blocker and runnable work completed; do not describe an offline scaffold or untested adapter as a complete live integration.
+
+Operational checklist: [DAILY_SITE_DELIVERY.md](docs/DAILY_SITE_DELIVERY.md). No next site has been selected by this clarification alone.
 
 Communication preference evidenced by the conversation: informal Bangla/Banglish, collaborative and practical.
 

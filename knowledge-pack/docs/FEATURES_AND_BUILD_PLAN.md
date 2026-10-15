@@ -1,5 +1,7 @@
 # Features and next-project build plan
 
+**Latest owner-confirmed working target:** one selected site per day with a complete scoped project. Use [DAILY_SITE_DELIVERY.md](DAILY_SITE_DELIVERY.md) to apply these gates during each delivery cycle; do not substitute research alone or skip validation to meet the cadence.
+
 ## 1. Select features; do not assume all are required
 
 | Capability | Historical evidence | Next-build status / caution |

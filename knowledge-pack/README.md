@@ -19,11 +19,16 @@
 3. **[docs/CHAT_SYSTEM.md](docs/CHAT_SYSTEM.md)** — conversation state, routing, response pools and transports.
 4. **[docs/PROJECT_PATTERNS.md](docs/PROJECT_PATTERNS.md)** — family-specific architecture and source locations.
 5. **[docs/FEATURES_AND_BUILD_PLAN.md](docs/FEATURES_AND_BUILD_PLAN.md)** — feature choices and implementation gates.
-6. **[docs/SECURITY_AND_LIMITATIONS.md](docs/SECURITY_AND_LIMITATIONS.md)** — privacy, authorization, unresolved defects and verification limits.
+6. **[docs/DAILY_SITE_DELIVERY.md](docs/DAILY_SITE_DELIVERY.md)** — one-site delivery gates and definition of done.
+7. **[docs/SECURITY_AND_LIMITATIONS.md](docs/SECURITY_AND_LIMITATIONS.md)** — privacy, authorization, unresolved defects and verification limits.
 
 ## আপনার goal, এক কথায়
 
-আগের project-গুলোর main method, pattern, system ও logic থেকে reusable জ্ঞান রেখে নতুন/similar site বা platform-এর জন্য পরিকল্পিত project বানানো; প্রতিবার নতুন agent-কে সবকিছু আবার শুরু থেকে বোঝাতে না হওয়া। নির্দিষ্ট পরের site, feature set বা deployment target এখনও ঠিক করা হয়নি।
+**Daily target: একদিনে একটি নির্বাচিত site নিয়ে একটি complete, scoped project delivery।** আগের main method, pattern, system ও chat logic ব্যবহার করে assess → plan → implement → test → fix → package → handoff করতে হবে; শুধু নতুন site list বানানোতেই কাজ শেষ নয়।
+
+Daily cadence একটি লক্ষ্য, guaranteed completion বা automatic scheduled service নয়। Scope/access যাচাই করে বাস্তব ফল দিতে হবে; incomplete adapter-কে complete বলা যাবে না। পরের নির্দিষ্ট site এখনও নির্বাচিত হয়নি।
+
+Main workflow: **[DAILY_SITE_DELIVERY.md](docs/DAILY_SITE_DELIVERY.md)**।
 
 ## System map
 
@@ -52,6 +57,9 @@ Go/Wails, Python EVA and Telegram implementations are **related patterns, not on
 | `docs/SECURITY_AND_LIMITATIONS.md` | Scope, defects, exclusions and security requirements. |
 | `docs/repository-inventory.json` | 23 repositories, 19 archives, hashes and selected method locations. |
 | `docs/method-index.json` | Broader first-party declaration index; no method bodies or secret values. |
+| `docs/DAILY_SITE_DELIVERY.md` | Confirmed daily delivery target, acceptance gates and honest status labels. |
+| `docs/GOAL_ALIGNMENT_2026-10-15.md` | ZIP re-read evidence and latest goal clarification. |
+| `templates/SITE_DELIVERY_REPORT.md` | Actual implementation/test/fix/package handoff for one site. |
 | `templates/NEXT_PROJECT_BRIEF.md` | Fill this before implementing a new project. |
 | `templates/AGENT_START_PROMPT.md` | Copy/paste prompt for a future agent. |
 | `tools/query_methods.py` | Offline method lookup; Python standard library only. |

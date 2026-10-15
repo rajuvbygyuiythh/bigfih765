@@ -4,6 +4,10 @@ Copy this into the new project's documentation and fill it with the owner. Use `
 
 ## Confirmed goal
 
+- Delivery-cycle date:
+- Daily target: one selected site, one complete project for agreed scope (not a guaranteed deadline).
+- Current status: READY / IN_PROGRESS / BLOCKED / OFFLINE_VALIDATED / COMPLETE_FOR_SCOPE
+
 - Project name:
 - Target site/platform:
 - What the user should be able to do:
@@ -59,5 +63,7 @@ Do not put real credentials, cookies or session tokens here.
 - Unresolved questions:
 
 ## Decisions and validation
+
+Use [SITE_DELIVERY_REPORT.md](SITE_DELIVERY_REPORT.md) for the end-of-cycle handoff.
 
 For each milestone, record the confirmed scope, implementation, command/test results and remaining limitations. Do not mark a feature complete only because its interface exists.

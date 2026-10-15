@@ -1,12 +1,12 @@
 # Future-agent starting prompt
 
-Copy the following, attach this ZIP or authorize access to the private knowledge repository, and add the new platform/feature details.
+Copy the following, attach this ZIP or provide access to the knowledge repository, and add the new platform/feature details.
 
 ---
 
 এই knowledge pack আমার আগের project-গুলোর context। আগে `README.md`, `AGENTS.md`, `GOALS.md`, `docs/CHAT_SYSTEM.md`, `docs/PROJECT_PATTERNS.md` আর `docs/SECURITY_AND_LIMITATIONS.md` পড়ুন। প্রয়োজন হলে method/source খুঁজতে inventory ও query tool ব্যবহার করুন।
 
-আমার goal: আগের reusable architecture, method pattern ও chat-system understanding ব্যবহার করে একটি নতুন project বানানো। পুরোনো সব behavior হুবহু copy করা আমার confirmed requirement নয়।
+আমার main working goal: daily one selected site with one complete, scoped project—আগের reusable architecture, method pattern ও chat-system understanding ধরে assess → plan → code → test → fix → package → handoff। শুধু research/site list নয়; docs/DAILY_SITE_DELIVERY.md-এর acceptance gates মেনে বাস্তব deliverable চাই। পুরোনো সব behavior হুবহু copy করা আমার confirmed requirement নয়।
 
 নতুন project:
 - Target site/platform: [লিখুন]

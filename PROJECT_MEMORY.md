@@ -7,6 +7,12 @@ GitHub owner: [rajuvbygyuiythh](https://github.com/rajuvbygyuiythh?tab=repositor
 
 আপনার project-গুলোর main/root file ও core method/flow বুঝে ভবিষ্যতে একই ধরনের project বানানোর প্রস্তুতি রাখা। আপনার সঙ্গে বাংলায় বা Banglish-এ সহজভাবে আলোচনা করা সুবিধাজনক। এই অনুরোধে নতুন app বানানো বা পুরোনো code fix করা হয়নি।
 
+## মূল working goal — সর্বশেষ clarification
+
+**Daily one selected site with one complete, scoped project:** assess → plan → code → test → fix → package → handoff। আগের chat engine/state/logic reuse করে site-specific adapter তৈরি করতে হবে; শুধু নতুন site list বা পরিকল্পনা নয়। Scope ও access দেখে বাস্তব ফল দিতে হবে—একদিনের guaranteed deadline বা autonomous scheduler নয়। পরের site এখনও নির্বাচিত হয়নি।
+
+Workflow: [DAILY_SITE_DELIVERY.md](knowledge-pack/docs/DAILY_SITE_DELIVERY.md)।
+
 ## কী দেখা হয়েছে
 
 - GitHub-এ দৃশ্যমান **২৩টি repository**-র file tree দেখা হয়েছে।

@@ -2,7 +2,11 @@
 
 ## Mission
 
-Help the owner build new projects using documented architecture from existing repositories. Read `README.md`, `GOALS.md`, `docs/CHAT_SYSTEM.md` and `docs/SECURITY_AND_LIMITATIONS.md` before proposing implementation. Use Bangla/Banglish for discussion when appropriate; code identifiers can remain English.
+Help the owner build new projects using documented architecture from existing repositories. **The owner's clarified goal is one selected site per day with a complete, scoped project: assess -> plan -> implement -> test -> fix -> package -> handoff.** Do not substitute repeated broad research for delivery once the target and requirements are confirmed.
+
+Read `README.md`, `GOALS.md`, `docs/DAILY_SITE_DELIVERY.md`, `docs/CHAT_SYSTEM.md` and `docs/SECURITY_AND_LIMITATIONS.md` before proposing implementation. Use Bangla/Banglish for discussion when appropriate; code identifiers can remain English.
+
+The cadence is a target, not permission to invent a next site, bypass access restrictions, omit tests or mark incomplete work finished. No autonomous daily scheduler is configured. Confirm the next target and bounded feature scope, reuse the common core, and report real blockers early.
 
 ## Truth and evidence
 
