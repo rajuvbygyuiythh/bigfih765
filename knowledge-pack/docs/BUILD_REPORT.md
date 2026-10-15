@@ -29,6 +29,8 @@ The ZIP build tool regenerates `MANIFEST.sha256`, checks ZIP CRC integrity and w
 
 These results validate navigation and package integrity, **not** the historical bots, browser integrations, Go builds or Telegram behavior. No historical application was executed.
 
-## GitHub publication limitation
+## GitHub publication
 
-Creating `rajuvbygyuiythh/project-build-knowledge` as a new private repository failed because the integration denied `createRepository`. The separate repository therefore does not exist as a result of this work. The session's original repository branch is the fallback publication location; the final chat response states the confirmed push result. See `PUBLISHING.md` to finish a separate-repo transfer without sharing credentials.
+The owner supplied `rajuvbygyuiythh/futureidea-goal` as the public destination after earlier private-repository permission failures. Public visibility and an empty repository were confirmed on 2026-10-15 UTC. Despite API-reported owner push permission, the actual `git push origin arena/d73f03f8-bigfih765` from the sanitized publication checkout failed with HTTP 403 (permission denied).
+
+**No files or releases were published to futureidea-goal.** Publication requires repository write access for the connected GitHub integration, followed by reconnecting GitHub in Arena. A local publication checkout and refreshed ZIP are prepared. No historical source archives or runtime data are included. See `PUBLISHING.md` for the exact status and public-data boundary.

@@ -4,6 +4,12 @@
 **Knowledge snapshot:** 2026-10-15 UTC
 **Purpose:** নতুন agent-কে project goal, existing architecture এবং chat-system pattern বুঝিয়ে একই ধরনের নতুন project পরিকল্পনা ও build করতে সাহায্য করা।
 
+**Requested destination:** [futureidea-goal](https://github.com/rajuvbygyuiythh/futureidea-goal) — public read access confirmed; publishing blocked by GitHub integration write permissions. No files were uploaded there.
+
+**ZIP:** supplied separately in the conversation; no release has been published to the requested destination yet.
+
+**Public repository:** শুধুমাত্র sanitized knowledge ও source references; secret/session বা raw conversation data নয়।
+
 > ভাই, এটা ready-made app নয়। এটা আপনার project-building knowledge base। এতে source references, observed logic, reusable patterns, limitations এবং next-project instructions আছে। Secret, saved login, private chat এবং raw capture নেই।
 
 ## Agent: read these first
@@ -51,7 +57,7 @@ Go/Wails, Python EVA and Telegram implementations are **related patterns, not on
 | `tools/query_methods.py` | Offline method lookup; Python standard library only. |
 | `tools/validate_pack.py` | Offline structural/link/checksum validation. |
 | `tools/build_pack.py` | Regenerate manifest and ZIP; no external dependencies. |
-| `docs/PUBLISHING.md` | Separate-repo permission limitation and transfer steps. |
+| `docs/PUBLISHING.md` | Public destination, data boundary and publication history. |
 | `docs/BUILD_REPORT.md` | Handoff validation results, not historical app certification. |
 | `MANIFEST.sha256` | Integrity hashes of the packaged knowledge files. |
 
