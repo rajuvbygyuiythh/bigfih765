@@ -1,0 +1,17 @@
+# Never publish runtime secrets, sessions or captures.
+.env
+.env.*
+!.env.example
+credentials*
+accounts.txt
+proxy.txt
+storage_state*.json
+login_info*.json
+*.session
+*.session-journal
+account_sessions/
+captures/
+__pycache__/
+*.pyc
+node_modules/
+.venv/
