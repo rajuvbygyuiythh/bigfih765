@@ -28,6 +28,7 @@ REPORTS = {
     'SITE_ONBOARDING.md': 'research/site-onboarding-2026-10-16/REPORT.md',
     'MINNIT_DIAGNOSTICS.md': 'research/minnit-diagnostics-2026-10-16/REPORT.md',
     'SITE_WORKFLOW.md': 'SITES.md',
+    'DEADSIMPLECHAT_PLAN.md': 'research/deadsimplechat-plan-2026-10-16/PLAN.md',
     'DEADSIMPLECHAT_RECON.md': 'research/deadsimplechat-recon-2026-10-16/REPORT.md'
 }
 

@@ -72,7 +72,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                         raise APIError(405, "Webhook requires POST")
                     if self.headers.get("Origin") or self.headers.get("Sec-Fetch-Site"):
                         raise APIError(403, "Webhook is server-to-server only")
-                    workflow.require_active('minnit')
+                    workflow.require_setup_approved('minnit')
                     diagnostics.authenticate_webhook(path[len("/hooks/minnit/"):])
                     if urlparse(self.path).query:
                         raise APIError(400, "Webhook query parameters are not accepted")
@@ -94,6 +94,15 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                     data = self.body()
                 if path == "/api/workflow" and method == "GET":
                     return self.respond(200, {**workflow.snapshot(), "operator_mutations_enabled": len(token) >= 32})
+                if path == "/api/workflow/plan" and method == "GET":
+                    return self.respond(200, workflow.read_plan())
+                if path == "/api/workflow/approve-plan" and method == "POST":
+                    if len(token) < 32:
+                        raise APIError(403, "Plan approval requires a strong configured operator token")
+                    if set(data) != {"site", "revision", "plan_sha256", "approval_reference"}:
+                        raise APIError(400, "Exact site, revision, plan_sha256 and non-secret approval_reference required")
+                    return self.respond(200, workflow.approve_plan(data.get("site"), data.get("plan_sha256"),
+                                                                  data.get("approval_reference"), data.get("revision")))
                 if path == "/api/workflow/complete-and-next" and method == "POST":
                     if len(token) < 32:
                         raise APIError(403, "Queue mutation requires a strong configured operator token")
@@ -106,17 +115,17 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                 if path == "/api/diagnostics/minnit" and method == "GET":
                     status = diagnostics.status()
                     try:
-                        workflow.require_active('minnit')
+                        workflow.require_setup_approved('minnit')
                         status['workflow_locked'] = False
                     except APIError:
                         status['workflow_locked'] = True
-                        status['blockers'].append('Minnit is workflow-locked; complete the active site first')
+                        status['blockers'].append('Minnit is workflow-locked or its current scope lacks owner approval')
                     return self.respond(200, status)
                 if path == "/api/diagnostics/minnit/deliveries" and method == "GET":
                     return self.respond(200, diagnostics.deliveries())
                 if path == "/api/diagnostics/minnit/arm" and method == "POST":
                     with diagnostics.lock, workflow._exclusive():
-                        workflow.require_active('minnit')
+                        workflow.require_setup_approved('minnit')
                         result = diagnostics.arm()
                     return self.respond(200, result)
                 if path == "/api/diagnostics/minnit/disarm" and method == "POST":
@@ -127,7 +136,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                     if set(data) != {"run_id"}:
                         raise APIError(400, "Only the current diagnostic run_id is accepted; reply text is fixed")
                     with diagnostics.lock, workflow._exclusive():
-                        workflow.require_active('minnit')
+                        workflow.require_setup_approved('minnit')
                         result = diagnostics.approve(diagnostic_parts[4], data.get("run_id"))
                     return self.respond(200, result)
                 if path == "/api/platforms" and method == "GET":

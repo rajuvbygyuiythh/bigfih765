@@ -1,6 +1,6 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
-let researchData = null, fixtures = null, platforms = null;
+let researchData = null, fixtures = null, platforms = null, reviewedPlanHash = null;
 let token = '', state = {instances: [], audit: []}, selected = null, filter = 'all', refreshing = false, toastTimer;
 const adapterNames = {};
 async function loadRegistry() {
@@ -18,7 +18,7 @@ async function api(path, method = 'GET', data) {
   return result;
 }
 function el(tag, cls, text) {const node = document.createElement(tag); if(cls) node.className = cls; if(text !== undefined) node.textContent = text; return node;}
-function button(text, cls, callback, disabled = false) {const b = el('button', cls, text); b.disabled = disabled; b.addEventListener('click', async (event) => { event.stopPropagation(); b.disabled = true; try {await callback(); await refresh();} catch(error) {toast(error.message);} finally {if(b.isConnected) b.disabled = disabled;}}); return b;}
+function button(text, cls, callback, disabled = false) {const b = el('button', cls, text); b.disabled = disabled; b.addEventListener('click', async (event) => { event.stopPropagation(); b.disabled = true; b.setAttribute('aria-busy','true'); try {await callback(); await refresh();} catch(error) {toast(error.message);} finally {b.setAttribute('aria-busy','false');if(b.isConnected) b.disabled = disabled;}}); return b;}
 function render() {
   const summary = state.summary;
   $('configured').textContent = summary.configured; $('nav-count').textContent = summary.configured; $('all-count').textContent = summary.configured;
@@ -143,6 +143,12 @@ async function refreshWorkflow() {
       card.append(el('p','muted',item.percent===null?'Not an unlock target':`${item.completed_steps.length}/8 delivery steps · ${item.percent}%`));
       if(item.state==='locked') card.append(el('p','muted','Locked until the current site is fully complete.'));
       if(item.state==='active') {
+        card.append(el('p','muted',`Plan: ${item.plan?.status||'plan_required'} · readiness: ${queue.readiness||'not_verified'}`));
+        if(item.plan?.sha256) {
+          card.append(el('p','muted',`Plan SHA-256: ${item.plan.sha256}`));
+          card.append(button('Read scope plan','secondary',async()=>{const plan=await api('/api/workflow/plan');$('queue-plan').textContent=plan.markdown;reviewedPlanHash=plan.plan_sha256;}));
+          if(!item.plan.approved) card.append(button('Approve exact plan','secondary',async()=>{if(confirm(`Approve ONLY this plan for setup? This does not mark GREEN or unlock the next site.\nSHA-256: ${item.plan.sha256}`)) await api('/api/workflow/approve-plan','POST',{site:id,revision:queue.revision,plan_sha256:item.plan.sha256,approval_reference:'operator-dashboard'});},!queue.operator_mutations_enabled||reviewedPlanHash!==item.plan.sha256||item.completed_steps.length<2));
+        }
         card.append(button('Complete site & unlock next','primary',async()=>{if(confirm('Complete this site and unlock exactly the next? All eight steps, live evidence and ZIP checksum must pass.')) await api('/api/workflow/complete-and-next','POST',{site:id,revision:queue.revision});},!queue.can_complete||!queue.operator_mutations_enabled));
       }
       box.append(card);

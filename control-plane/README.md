@@ -224,3 +224,19 @@ There is **no unlock-all/skip/force override**. Complete-and-next atomically mar
 Read API: `GET /api/workflow`. Operator completion API: `POST /api/workflow/complete-and-next` with **only** `site` + current integer `revision`, existing Bearer/same-origin/body checks and an operator token of at least 32 characters. Default demo is read-only for queue mutation. Dashboard's **Complete site & unlock next** stays disabled until ready. No public step-write API is exposed. CLI/API updates use a POSIX advisory lock, atomic replacement and revision checks; mutation requires POSIX. Read-only views remain portable. Runtime lock file is ignored. Git backup still requires the agent's explicit tested commit/push, never an automatic server push.
 
 Minnit webhook/arming/approval routes also enforce its project lock; real send dispatch holds the same queue lock as advancement. Completion cannot race an already-dispatched diagnostic send. Operator disarm/Stop remain available even while a site is locked. Previously released ZIPs remain unchanged; the next Step 8 packager includes queue module/tool/tests and SITES as `reports/SITE_WORKFLOW.md`. Packaged queue is a snapshot; active development/step evidence should be managed in the source checkout.
+
+## Owner-approved scope before setup
+
+Latest control flow: **full scoped plan → explicit owner approval → setup → actual live GREEN → next site unlock/start**. DeadSimpleChat's proposed `DS-DIAG-v1` plan is at `research/deadsimplechat-plan-2026-10-16/PLAN.md`; delivery is 2/8 (25%), approval null. No setup has started. Proposed semantics: one registered question/user/action intent, at most one fixed room-visible diagnostic response; not one reply per click or a private-DM/campaign flow. Detailed gates/non-goals/acceptance matrix are in the plan.
+
+Step 2 registers a Markdown scope plan. Before steps 3–8 or live diagnostic setup/intake/send, its exact SHA-256 must have an explicit owner/operator approval record. Editing the plan invalidates the previous approval; it does not get grandfathered. Approval is not setup success, peer delivery or GREEN. No approval happens automatically from opening the plan, passing tests, filling environment variables or a chat message that merely requests planning.
+
+```sh
+python -B tools/site_queue.py read-plan
+# ONLY after explicit owner approval of this exact hash (never run speculatively):
+python -B tools/site_queue.py approve-plan --site deadsimplechat --revision CURRENT_REVISION --plan-sha256 EXACT_REVIEWED_HASH --approval-reference NON_SECRET_OWNER_REFERENCE
+```
+
+Authenticated `GET /api/workflow/plan` returns the active plan content/hash. `POST /api/workflow/approve-plan` accepts exactly `site`, `revision`, `plan_sha256`, `approval_reference`, needs the existing strong operator token/same-origin guards, and only records approval. CLI is trusted local operator tooling; approval metadata is operator-attested, not cryptographic owner identity proof. Never put credentials/private chat content in the reference. The dashboard requires reading the plan before enabling the explicit approval action and keeps demo approval disabled. Development helpers/tests may use synthetic approvals, never mutate real owner approval.
+
+`/api/workflow` readiness is `awaiting_owner_approval` / `changed_since_approval`, then `setup_or_verification_pending`; `green` requires current approval **and** all prior actual live-evidence/step/regression/release gates. No unconditional setup or unlock action is run by approval. A scoped plan is not a guarantee of 100% future success; unknown provider contracts/access remain fail-closed until verified. After all gates genuinely pass, guarded complete-and-next unlocks only Minnit. No new Step 8 ZIP is generated for this planning turn; existing archives remain unchanged.

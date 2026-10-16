@@ -7,3 +7,5 @@
 .diagnostic-delivery{padding:14px 0;border-bottom:1px solid var(--border,#e5e7eb);display:flex;gap:12px;align-items:center;flex-wrap:wrap}.diagnostic-delivery button{margin-left:auto}#diagnostic-blockers{line-height:1.8;overflow-wrap:anywhere}
 
 .queue-card{padding:20px}.queue-card .badge{display:inline-block;margin:8px 0}.badge.locked{background:#fff3df;color:#9a6519}.badge.active{background:#e7f5ef;color:#24764d}#queue-blockers{line-height:1.8}
+
+#queue-plan{white-space:pre-wrap;overflow-wrap:anywhere;max-height:560px;overflow:auto;font-size:13px;line-height:1.6}.queue-card p{overflow-wrap:anywhere}

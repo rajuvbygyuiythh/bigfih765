@@ -4,6 +4,7 @@ These are inspected local tools/methods, not installed model plugins or guarante
 
 | Skill | Entry point | Boundary |
 | --- | --- | --- |
+| Scope/approval review | `python -B control-plane/tools/site_queue.py read-plan` | Read current plan/hash; no setup until explicit owner approval; changed plan requires re-approval |
 | Sequential lock queue | `python -B control-plane/tools/site_queue.py status` | SITES is canonical; sequential evidence-backed steps, complete-and-next only; no override |
 | One-site recon | `python -B control-plane/tools/recon_site.py deadsimplechat` | Official-documentation summary; no network/send |
 | Private HAR metadata triage | Same command with `--har .runtime/authorized.har` | One allowlisted bot-send route; no bodies/cookies/IDs/header/query values retained; not webhook capture/auth proof |

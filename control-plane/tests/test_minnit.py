@@ -315,8 +315,16 @@ class HTTPTests(Fixture):
     def setUp(self):
         super().setUp()
         workflow_source = Path(self.directory.name) / 'SITES.md'
-        workflow_source.write_text(render(initial_state('minnit')))
+        state = initial_state('minnit')
+        plan = Path(self.directory.name) / 'research/test/PLAN.md'
+        plan.parent.mkdir(parents=True)
+        plan.write_text('Synthetic authorized diagnostic plan; not real owner approval')
+        state['sites']['minnit'].update(completed_steps=[1,2],
+            evidence={'1':'research/test/PLAN.md','2':'research/test/PLAN.md'}, plan_path='research/test/PLAN.md')
+        workflow_source.write_text(render(state))
         workflow = SiteWorkflow(workflow_source, Path(self.directory.name))
+        reviewed = workflow.read_plan()
+        workflow.approve_plan('minnit', reviewed['plan_sha256'], 'synthetic-test-only', 0)
         self.server = make_server('127.0.0.1', 0, self.controller, TOKEN, self.service, workflow)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.thread.start()

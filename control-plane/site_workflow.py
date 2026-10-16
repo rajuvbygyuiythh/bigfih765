@@ -7,6 +7,8 @@ from contextlib import contextmanager
 import copy
 import hashlib
 import json
+import re
+from datetime import datetime, timezone
 from pathlib import Path
 import tempfile
 import os
@@ -31,7 +33,8 @@ def initial_state(active='deadsimplechat'):
     return {'schema_version': 1, 'revision': 0, 'active_site': active, 'order': order,
             'sites': {key: {'state': 'active' if key == active else 'locked' if key in ORDER else value['phase'],
                             'completed_steps': [1] if key == 'deadsimplechat' else [],
-                            'evidence': {'1': 'research/deadsimplechat-recon-2026-10-16/REPORT.md'} if key == 'deadsimplechat' else {}}
+                            'evidence': {'1': 'research/deadsimplechat-recon-2026-10-16/REPORT.md'} if key == 'deadsimplechat' else {},
+                            'plan_path': None, 'approval': None}
                       for key, value in PLATFORMS.items() if key != 'simulator'}}
 
 
@@ -69,6 +72,15 @@ class SiteWorkflow:
                         or any(type(n) is not int for n in steps) or steps != list(range(1, len(steps) + 1)) or len(steps) > 8
                         or set(item['evidence']) != {str(n) for n in steps}
                         or any(not isinstance(p, str) or not p for p in item['evidence'].values())):
+                    raise ValueError()
+                plan, approval = item.get('plan_path'), item.get('approval')
+                if plan is not None and not isinstance(plan, str):
+                    raise ValueError()
+                if approval is not None and (not isinstance(approval, dict)
+                        or set(approval) != {'plan_sha256', 'approved_at', 'reference'}
+                        or not re.fullmatch(r'[a-f0-9]{64}', approval.get('plan_sha256', ''))
+                        or not isinstance(approval.get('approved_at'), str)
+                        or not re.fullmatch(r'[A-Za-z0-9_.:/-]{1,128}', approval.get('reference', ''))):
                     raise ValueError()
                 if status == 'done':
                     if previous != 'done' or len(steps) != 8:
@@ -141,6 +153,66 @@ class SiteWorkflow:
         except (OSError, ValueError, zipfile.BadZipFile):
             raise APIError(409, 'Step 8 requires a valid ZIP with matching SHA-256 sidecar')
 
+    def _plan_status(self, item):
+        path = item.get('plan_path')
+        if not path:
+            return {'status': 'plan_required', 'path': None, 'sha256': None, 'approved': False}
+        try:
+            source = self._evidence_path(path)
+            if source.suffix != '.md' or source.stat().st_size > 32768:
+                raise APIError(400, 'Plan must be a Markdown document of at most 32 KiB')
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()
+        except (APIError, OSError):
+            return {'status': 'plan_missing_or_invalid', 'path': path, 'sha256': None, 'approved': False}
+        approval = item.get('approval')
+        approved = bool(approval and approval['plan_sha256'] == digest)
+        status = 'approved' if approved else 'changed_since_approval' if approval else 'awaiting_owner_approval'
+        return {'status': status, 'path': path, 'sha256': digest, 'approved': approved}
+
+    def read_plan(self):
+        _, state = self._load()
+        site = state['active_site']
+        if not site:
+            raise APIError(409, 'No active site')
+        plan = self._plan_status(state['sites'][site])
+        if not plan['sha256']:
+            raise APIError(409, 'No valid scoped plan registered')
+        source = self._evidence_path(plan['path'])
+        raw = source.read_bytes()
+        # Hash and displayed content must be from the same read.
+        return {'site': site, 'revision': state['revision'], 'path': plan['path'],
+                'plan_sha256': hashlib.sha256(raw).hexdigest(), 'markdown': raw.decode('utf-8')}
+
+    def approve_plan(self, site, plan_sha256, reference, revision):
+        # Only call after an explicit owner/operator action. Not an automatic
+        # plan-ready transition, ownership proof, or permission to mark GREEN.
+        with self._exclusive():
+            text, state = self._load()
+            self._guard(state, site, revision)
+            item = state['sites'][site]
+            plan = self._plan_status(item)
+            if len(item['completed_steps']) < 2 or not plan['sha256']:
+                raise APIError(409, 'Finish the scoped design and register its plan before approval')
+            if plan_sha256 != plan['sha256']:
+                raise APIError(409, 'Plan hash changed; read and explicitly approve the current plan')
+            if not isinstance(reference, str) or not re.fullmatch(r'[A-Za-z0-9_.:/-]{1,128}', reference):
+                raise APIError(400, 'Use a non-secret approval reference, not message content or credentials')
+            item['approval'] = {'plan_sha256': plan_sha256,
+                                'approved_at': datetime.now(timezone.utc).isoformat(), 'reference': reference}
+            state['revision'] += 1
+            self._save(text, state)
+        return self.snapshot()
+
+    def _require_approved(self, item):
+        if not self._plan_status(item)['approved']:
+            raise APIError(409, 'Owner approval of the exact current plan is required before setup')
+
+    def require_setup_approved(self, site):
+        _, state = self._load()
+        if site != state['active_site']:
+            raise APIError(409, 'Site is locked; only the active site can run setup')
+        self._require_approved(state['sites'][site])
+
     def _acceptance_blockers(self, site):
         from research import catalog
         data = catalog()
@@ -156,8 +228,11 @@ class SiteWorkflow:
         for key, item in result['sites'].items():
             item['locked'] = item['state'] != 'active'
             item['percent'] = len(item['completed_steps']) / 8 * 100 if key in ORDER else None
+            item['plan'] = self._plan_status(item) if key in ORDER else None
         active = state['active_site']
         blockers = list(self._acceptance_blockers(active)) if active else []
+        if active and not result['sites'][active]['plan']['approved']:
+            blockers.append('Owner approval of exact current plan before setup')
         if active and len(state['sites'][active]['completed_steps']) != 8:
             blockers.insert(0, 'Finish all eight evidenced delivery steps')
         if active and len(state['sites'][active]['completed_steps']) == 8:
@@ -169,6 +244,9 @@ class SiteWorkflow:
                 blockers.append(str(exc))
         result['completion_blockers'] = blockers
         result['can_complete'] = active is not None and not blockers
+        result['readiness'] = ('complete' if not active else 'green' if result['can_complete']
+                               else result['sites'][active]['plan']['status'] if not result['sites'][active]['plan']['approved']
+                               else 'setup_or_verification_pending')
         result['next_site'] = next((s for s in state['order'] if state['sites'][s]['state'] == 'locked'), None)
         return result
 
@@ -190,11 +268,17 @@ class SiteWorkflow:
             item = state['sites'][site]
             if type(step) is not int or step != len(item['completed_steps']) + 1 or step > 8:
                 raise APIError(409, 'Delivery steps must finish sequentially, without skip/replay')
+            if step >= 3:
+                self._require_approved(item)
             path = self._evidence_path(evidence)
             if step >= 6 and self._acceptance_blockers(site):
                 raise APIError(409, 'Live acceptance and fresh regression gates remain incomplete')
             if step == 8:
                 self._release(path)
+            if step == 2:
+                if path.suffix != '.md':
+                    raise APIError(400, 'Step 2 requires a reviewable Markdown scope plan')
+                item['plan_path'], item['approval'] = evidence, None
             item['completed_steps'].append(step)
             item['evidence'][str(step)] = evidence
             state['revision'] += 1
@@ -206,6 +290,7 @@ class SiteWorkflow:
             text, state = self._load()
             self._guard(state, site, revision)
             item = state['sites'][site]
+            self._require_approved(item)
             if len(item['completed_steps']) != 8 or self._acceptance_blockers(site):
                 raise APIError(409, 'Site is not complete; all steps and live acceptance evidence are required')
             for value in item['evidence'].values():

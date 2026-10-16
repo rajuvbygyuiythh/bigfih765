@@ -49,8 +49,14 @@ class WorkflowTests(unittest.TestCase):
         # Explicit fake acceptance; never alters the real catalog/queue.
         with patch.object(self.queue, '_acceptance_blockers', return_value=[]):
             for step in range(2, 9):
+                if step == 3:
+                    self.approve_fixture()
                 revision = self.queue.snapshot()['revision']
                 self.queue.complete_step('deadsimplechat', step, self.release if step == 8 else self.evidence, revision)
+
+    def approve_fixture(self):
+        plan = self.queue.read_plan()
+        self.queue.approve_plan('deadsimplechat', plan['plan_sha256'], 'synthetic-unit-test', plan['revision'])
 
     def test_initial_single_active_seven_locked_and_protected_references(self):
         state = self.queue.snapshot()
@@ -105,20 +111,22 @@ class WorkflowTests(unittest.TestCase):
 
     def test_live_gates_block_step_six_even_with_local_reports(self):
         for step in range(2, 6):
-            self.queue.complete_step('deadsimplechat', step, self.evidence, step - 2)
-        self.assert_api(409, self.queue.complete_step, 'deadsimplechat', 6, self.evidence, 4)
+            if step == 3:
+                self.approve_fixture()
+            self.queue.complete_step('deadsimplechat', step, self.evidence, self.queue.snapshot()['revision'])
+        self.assert_api(409, self.queue.complete_step, 'deadsimplechat', 6, self.evidence, self.queue.snapshot()['revision'])
         self.assertEqual(self.queue.snapshot()['sites']['deadsimplechat']['percent'], 62.5)
 
     def test_eight_steps_do_not_override_acceptance(self):
         self.staged()
         self.assertFalse(self.queue.snapshot()['can_complete'])
-        self.assert_api(409, self.queue.complete_and_next, 'deadsimplechat', 7)
+        self.assert_api(409, self.queue.complete_and_next, 'deadsimplechat', 8)
 
     def test_verified_completion_unlocks_exactly_one_and_persists(self):
         self.staged()
         with patch.object(self.queue, '_acceptance_blockers', return_value=[]):
             self.assertTrue(self.queue.snapshot()['can_complete'])
-            result = self.queue.complete_and_next('deadsimplechat', 7)
+            result = self.queue.complete_and_next('deadsimplechat', 8)
         self.assertEqual(result['active_site'], 'minnit')
         self.assertEqual(result['sites']['deadsimplechat']['state'], 'done')
         self.assertEqual(result['sites']['minnit']['state'], 'active')
@@ -132,7 +140,7 @@ class WorkflowTests(unittest.TestCase):
         (self.root / self.release).with_suffix('.zip.sha256').write_text('bad  test.zip')
         with patch.object(self.queue, '_acceptance_blockers', return_value=[]):
             self.assertFalse(self.queue.snapshot()['can_complete'])
-            self.assert_api(409, self.queue.complete_and_next, 'deadsimplechat', 7)
+            self.assert_api(409, self.queue.complete_and_next, 'deadsimplechat', 8)
 
     def test_concurrent_completion_only_one_transition(self):
         self.staged()
@@ -140,7 +148,7 @@ class WorkflowTests(unittest.TestCase):
             queue = SiteWorkflow(self.source, self.root)
             with patch.object(queue, '_acceptance_blockers', return_value=[]):
                 try:
-                    queue.complete_and_next('deadsimplechat', 7)
+                    queue.complete_and_next('deadsimplechat', 8)
                     return 200
                 except APIError as exc:
                     return exc.status
@@ -156,6 +164,86 @@ class WorkflowTests(unittest.TestCase):
             self.source.write_text(state)
             self.assert_api(503, self.queue.snapshot)
         self.assert_api(503, SiteWorkflow(self.root / 'missing.md', self.root).snapshot)
+
+    def test_setup_waits_for_explicit_approval_of_finished_design(self):
+        self.assert_api(409, self.queue.approve_plan, 'deadsimplechat', 'a'*64, 'owner-test', 0)
+        self.queue.complete_step('deadsimplechat', 2, self.evidence, 0)
+        self.assertEqual(self.queue.snapshot()['readiness'], 'awaiting_owner_approval')
+        self.assert_api(409, self.queue.complete_step, 'deadsimplechat', 3, self.evidence, 1)
+        self.assert_api(409, self.queue.require_setup_approved, 'deadsimplechat')
+        self.approve_fixture()
+        self.queue.require_setup_approved('deadsimplechat')
+        result = self.queue.complete_step('deadsimplechat', 3, self.evidence, 2)
+        self.assertEqual(result['sites']['deadsimplechat']['completed_steps'], [1,2,3])
+
+    def test_wrong_hash_revision_site_and_reference_cannot_approve(self):
+        self.queue.complete_step('deadsimplechat', 2, self.evidence, 0)
+        plan = self.queue.read_plan()
+        self.assertEqual(hashlib.sha256(plan['markdown'].encode()).hexdigest(), plan['plan_sha256'])
+        self.assert_api(409, self.queue.approve_plan, 'deadsimplechat', 'a'*64, 'owner-test', 1)
+        self.assert_api(409, self.queue.approve_plan, 'deadsimplechat', plan['plan_sha256'], 'owner-test', 0)
+        self.assert_api(409, self.queue.approve_plan, 'minnit', plan['plan_sha256'], 'owner-test', 1)
+        self.assert_api(400, self.queue.approve_plan, 'deadsimplechat', plan['plan_sha256'], 'not a raw chat transcript', 1)
+        self.assertIsNone(self.queue.snapshot()['sites']['deadsimplechat']['approval'])
+
+    def test_plan_edit_requires_new_owner_approval(self):
+        self.queue.complete_step('deadsimplechat', 2, self.evidence, 0)
+        self.approve_fixture()
+        (self.root / self.evidence).write_text('Changed scope: re-approval required')
+        self.assertEqual(self.queue.snapshot()['readiness'], 'changed_since_approval')
+        self.assert_api(409, self.queue.require_setup_approved, 'deadsimplechat')
+        self.assert_api(409, self.queue.complete_step, 'deadsimplechat', 3, self.evidence, 2)
+        self.approve_fixture()
+        self.queue.require_setup_approved('deadsimplechat')
+
+    def test_approval_does_not_mean_setup_green_or_unlock(self):
+        self.queue.complete_step('deadsimplechat', 2, self.evidence, 0)
+        self.approve_fixture()
+        state = self.queue.snapshot()
+        self.assertEqual(state['readiness'], 'setup_or_verification_pending')
+        self.assertFalse(state['can_complete'])
+        self.assertTrue(state['sites']['minnit']['locked'])
+        self.assert_api(409, self.queue.complete_and_next, 'deadsimplechat', 2)
+
+    def test_green_requires_approved_unchanged_plan_and_all_other_gates(self):
+        self.staged()
+        with patch.object(self.queue, '_acceptance_blockers', return_value=[]):
+            self.assertEqual(self.queue.snapshot()['readiness'], 'green')
+            (self.root / self.evidence).write_text('Plan changed after test fixture green')
+            self.assertNotEqual(self.queue.snapshot()['readiness'], 'green')
+            self.assert_api(409, self.queue.complete_and_next, 'deadsimplechat', 8)
+
+    def test_http_approval_is_explicit_authenticated_hash_bound_action(self):
+        self.queue.complete_step('deadsimplechat', 2, self.evidence, 0)
+        controller = Controller(self.root / 'approval-test.db')
+        token = 'operator-test-' + 'x'*32
+        server = make_server('127.0.0.1', 0, controller, token, workflow=self.queue)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        def call(path, data=None, supplied=token):
+            req = Request('http://127.0.0.1:' + str(server.server_port) + path,
+                          data=json.dumps(data).encode() if data is not None else None,
+                          headers={'Content-Type':'application/json','Authorization':'Bearer '+supplied})
+            try:
+                response = urlopen(req, timeout=5)
+            except HTTPError as exc:
+                response = exc
+            with response:
+                return response.code, json.load(response)
+        try:
+            plan = call('/api/workflow/plan')[1]
+            approval = {'site':'deadsimplechat','revision':1,'plan_sha256':plan['plan_sha256'],
+                        'approval_reference':'synthetic-operator-test'}
+            self.assertEqual(call('/api/workflow/approve-plan', approval, 'wrong')[0], 401)
+            self.assertEqual(call('/api/workflow/approve-plan', {**approval,'override':True})[0], 400)
+            self.assertIsNone(self.queue.snapshot()['sites']['deadsimplechat']['approval'])
+            code, state = call('/api/workflow/approve-plan', approval)
+            self.assertEqual(code, 200)
+            self.assertTrue(state['sites']['deadsimplechat']['plan']['approved'])
+            self.assertFalse(state['can_complete'])
+            self.assertEqual(state['active_site'], 'deadsimplechat')
+        finally:
+            server.shutdown(); server.server_close(); thread.join(timeout=2); controller.close()
 
     def test_all_done_has_no_active_or_next_site(self):
         state = initial_state()

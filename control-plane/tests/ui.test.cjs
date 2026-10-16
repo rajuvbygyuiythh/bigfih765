@@ -160,13 +160,24 @@ async function waitFor(predicate, message) {
     assert.equal(queueCards.filter(c=>c.querySelector('.badge').textContent==='UNLOCKED · ACTIVE').length,1);
     assert.equal(queueCards.filter(c=>c.querySelector('.badge').textContent==='LOCKED').length,7);
     assert.ok($('queue-active').textContent.includes('DeadSimpleChat'));
-    assert.ok(d.querySelector('.queue-card[data-site=deadsimplechat]').textContent.includes('12.5%'));
+    assert.ok(d.querySelector('.queue-card[data-site=deadsimplechat]').textContent.includes('25%'));
     checks++;console.log('PASS UI: one active target, seven locked targets and protected reference cards');
-    const complete=d.querySelector('.queue-card[data-site=deadsimplechat] button');
+    const complete=Array.from(d.querySelectorAll('.queue-card[data-site=deadsimplechat] button')).find(b=>b.textContent==='Complete site & unlock next');
     assert.equal(complete.disabled,true);
     assert.ok($('queue-blockers').textContent.includes('eight'));
     assert.equal(d.querySelector('.queue-card[data-site=minnit] button'),null);
     checks++;console.log('PASS UI: incomplete completion blocked; locked sites have no unlock/skip control');
+    const activeCard=d.querySelector('.queue-card[data-site=deadsimplechat]');
+    assert.ok(activeCard.textContent.includes('awaiting_owner_approval'));
+    const approvePlan=Array.from(activeCard.querySelectorAll('button')).find(b=>b.textContent==='Approve exact plan');
+    assert.equal(approvePlan.disabled,true); // test operator token is deliberately weak
+    const readPlanButton=Array.from(activeCard.querySelectorAll('button')).find(b=>b.textContent==='Read scope plan');
+    readPlanButton.click();
+    await waitFor(()=>$('queue-plan').textContent.includes('DS-DIAG-v1'),'proposed scope plan displayed');
+    await waitFor(()=>readPlanButton.getAttribute('aria-busy')==='false','read-plan action including refresh settled');
+    assert.ok($('queue-plan').textContent.includes('OWNER APPROVAL REQUIRED'));
+    assert.ok(!d.querySelector('.queue-card[data-site=deadsimplechat]').textContent.includes('readiness: green'));
+    checks++;console.log('PASS UI: read proposed plan; no auto-approval, setup GREEN or next unlock');
     assert.deepEqual(errors,[]);checks++;console.log('PASS UI: no JavaScript/DOM execution errors');
     console.log(`PASS: ${checks} DOM + local HTTP integration checks. No real browser or third-party chat test.`);
   } finally {
