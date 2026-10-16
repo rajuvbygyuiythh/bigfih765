@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "finished_at": "2026-10-16T12:16:37.606824+00:00",
-  "source_sha256": "509fa6c955491fc860231e149a6c930b0025d14863adf197c7414a02dd2feb9c",
+  "finished_at": "2026-10-16T13:06:58.437154+00:00",
+  "source_sha256": "c1256ddd41a134b134de41223b2b103f551656d804c9e6f48ce9e84e58b7a382",
   "source_unchanged_during_tests": true,
   "passed": true,
   "checks": [
     {
       "id": "python_suite",
       "exit_code": 0,
-      "tests_ran": 132
+      "tests_ran": 145
     },
     {
       "id": "js_syntax",
@@ -23,7 +23,7 @@
     {
       "id": "dom_http_suite",
       "exit_code": 0,
-      "tests_ran": 32
+      "tests_ran": 33
     }
   ],
   "covered_contracts": [

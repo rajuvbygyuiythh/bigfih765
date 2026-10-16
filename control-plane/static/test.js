@@ -1,6 +1,6 @@
 'use strict';
 const $=id=>document.getElementById(id);
-let token='', session=null, pending=null, busy=false, polling=false, version=0, disposed=false;
+let token='', session=null, pending=null, busy=false, polling=false, version=0, disposed=false, provider=null;
 window.addEventListener('pagehide',()=>{disposed=true;});
 const shown=new Set();
 function notice(text,error=false){if(disposed)return;$('notice').textContent=text;$('notice').classList.toggle('error',error);}
@@ -20,6 +20,9 @@ function controls(){
   $('user-message').disabled=busy||!ready||session?.status!=='waiting'||!!pending;
   $('send').disabled=busy||!ready||(!pending&&session?.status!=='waiting');
   $('send').textContent=pending?'Retry same event':'Send →';
+  $('shadow-arm').disabled=busy||!provider?.configured||provider?.workflow_blocked||provider?.armed;
+  $('shadow-stop').disabled=busy||!provider?.armed;
+  $('intent-register').disabled=busy||!provider?.armed||provider?.workflow_blocked;
 }
 function render(state){
   session=state;
@@ -58,8 +61,23 @@ $('message-form').onsubmit=event=>{event.preventDefault();task(async()=>{
   }catch(error){if(error.status&&error.status<500)pending=null;else error.message='Response uncertain. Retry uses the same event ID; no extra line consumed. '+error.message;throw error;}
 });};
 $('user-message').onkeydown=event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();$('message-form').requestSubmit();}};
-$('login').onsubmit=event=>{event.preventDefault();task(async()=>{token=$('token').value;try{await api('/api/workflow');$('token').value='';$('login').hidden=true;if(!await restore())notice('Operator authenticated. Load a TXT file to begin.');}catch(error){token='';throw error;}});};
+$('login').onsubmit=event=>{event.preventDefault();task(async()=>{token=$('token').value;try{await api('/api/workflow');$('token').value='';$('login').hidden=true;await refreshProvider();if(!await restore())notice('Operator authenticated. Load a TXT file to begin.');}catch(error){token='';throw error;}});};
 async function poll(){if(!session||busy||polling)return;polling=true;const current=version,id=session.id;try{const state=await api(`/api/reply-test/sessions/${id}`);if(!disposed&&current===version&&id===session?.id){render(state);$('poll-status').textContent='Updated '+new Date().toLocaleTimeString()+' · 1s local refresh';}}catch(error){if(!disposed){$('poll-status').textContent='Report unavailable';notice(error.message,true);}}finally{polling=false;}}
 async function restore(){let id;try{id=sessionStorage.getItem('orbit-reply-test-session');}catch{}if(id&&/^[a-f0-9]{32}$/.test(id)){render(await api(`/api/reply-test/sessions/${id}`));notice('Restored script/report. Chat bubbles are tab-local; click Start to resume after server restart.');return true;}return false;}
-(async()=>{try{const info=await api('/api/info');if(info.auth_required){$('login').hidden=false;return;}await restore();}catch(error){notice(error.message,true);}})();
+(async()=>{try{const info=await api('/api/info');if(info.auth_required){$('login').hidden=false;return;}await refreshProvider();await restore();}catch(error){notice(error.message,true);}})();
 setInterval(poll,1000);
+
+async function refreshProvider(){
+  if(disposed)return;
+  try{
+    const report=await api('/api/deadsimplechat/setup');if(disposed)return;provider=report;
+    $('provider-status').textContent=(report.armed?'SHADOW INTAKE ARMED':report.configured&&!report.workflow_blocked?'SHADOW CONFIGURED · DISARMED':'SETUP BLOCKED')+' · Provider not connected · Sends disabled';
+    $('provider-blockers').replaceChildren(...[...report.blockers,...report.live_blockers].map(value=>node('li',value)));
+    $('provider-counts').textContent=`Registered ${report.counts.registered||0} · matched ${report.counts.matched||0} · external messages ${report.external_messages_sent}`;
+    $('provider-events').replaceChildren(...report.intents.map(item=>node('p',`${item.id.slice(0,8)} · ${item.status} · suppressed repeated callbacks ${item.duplicates}`)));controls();
+  }catch(error){if(!disposed){$('provider-status').textContent='Setup status unavailable; no provider send is possible.';provider=null;controls();}}
+}
+$('shadow-arm').onclick=()=>task(async()=>{await api('/api/deadsimplechat/shadow/arm','POST');await refreshProvider();notice('Shadow intake armed: observe only. No provider reply can be sent.');});
+$('shadow-stop').onclick=()=>task(async()=>{await api('/api/deadsimplechat/shadow/disarm','POST');await refreshProvider();notice('Shadow intake disarmed; unused intents cancelled.');});
+$('intent-form').onsubmit=event=>{event.preventDefault();task(async()=>{await api('/api/deadsimplechat/shadow/register','POST',{question_id:$('question-id').value,test_user_id:$('test-user-id').value,run_id:provider?.run_id});$('question-id').value='';$('test-user-id').value='';await refreshProvider();notice('One-shot shadow intent registered; still no provider sending.');});};
+setInterval(()=>{if(!busy&&!disposed&&$('login').hidden)refreshProvider();},5000);

@@ -223,7 +223,7 @@
           "id": "staging_contract",
           "label": "Authenticated staging integration",
           "status": "pending",
-          "evidence": "Real adapter receiver/sender is not implemented or live-tested",
+          "evidence": "Shadow receiver and local HTTP tests implemented. Provider-compatible authenticated staging/sender/peer delivery not run; no credentials/deployment configured.",
           "requires_suite": false
         },
         {
@@ -240,7 +240,8 @@
         "receive_contract": "Verified documentation shape here is actionButtonPressed with chatRoom/user/actionButtonPressed. Enclosing message is the bot question, not user text. Ordinary message trigger normalization is not guessed.",
         "send_contract": "POST /consumer/api/v2/bot/:botId/chatroom/:roomId/message; JSON message <=1000; documented 200 success:true means API accepted only.",
         "storage": "Managed users/member state documented; browser cookie/storage inventory not measured.",
-        "open_questions": "Confirm inbound authenticity/replay handling, mention/new-message schemas, auth-header discrepancy, rate limits and actual entitlement. Button-action IDs may represent button definitions rather than unique click occurrences: confirm before production deduplication."
+        "open_questions": "Confirm inbound authenticity/replay handling, mention/new-message schemas, auth-header discrepancy, rate limits and actual entitlement. Button-action IDs may represent button definitions rather than unique click occurrences: confirm before production deduplication.",
+        "implementation": "Disabled-by-default one-room shadow receiver, operator-registered question/user/action hashes, durable replay tombstones and sanitized preflight implemented/tested. URL-secret possession is not vendor identity proof. No sender or ordinary-message/TXT provider integration enabled."
       },
       "security_runtime": "Headers/TLS/CSP/WAF and browser storage not measured; docs are not a security audit",
       "can_start_live": false

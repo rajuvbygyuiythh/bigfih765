@@ -1,6 +1,6 @@
 # Locked site queue — source of truth
 
-**Active: DeadSimpleChat — PLAN APPROVED / LOCAL TXT TEST LAB AVAILABLE. All seven remaining target sites are LOCKED.** Complete the active site before unlocking exactly the next site. No skip/unlock-all path. Restricted/reference sites never enter the unlock queue.
+**Active: DeadSimpleChat — PLAN APPROVED / TXT LAB + SHADOW SETUP AVAILABLE. All seven remaining target sites are LOCKED.** Complete the active site before unlocking exactly the next site. No skip/unlock-all path. Restricted/reference sites never enter the unlock queue.
 
 Percent = completed delivery steps / 8, not success probability. Legacy offline work is preserved; Minnit still lacks live evidence. A blocked active site stays active/locked-in rather than being falsely marked done. Pure offline inspectors and historical configuration slots remain available; project advancement and real diagnostic arming/sending are gated.
 
@@ -124,4 +124,6 @@ Root workflow was bootstrapped from existing work; this lock update is not new b
 
 ## Active-site acceptance
 
-DeadSimpleChat: Steps 1–2 complete (25% delivery). Proposed full plan: `research/deadsimplechat-plan-2026-10-16/PLAN.md` (DS-DIAG-v1). Owner explicitly approved unchanged DS-DIAG-v1; approval is recorded above. Local TXT self-test dashboard implemented at `/test`; Step 3 provider intake is still partial, no live GREEN or next unlock. TXT multi-line flow is local-only and does not expand the provider one-shot scope. One registered question/user/action has at most one fixed room-visible response; not per-click bot automation. Auth-header ambiguity, webhook authenticity, registered question linkage, account/plan/egress and consenting peer delivery remain unresolved. Per-click uniqueness is not promised by the frozen one-shot scope. Browser HAR normally cannot show server-to-server callbacks. Report: `research/deadsimplechat-recon-2026-10-16/REPORT.md`.
+DeadSimpleChat: Steps 1–2 complete (25% delivery). Proposed full plan: `research/deadsimplechat-plan-2026-10-16/PLAN.md` (DS-DIAG-v1). Owner explicitly approved unchanged DS-DIAG-v1; approval is recorded above. Local TXT self-test dashboard implemented at `/test`; Step 3 now has a disabled-by-default shadow receiver, private env loader and setup/status controls; provider authenticity/staging remains partial, no live GREEN or next unlock. TXT multi-line flow is local-only and does not expand the provider one-shot scope. One registered question/user/action has at most one fixed room-visible response; not per-click bot automation. Auth-header ambiguity, webhook authenticity, registered question linkage, account/plan/egress and consenting peer delivery remain unresolved. Per-click uniqueness is not promised by the frozen one-shot scope. Browser HAR normally cannot show server-to-server callbacks. Report: `research/deadsimplechat-recon-2026-10-16/REPORT.md`.
+
+Shadow setup evidence: `research/deadsimplechat-shadow-2026-10-16/REPORT.md`. Private configuration template: `.env.example`; actual `.env.local` is ignored, explicit-load only, never paste values in chat. No provider sender exists yet.

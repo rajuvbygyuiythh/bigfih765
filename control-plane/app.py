@@ -18,14 +18,19 @@ from platforms import registry
 from minnit import MinnitDiagnostics, Settings
 from site_workflow import SiteWorkflow
 from reply_tester import ReplyTester
+from deadsimplechat import ShadowIntake, Settings as DSSettings
+from server_env import load_private_env
 
 STATIC = Path(__file__).resolve().parent / "static"
 
 
-def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="operations"):
+def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="operations", shadow=None):
     tester = ReplyTester(controller)
+    shadow = shadow or ShadowIntake(controller, token=token)
     workflow = workflow or SiteWorkflow()
     diagnostics = diagnostics or MinnitDiagnostics(controller, operator_token=token)
+    if shadow.token != token:
+        raise ValueError("Shadow and HTTP operator authentication must match")
     if diagnostics.operator_token != token:
         raise ValueError("Diagnostic and HTTP operator authentication must match")
     class Handler(BaseHTTPRequestHandler):
@@ -69,6 +74,17 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
         def dispatch(self, method):
             try:
                 path = urlparse(self.path).path
+                if path.startswith('/hooks/deadsimplechat/'):
+                    if method != 'POST':
+                        raise APIError(405,'Shadow webhook requires POST')
+                    if self.headers.get('Origin') or self.headers.get('Sec-Fetch-Site'):
+                        raise APIError(403,'Shadow webhook is server-to-server only')
+                    shadow.authenticate(path[len('/hooks/deadsimplechat/'):])
+                    if urlparse(self.path).query:
+                        raise APIError(400,'Webhook query parameters are not accepted')
+                    with workflow._exclusive():
+                        workflow.require_setup_approved('deadsimplechat')
+                        return self.respond(200,shadow.receive(self.body()))
                 if path.startswith("/hooks/minnit/"):
                     if method != "POST":
                         raise APIError(405, "Webhook requires POST")
@@ -94,6 +110,25 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                     if self.headers.get("Sec-Fetch-Site") == "cross-site" or (origin and urlparse(origin).netloc != self.headers.get("Host")):
                         raise APIError(403, "Cross-origin mutation rejected")
                     data = self.body()
+                if path == '/api/deadsimplechat/setup' and method == 'GET':
+                    report=shadow.status()
+                    try:
+                        workflow.require_setup_approved('deadsimplechat')
+                        report['workflow_blocked']=False
+                    except APIError:
+                        report['workflow_blocked']=True
+                        report['blockers'].append('Active owner-approved DeadSimpleChat plan required')
+                    return self.respond(200,report)
+                if path == '/api/deadsimplechat/shadow/disarm' and method == 'POST':
+                    return self.respond(200,shadow.disarm())
+                if path in ('/api/deadsimplechat/shadow/arm','/api/deadsimplechat/shadow/register') and method == 'POST':
+                    with workflow._exclusive():
+                        workflow.require_setup_approved('deadsimplechat')
+                        if path.endswith('/arm'):
+                            return self.respond(200,shadow.arm())
+                        if set(data) != {'question_id','test_user_id','run_id'}:
+                            raise APIError(400,'Only question_id, test_user_id and current run_id accepted')
+                        return self.respond(201,shadow.register(data.get('question_id'),data.get('test_user_id'),data.get('run_id')))
                 if path == "/api/reply-test/sessions" and method == "POST":
                     with workflow._exclusive():
                         workflow.require_setup_approved('deadsimplechat')
@@ -132,6 +167,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                     with diagnostics.lock:
                         result = workflow.complete_and_next(data.get("site"), data.get("revision"))
                         diagnostics.disarm()
+                        shadow.disarm()
                         tester.stop_all()
                     return self.respond(200, result)
                 if path == "/api/diagnostics/minnit" and method == "GET":
@@ -181,6 +217,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                 if path == "/api/stop-all" and method == "POST":
                     with diagnostics.lock:
                         diagnostics.disarm()
+                        shadow.disarm()
                         tester.stop_all()
                         result = controller.stop_all()
                     return self.respond(200, result)
@@ -228,6 +265,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
     server.daemon_threads = True
     server.diagnostics = diagnostics
     server.reply_tester = tester
+    server.ds_shadow = shadow
     return server
 
 
@@ -237,13 +275,20 @@ def main():
     parser.add_argument("--port", type=int, default=8080)
     parser.add_argument("--home", choices=["operations", "tester"], default="operations")
     parser.add_argument("--db", default=str(Path(__file__).parent / "runtime" / "control.db"))
+    parser.add_argument('--env-file',help='Explicit owner-only server env file; never sourced or auto-loaded')
     args = parser.parse_args()
+    if args.env_file:
+        try:
+            load_private_env(args.env_file)
+        except ValueError as exc:
+            parser.error(str(exc))
     database = Path(args.db)
     database.parent.mkdir(parents=True, exist_ok=True)
     controller = Controller(database)
     token = os.environ.get("CONTROL_PLANE_TOKEN", "")
     diagnostics = MinnitDiagnostics(controller, Settings.from_env(os.environ), token)
-    server = make_server(args.host, args.port, controller, token, diagnostics, home=args.home)
+    shadow = ShadowIntake(controller, DSSettings.from_env(os.environ), token)
+    server = make_server(args.host, args.port, controller, token, diagnostics, home=args.home, shadow=shadow)
     stopping = threading.Event()
 
     def heartbeat():
@@ -266,6 +311,7 @@ def main():
         thread.join(timeout=3)
         diagnostics.disarm()
         server.reply_tester.stop_all()
+        shadow.disarm()
         server.server_close()
         controller.close()
 

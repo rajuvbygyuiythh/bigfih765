@@ -15,9 +15,9 @@ from research import catalog
 
 SOURCE_FILES = [
     '.gitignore', 'README.md', 'BUILD_REPORT.md', 'app.py', 'core.py', 'contracts.py',
-    'research.py', 'platforms.py', 'workspace.py', 'minnit.py', 'recon_deadsimplechat.py', 'site_workflow.py', 'reply_tester.py', 'package.json', 'package-lock.json',
+    'research.py', 'platforms.py', 'workspace.py', 'minnit.py', 'recon_deadsimplechat.py', 'site_workflow.py', 'reply_tester.py', 'deadsimplechat.py', 'server_env.py', 'package.json', 'package-lock.json',
     'static/index.html', 'static/app.js', 'static/style.css', 'static/test.html', 'static/test.js', 'static/test.css',
-    'tests/test_control_plane.py', 'tests/test_contracts.py', 'tests/test_minnit.py', 'tests/test_recon.py', 'tests/test_site_workflow.py', 'tests/test_reply_tester.py', 'tests/ui.test.cjs', 'tests/tester.test.cjs',
+    'tests/test_control_plane.py', 'tests/test_contracts.py', 'tests/test_minnit.py', 'tests/test_recon.py', 'tests/test_site_workflow.py', 'tests/test_reply_tester.py', 'tests/test_deadsimplechat.py', 'tests/ui.test.cjs', 'tests/tester.test.cjs',
     'data/site_catalog.json', 'data/deadsimplechat_recon.json', 'data/test_results.json', 'tools/run_checks.py',
     'tools/package_release.py', 'tools/seed_workspace.py', 'tools/recon_site.py', 'tools/site_queue.py'
 ]
@@ -28,6 +28,8 @@ REPORTS = {
     'SITE_ONBOARDING.md': 'research/site-onboarding-2026-10-16/REPORT.md',
     'MINNIT_DIAGNOSTICS.md': 'research/minnit-diagnostics-2026-10-16/REPORT.md',
     'SITE_WORKFLOW.md': 'SITES.md',
+    'DS_SETUP_ENV.example': '.env.example',
+    'DS_SHADOW_SETUP.md': 'research/deadsimplechat-shadow-2026-10-16/REPORT.md',
     'TXT_REPLY_LAB.md': 'research/txt-reply-lab-2026-10-16/REPORT.md',
     'DEADSIMPLECHAT_PLAN.md': 'research/deadsimplechat-plan-2026-10-16/PLAN.md',
     'DEADSIMPLECHAT_RECON.md': 'research/deadsimplechat-recon-2026-10-16/REPORT.md'

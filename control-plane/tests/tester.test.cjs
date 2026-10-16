@@ -49,6 +49,10 @@ async function waitFor(predicate,label){const end=Date.now()+8000;while(Date.now
   $('reset').click();await waitFor(()=>$('used').textContent==='0'&&settled(),'reset');assert.equal($('test-status').textContent,'READY');assert.equal(d.querySelectorAll('.bubble').length,0);
   $('start').click();await waitFor(()=>$('test-status').textContent==='WAITING FOR YOUR MESSAGE'&&settled(),'fresh run');
   checks++;global.console.log('PASS LAB: explicit reset restores cursor without auto-start');
+  await waitFor(()=>$('provider-status').textContent.includes('SETUP BLOCKED'),'sanitized provider preflight');
+  assert.ok($('provider-blockers').textContent.includes('DS_ROOM_ID'));
+  assert.equal($('shadow-arm').disabled,true);assert.equal($('intent-register').disabled,true);
+  checks++;global.console.log('PASS LAB: sanitized provider blockers, disabled shadow controls and no false connected status');
   const id=w.sessionStorage.getItem('orbit-reply-test-session');
   const request=async(route,data)=>{const response=await fetch(base+route,{method:data?'POST':'GET',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},...(data?{body:JSON.stringify(data)}:{})});assert.equal(response.ok,true);return response.json();};
   const state=await request('/api/reply-test/sessions/'+id);

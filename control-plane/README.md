@@ -262,3 +262,22 @@ State is private runtime SQLite (template lines + minimal event metadata/input h
 API: POST `/api/reply-test/sessions` (`script`); GET `/api/reply-test/sessions/{id}`; POST `/api/reply-test/sessions/{id}/{start|stop|reset}`; POST `/api/reply-test/sessions/{id}/message` (`run_id`, unique `event_id`, `text`). Existing auth/origin/body guards apply; create/start/message require active approved DS scope. Stop/reset stay available while locked; Stop all includes local tests. No provider URL/key/recipient/send endpoint exists in this lab.
 
 Current checks: **132 Python + 32 DOM/local-HTTP PASS**, both JS syntax checks PASS. Nine new lab DOM checks run through real local HTTP including actual UTF-8 FileReader upload; not a rendered-browser/provider test. Full behavior/scope report: `research/txt-reply-lab-2026-10-16/REPORT.md`. Delivery still 2/8 (25%), Step 3 partial; no Step 8 ZIP this turn.
+
+## DeadSimpleChat private setup / shadow-only receiver
+
+Step 3 now includes `deadsimplechat.py` and `server_env.py`, not just a parser. It is deliberately **disabled and no-send**: one registered question/user/action may be matched once in a shadow ledger; no provider sender or TXT-to-provider wiring exists. URL secret authenticates possession only, never vendor identity. No account/paid plan/provider webhook was configured here.
+
+Use root `.env.example` as field-name documentation; create your own ignored `.env.local`, keep mode 600, and explicitly load it (not automatically sourced):
+
+```sh
+chmod 600 .env.local
+python -B control-plane/app.py --host 0.0.0.0 --port 8080 --home tester --db .runtime/orbit-preview.db --env-file .env.local
+```
+
+Fill independent high-entropy CONTROL_PLANE_TOKEN and DS_WEBHOOK_SECRET, the saved DS_INSTANCE_ID, exact authorized DS_ROOM_ID/DS_BOT_ID; assert DS_AUTHORIZED_ROOM only for a consenting owned test. DS_SHADOW_ENABLED=1 enables **shadow observation only**. DS_API_KEY is optional/untransmitted here; leave it empty until supported sender setup is needed. Never paste real values into chat/Git/captures. Existing process variables take precedence, including empty demo overrides; do not run the private command with the public demo's blank token override. Loader accepts eight allowlisted literal KEY=value names, validates before applying, rejects duplicate/unknown names, symlinks/insecure permissions/oversize/invalid UTF-8; never executes/interpolates file contents. Restart to apply changes.
+
+Expand **Advanced · DeadSimpleChat setup / shadow intake** in the small tester. It shows named blockers, arm/disarm and non-secret owned-question/consenting-user registration, hashes/records no raw user identity, and reports shadow matches with zero external sends. 15-minute arm, at most five-minute intent, parent/room/bot/action matching, durable tuple-key/tombstone suppression, restart-disarm, no re-register/automatic eviction. Stop all and completion disarm it. Maximum 5,000 records, latest 30 shown; single application process/operator. Private runtime data remains excluded from source/release.
+
+GET `/api/deadsimplechat/setup`; POST `/api/deadsimplechat/shadow/arm`, `/disarm`, `/register` (exact `question_id`, `test_user_id`, `run_id`); server-only POST `/hooks/deadsimplechat/{independent-secret}`. Authenticate hook possession before parsing; reject browser origins/query strings. Scope approval gates mutating work. Current tests use only synthetic local requests. No actual vendor callback compatibility/auth/retry contract is proven; do not configure/claim live provider staging from this result. Redact hook paths in deployment proxy logs, use approved HTTPS/private hosting, and retain all live evidence gates. This sandbox lacks provider API egress. No env flag enables outbound replies or site GREEN.
+
+Actual regression: **145 Python + 33 DOM/local-HTTP PASS**, both JS syntax checks PASS. Report: `research/deadsimplechat-shadow-2026-10-16/REPORT.md`. No Step 8 ZIP; next sites stay locked. Source packaging allowlist contains the safe example template/report, never real `.env.local` or runtime data.

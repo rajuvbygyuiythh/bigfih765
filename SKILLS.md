@@ -4,6 +4,7 @@ These are inspected local tools/methods, not installed model plugins or guarante
 
 | Skill | Entry point | Boundary |
 | --- | --- | --- |
+| DS shadow setup | Advanced panel / `--env-file` | Independent URL-secret shadow intake + hashed one-shot intent; NO sender/vendor-auth proof, private values never chat |
 | TXT web self-test | `/test` or `app.py --home tester` | One local user message → one next TXT line, local live report; not provider chat/delivery |
 | Scope/approval review | `python -B control-plane/tools/site_queue.py read-plan` | Read current plan/hash; no setup until explicit owner approval; changed plan requires re-approval |
 | Sequential lock queue | `python -B control-plane/tools/site_queue.py status` | SITES is canonical; sequential evidence-backed steps, complete-and-next only; no override |

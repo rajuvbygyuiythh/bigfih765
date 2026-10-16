@@ -7,3 +7,5 @@
 2026-10-16 | deadsimplechat | Step 2 scoped plan / owner approval gate | DS-DIAG-v1 drafted; exact-hash approval required before setup, changed plan invalidation, live-GREEN-only next unlock; DS 25%, awaiting owner, no setup/unlock; plan-read async teardown race fixed with aria-busy completion wait.
 
 2026-10-16 | deadsimplechat | Step 3 partial / local self-test | Recorded explicit plan approval; built small TXT reply web lab, one-line-per-user flow, private runtime state and live local report with tests; no provider send/GREEN/unlock.
+
+2026-10-16 | deadsimplechat | Step 3 partial / shadow setup | Added safe opt-in private env loading, disabled no-send shadow receiver, registered-intent durable replay/expiry guards, advanced setup controls and tests; live auth/sender/staging still blocked, next locked.
