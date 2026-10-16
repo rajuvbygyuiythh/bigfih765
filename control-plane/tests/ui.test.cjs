@@ -168,16 +168,16 @@ async function waitFor(predicate, message) {
     assert.equal(d.querySelector('.queue-card[data-site=minnit] button'),null);
     checks++;console.log('PASS UI: incomplete completion blocked; locked sites have no unlock/skip control');
     const activeCard=d.querySelector('.queue-card[data-site=deadsimplechat]');
-    assert.ok(activeCard.textContent.includes('awaiting_owner_approval'));
+    assert.ok(activeCard.textContent.includes('Plan: approved'));
     const approvePlan=Array.from(activeCard.querySelectorAll('button')).find(b=>b.textContent==='Approve exact plan');
-    assert.equal(approvePlan.disabled,true); // test operator token is deliberately weak
+    assert.equal(approvePlan,undefined); // Owner already approved via chat; reading is not a new approval.
     const readPlanButton=Array.from(activeCard.querySelectorAll('button')).find(b=>b.textContent==='Read scope plan');
     readPlanButton.click();
     await waitFor(()=>$('queue-plan').textContent.includes('DS-DIAG-v1'),'proposed scope plan displayed');
     await waitFor(()=>readPlanButton.getAttribute('aria-busy')==='false','read-plan action including refresh settled');
     assert.ok($('queue-plan').textContent.includes('OWNER APPROVAL REQUIRED'));
     assert.ok(!d.querySelector('.queue-card[data-site=deadsimplechat]').textContent.includes('readiness: green'));
-    checks++;console.log('PASS UI: read proposed plan; no auto-approval, setup GREEN or next unlock');
+    checks++;console.log('PASS UI: read approved plan; still no provider GREEN or next unlock');
     assert.deepEqual(errors,[]);checks++;console.log('PASS UI: no JavaScript/DOM execution errors');
     console.log(`PASS: ${checks} DOM + local HTTP integration checks. No real browser or third-party chat test.`);
   } finally {

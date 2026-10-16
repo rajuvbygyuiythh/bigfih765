@@ -1,6 +1,6 @@
 # Locked site queue — source of truth
 
-**Active: DeadSimpleChat — PLAN READY / AWAITING OWNER APPROVAL. All seven remaining target sites are LOCKED.** Complete the active site before unlocking exactly the next site. No skip/unlock-all path. Restricted/reference sites never enter the unlock queue.
+**Active: DeadSimpleChat — PLAN APPROVED / LOCAL TXT TEST LAB AVAILABLE. All seven remaining target sites are LOCKED.** Complete the active site before unlocking exactly the next site. No skip/unlock-all path. Restricted/reference sites never enter the unlock queue.
 
 Percent = completed delivery steps / 8, not success probability. Legacy offline work is preserved; Minnit still lacks live evidence. A blocked active site stays active/locked-in rather than being falsely marked done. Pure offline inspectors and historical configuration slots remain available; project advancement and real diagnostic arming/sending are gated.
 
@@ -25,7 +25,7 @@ Percent = completed delivery steps / 8, not success probability. Legacy offline 
 ```json
 {
   "schema_version": 1,
-  "revision": 1,
+  "revision": 2,
   "active_site": "deadsimplechat",
   "order": [
     "deadsimplechat",
@@ -54,7 +54,11 @@ Percent = completed delivery steps / 8, not success probability. Legacy offline 
         "2": "research/deadsimplechat-plan-2026-10-16/PLAN.md"
       },
       "plan_path": "research/deadsimplechat-plan-2026-10-16/PLAN.md",
-      "approval": null
+      "approval": {
+        "plan_sha256": "dc8a906cd04c6293c54d347f1a910767202a890f8dbbc45b9206c1a80edb01f8",
+        "approved_at": "2026-10-16T12:09:44.536843+00:00",
+        "reference": "owner-chat-2026-10-16-approve-and-local-txt-test"
+      }
     },
     "rumbletalk": {
       "state": "locked",
@@ -120,4 +124,4 @@ Root workflow was bootstrapped from existing work; this lock update is not new b
 
 ## Active-site acceptance
 
-DeadSimpleChat: Steps 1–2 complete (25% delivery). Proposed full plan: `research/deadsimplechat-plan-2026-10-16/PLAN.md` (DS-DIAG-v1). Approval is null; WAIT for owner review. No setup or live GREEN yet. One registered question/user/action has at most one fixed room-visible response; not per-click bot automation. Auth-header ambiguity, webhook authenticity, registered question linkage, account/plan/egress and consenting peer delivery remain unresolved. Per-click uniqueness is not promised by the frozen one-shot scope. Browser HAR normally cannot show server-to-server callbacks. Report: `research/deadsimplechat-recon-2026-10-16/REPORT.md`.
+DeadSimpleChat: Steps 1–2 complete (25% delivery). Proposed full plan: `research/deadsimplechat-plan-2026-10-16/PLAN.md` (DS-DIAG-v1). Owner explicitly approved unchanged DS-DIAG-v1; approval is recorded above. Local TXT self-test dashboard implemented at `/test`; Step 3 provider intake is still partial, no live GREEN or next unlock. TXT multi-line flow is local-only and does not expand the provider one-shot scope. One registered question/user/action has at most one fixed room-visible response; not per-click bot automation. Auth-header ambiguity, webhook authenticity, registered question linkage, account/plan/egress and consenting peer delivery remain unresolved. Per-click uniqueness is not promised by the frozen one-shot scope. Browser HAR normally cannot show server-to-server callbacks. Report: `research/deadsimplechat-recon-2026-10-16/REPORT.md`.

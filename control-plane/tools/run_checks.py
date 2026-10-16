@@ -20,7 +20,8 @@ def main():
     args = parser.parse_args()
     fingerprint = source_fingerprint()
     commands = [('python_suite', [sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']),
-                ('js_syntax', ['node', '--check', 'static/app.js'])]
+                ('js_syntax', ['node', '--check', 'static/app.js']),
+                ('tester_js_syntax', ['node', '--check', 'static/test.js'])]
     if args.ui:
         commands.append(('dom_http_suite', ['npm', 'test']))
     results = []

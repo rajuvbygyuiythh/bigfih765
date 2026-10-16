@@ -240,3 +240,25 @@ python -B tools/site_queue.py approve-plan --site deadsimplechat --revision CURR
 Authenticated `GET /api/workflow/plan` returns the active plan content/hash. `POST /api/workflow/approve-plan` accepts exactly `site`, `revision`, `plan_sha256`, `approval_reference`, needs the existing strong operator token/same-origin guards, and only records approval. CLI is trusted local operator tooling; approval metadata is operator-attested, not cryptographic owner identity proof. Never put credentials/private chat content in the reference. The dashboard requires reading the plan before enabling the explicit approval action and keeps demo approval disabled. Development helpers/tests may use synthetic approvals, never mutate real owner approval.
 
 `/api/workflow` readiness is `awaiting_owner_approval` / `changed_since_approval`, then `setup_or_verification_pending`; `green` requires current approval **and** all prior actual live-evidence/step/regression/release gates. No unconditional setup or unlock action is run by approval. A scoped plan is not a guarantee of 100% future success; unknown provider contracts/access remain fail-closed until verified. After all gates genuinely pass, guarded complete-and-next unlocks only Minnit. No new Step 8 ZIP is generated for this planning turn; existing archives remain unchanged.
+
+## Small TXT Reply Lab — test it yourself
+
+Owner approved unchanged DS-DIAG-v1 and additionally requested this local web tester. Open `/test`, or make it the small homepage:
+
+```sh
+python -B app.py --host 0.0.0.0 --port 8080 --home tester
+```
+
+1. Choose one UTF-8 `.txt` file (8 KiB maximum; at most 200 non-empty lines, each <=1000 characters). Or use the three-line sample.
+2. Click **Start test**. Upload/start never auto-replies.
+3. Type a user message and Send/Enter: TXT line 1 appears. Next user message: line 2. It never sends the entire file or loops automatically.
+4. Watch the one-second **local** report: generated/remaining lines, current run, dedup counts and event history.
+5. Stop/resume, or Reset to test from line 1. After EOF, Send disables. Restart preserves script/cursor but disarms the run.
+
+This is a functional **LOCAL SELF-TEST, not a provider connection**. It makes zero provider requests/messages and never marks site GREEN or unlocks next. Approved provider v1 remains a fixed one-shot diagnostic, not general TXT chat automation; ordinary-message provider support remains unverified. `/operations` retains the full dashboard/queue. Existing operations launch also links to `/test`.
+
+State is private runtime SQLite (template lines + minimal event metadata/input hash); uploaded filenames and plaintext user inputs are not retained by the server. Chat bubbles live only in the tab. A random session ID in sessionStorage restores the script/report after refresh; operator token stays in memory and re-login can restore the session. Duplicate retries reuse one event ID, returning the same line without advancing; conflicting input with the same ID rejects. Distinct repeated text legitimately consumes new lines. Limits: 50 sessions/1000 events per session, no automatic eviction. Default public preview is synthetic/sample-only; use operator token, private access and HTTPS before real private testing. Never upload credentials/transcripts or publish runtime DB/session IDs. Single application process per DB; no distributed/exactly-once recipient-delivery claim.
+
+API: POST `/api/reply-test/sessions` (`script`); GET `/api/reply-test/sessions/{id}`; POST `/api/reply-test/sessions/{id}/{start|stop|reset}`; POST `/api/reply-test/sessions/{id}/message` (`run_id`, unique `event_id`, `text`). Existing auth/origin/body guards apply; create/start/message require active approved DS scope. Stop/reset stay available while locked; Stop all includes local tests. No provider URL/key/recipient/send endpoint exists in this lab.
+
+Current checks: **132 Python + 32 DOM/local-HTTP PASS**, both JS syntax checks PASS. Nine new lab DOM checks run through real local HTTP including actual UTF-8 FileReader upload; not a rendered-browser/provider test. Full behavior/scope report: `research/txt-reply-lab-2026-10-16/REPORT.md`. Delivery still 2/8 (25%), Step 3 partial; no Step 8 ZIP this turn.

@@ -17,11 +17,13 @@ from research import catalog
 from platforms import registry
 from minnit import MinnitDiagnostics, Settings
 from site_workflow import SiteWorkflow
+from reply_tester import ReplyTester
 
 STATIC = Path(__file__).resolve().parent / "static"
 
 
-def make_server(host, port, controller, token="", diagnostics=None, workflow=None):
+def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="operations"):
+    tester = ReplyTester(controller)
     workflow = workflow or SiteWorkflow()
     diagnostics = diagnostics or MinnitDiagnostics(controller, operator_token=token)
     if diagnostics.operator_token != token:
@@ -80,7 +82,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                 if path == "/api/info" and method == "GET":
                     return self.respond(200, {"auth_required": bool(token), "mode": "control_plane", "fleet_mode": "synthetic", "diagnostics": "minnit_operator_approved"})
                 if not path.startswith("/api/"):
-                    files = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
+                    files = {"/": "test.html" if home == "tester" else "index.html", "/operations": "index.html", "/test": "test.html", "/test.js": "test.js", "/test.css": "test.css", "/app.js": "app.js", "/style.css": "style.css"}
                     if method != "GET" or path not in files:
                         raise APIError(404, "Not found")
                     file = STATIC / files[path]
@@ -92,6 +94,25 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                     if self.headers.get("Sec-Fetch-Site") == "cross-site" or (origin and urlparse(origin).netloc != self.headers.get("Host")):
                         raise APIError(403, "Cross-origin mutation rejected")
                     data = self.body()
+                if path == "/api/reply-test/sessions" and method == "POST":
+                    with workflow._exclusive():
+                        workflow.require_setup_approved('deadsimplechat')
+                        return self.respond(201, tester.create(data.get('script')))
+                test_parts = path.strip('/').split('/')
+                if len(test_parts) in (4,5) and test_parts[:3] == ['api','reply-test','sessions']:
+                    ident = test_parts[3]
+                    if len(test_parts) == 4 and method == 'GET':
+                        return self.respond(200, tester.state(ident))
+                    if len(test_parts) == 5 and method == 'POST':
+                        action = test_parts[4]
+                        if action in ('stop','reset'):
+                            return self.respond(200, tester.action(ident, action))
+                        with workflow._exclusive():
+                            workflow.require_setup_approved('deadsimplechat')
+                            if action == 'message':
+                                return self.respond(200, tester.message(ident, data.get('run_id'), data.get('event_id'), data.get('text')))
+                            if action == 'start':
+                                return self.respond(200, tester.action(ident, action))
                 if path == "/api/workflow" and method == "GET":
                     return self.respond(200, {**workflow.snapshot(), "operator_mutations_enabled": len(token) >= 32})
                 if path == "/api/workflow/plan" and method == "GET":
@@ -111,6 +132,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                     with diagnostics.lock:
                         result = workflow.complete_and_next(data.get("site"), data.get("revision"))
                         diagnostics.disarm()
+                        tester.stop_all()
                     return self.respond(200, result)
                 if path == "/api/diagnostics/minnit" and method == "GET":
                     status = diagnostics.status()
@@ -159,6 +181,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                 if path == "/api/stop-all" and method == "POST":
                     with diagnostics.lock:
                         diagnostics.disarm()
+                        tester.stop_all()
                         result = controller.stop_all()
                     return self.respond(200, result)
                 parts = path.strip("/").split("/")
@@ -204,6 +227,7 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
     server = ThreadingHTTPServer((host, port), Handler)
     server.daemon_threads = True
     server.diagnostics = diagnostics
+    server.reply_tester = tester
     return server
 
 
@@ -211,6 +235,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8080)
+    parser.add_argument("--home", choices=["operations", "tester"], default="operations")
     parser.add_argument("--db", default=str(Path(__file__).parent / "runtime" / "control.db"))
     args = parser.parse_args()
     database = Path(args.db)
@@ -218,7 +243,7 @@ def main():
     controller = Controller(database)
     token = os.environ.get("CONTROL_PLANE_TOKEN", "")
     diagnostics = MinnitDiagnostics(controller, Settings.from_env(os.environ), token)
-    server = make_server(args.host, args.port, controller, token, diagnostics)
+    server = make_server(args.host, args.port, controller, token, diagnostics, home=args.home)
     stopping = threading.Event()
 
     def heartbeat():
@@ -240,6 +265,7 @@ def main():
         stopping.set()
         thread.join(timeout=3)
         diagnostics.disarm()
+        server.reply_tester.stop_all()
         server.server_close()
         controller.close()
 
