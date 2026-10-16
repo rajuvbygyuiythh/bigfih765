@@ -192,3 +192,15 @@ The explicit allowlist packages source, tests, catalog/receipt and authored repo
 ## Limits
 
 Single operator/single process; no user accounts, roles, managed secret store, general-purpose queue, distributed workers, guaranteed delivery, campaign/outreach engine, validated production adapter or Snap integration. The narrow diagnostic queue/ledger is durable, but never auto-drains and does not offer exactly-once recipient delivery. Python's standard-library HTTP server is a development server, not a production edge server. Add production authentication/authorization, deployment hardening and measured load tests before broader deployment. No acquisition traffic was generated. The previous research/knowledge ZIPs are unchanged.
+
+## Current working step: DeadSimpleChat Recon
+
+The released v0.4.0 archive remains unchanged. The next-site workspace adds an offline recon CLI and **11 synthetic tests** (full current suite: **98 Python + 20 DOM checks PASS**); no DeadSimpleChat live send is enabled. Queue/resume: repository-root `SITES.md`, `PROJECT_MEMORY.md`, `PLAN.md`.
+
+```sh
+python -B tools/recon_site.py deadsimplechat
+# Optional authorized private trace; never commit/upload raw HAR:
+python -B tools/recon_site.py deadsimplechat --har runtime/authorized.har
+```
+
+Only fixed metadata for the documented bot-send route is exported; request/response bodies, credentials, cookies and IDs are not retained. This tool performs no network requests. Browser HAR normally cannot contain backend bot-send calls or incoming server-to-server webhooks. Header presence cannot resolve the documented auth-header ambiguity, and HTTP 200 alone is not API acceptance/peer delivery. No capture is requested until the next step establishes exactly what evidence is needed. Raw HAR and `.env.local` are ignored; `.env.local` is not automatically sourced. Details: `research/deadsimplechat-recon-2026-10-16/REPORT.md` in the repository (included in the next Step 8 package as `reports/DEADSIMPLECHAT_RECON.md`).

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 def source_fingerprint(root=ROOT):
     files = []
     for pattern in ('*.py', 'tests/*.py', 'tests/*.cjs', 'tools/*.py', 'static/*',
-                    'package.json', 'package-lock.json', 'data/site_catalog.json'):
+                    'package.json', 'package-lock.json', 'data/site_catalog.json', 'data/*_recon.json'):
         files.extend(p for p in root.glob(pattern) if p.is_file())
     digest = hashlib.sha256()
     for path in sorted(set(files)):

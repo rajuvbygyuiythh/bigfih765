@@ -1,5 +1,18 @@
 # Project memory — শুরু এখান থেকে
 
+## ACTIVE SESSION — 2026-10-16 workflow reset
+
+- **Active site:** `deadsimplechat` (selected first QUEUED after bootstrapping missing `SITES.md` from the existing catalog; Minnit stays BLOCKED on live staging).
+- **Step:** 1 Recon COMPLETE; next 2 Contract/safety design. **Delivery progress: 1/8 = 12.5%**; different from the existing 8/12 evidence checklist (67%), not live readiness or success probability.
+- **Last commit:** `HEAD` of this pushed recon turn (resolve with `git log -1`); previous implementation baseline `c920fba`. Branch remains `arena/d73f03f8-bigfih765`; never switch or force-push.
+- **Implemented:** `control-plane/recon_deadsimplechat.py`, `tools/recon_site.py`, `tests/test_recon.py`, generated `data/deadsimplechat_recon.json`. No network replay, body/cookie collection, credential read or message send. HAR triage exports only fixed route/auth-location booleans/status, never raw IDs/URLs/values; metadata cannot verify auth or delivery.
+- **Evidence:** two official DeadSimpleChat pages refreshed for this site only; auth table/query vs extra-header examples conflict, quiz uses query-only; action button `_id` not proven a unique click occurrence. Details in `research/deadsimplechat-recon-2026-10-16/REPORT.md`.
+- **Workflow repair:** root SITES/SKILLS/GOALS/PLAN were absent. Added queue/index/roadmap; `GOALS.md` is a symlink to the existing unchanged `knowledge-pack/GOALS.md`, not a rewritten mission. Existing historical notes below are preserved, not current resume instructions. Requested system output block was absent; concise fallback is recorded in PLAN.
+- **Tests:** `python -B control-plane/tools/run_checks.py --ui` PASS: **98 Python + 20 DOM checks**, JS syntax PASS; fresh source-bound receipt saved. Eleven new synthetic recon tests; no real HAR/live transport used. Step 1 does not generate a Step 8 ZIP; previous ZIPs remain unchanged.
+- **Next action:** design/test DeadSimpleChat one-room action diagnostic contracts, especially auth discrepancy and occurrence identity. Reuse shared lifecycle/ledger patterns, not Minnit-specific auth. No HAR requested yet; browser HAR does not usually capture server-to-server events. Never ask for secret values in chat; owner will enter required values in ignored `.env.local`.
+- **External blockers:** authorized plan/room/bot, provider-egress deployment, actual callback authentication/occurrence identity and consenting peer evidence. No live pass or autonomous continuation claimed.
+
+
 পর্যালোচনার তারিখ: **2026-10-15 (UTC)**
 GitHub owner: [rajuvbygyuiythh](https://github.com/rajuvbygyuiythh?tab=repositories)
 

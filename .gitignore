@@ -6,3 +6,7 @@ control-plane/runtime/
 .env.*
 !.env.example
 node_modules/
+
+# Private captures never belong in source/release backups.
+*.har
+*.har.*

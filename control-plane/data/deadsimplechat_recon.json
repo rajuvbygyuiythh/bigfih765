@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "site": "deadsimplechat",
+  "step": 1,
+  "scope": "Authorized single-room bot/action diagnostic; no join-triggered outreach",
+  "evidence_kind": "official_documentation_review",
+  "reviewed_at": "2026-10-16",
+  "sources": [
+    "https://deadsimplechat.com/support/rest-api/bots/post-send-message-bot",
+    "https://deadsimplechat.com/support/bots/quiz-bot-using-action-buttons"
+  ],
+  "documented": {
+    "plan": "Business / Advanced API",
+    "send": {
+      "method": "POST",
+      "origin": "https://api.deadsimplechat.com",
+      "path": "/consumer/api/v2/bot/{bot_id}/chatroom/{room_id}/message",
+      "content_type": "application/json",
+      "message_max_characters": 1000,
+      "required_query_auth": true,
+      "examples_also_show_authorization_header": true
+    },
+    "api_acceptance": {
+      "http_status": 200,
+      "boolean_success": true,
+      "does_not_prove_peer_delivery": true
+    },
+    "receive": {
+      "trigger": "actionButtonPressed",
+      "enclosing_message_is": "original bot question, not user input",
+      "unique_click_occurrence_id_established": false
+    }
+  },
+  "unresolved": [
+    "Query auth is required in the table; send examples also add Authorization, while quiz code uses query only. Exact header requirement unresolved.",
+    "Webhook signature/authenticity, replay and retry guarantees are not established.",
+    "Button definition ID must not be treated as a unique click occurrence.",
+    "Actual plan/room/bot authorization, provider egress, callback and peer delivery are untested."
+  ],
+  "capture_guidance": {
+    "browser_har_limitation": "Browser HAR usually cannot contain backend-to-provider bot sends or server-to-server webhooks.",
+    "when_needed": "Only for an authorized staging flow; do not repeat sends just to probe authentication.",
+    "safe_input": "Keep raw traces in ignored runtime storage; never upload keys, cookies or private transcripts.",
+    "webhook_evidence": "Use a separately redacted consenting test fixture; HAR metadata cannot prove click uniqueness or callback authenticity."
+  },
+  "external_requests": 0,
+  "messages_sent": 0,
+  "live_ready": false
+}

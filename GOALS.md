@@ -1,0 +1,1 @@
+knowledge-pack/GOALS.md
