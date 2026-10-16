@@ -15,11 +15,15 @@ from core import APIError, Controller
 from contracts import FIXTURES, describe_send, inspect
 from research import catalog
 from platforms import registry
+from minnit import MinnitDiagnostics, Settings
 
 STATIC = Path(__file__).resolve().parent / "static"
 
 
-def make_server(host, port, controller, token=""):
+def make_server(host, port, controller, token="", diagnostics=None):
+    diagnostics = diagnostics or MinnitDiagnostics(controller, operator_token=token)
+    if diagnostics.operator_token != token:
+        raise ValueError("Diagnostic and HTTP operator authentication must match")
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_):
             pass  # Never log authorization headers, request bodies or URLs.
@@ -61,8 +65,17 @@ def make_server(host, port, controller, token=""):
         def dispatch(self, method):
             try:
                 path = urlparse(self.path).path
+                if path.startswith("/hooks/minnit/"):
+                    if method != "POST":
+                        raise APIError(405, "Webhook requires POST")
+                    if self.headers.get("Origin") or self.headers.get("Sec-Fetch-Site"):
+                        raise APIError(403, "Webhook is server-to-server only")
+                    diagnostics.authenticate_webhook(path[len("/hooks/minnit/"):])
+                    if urlparse(self.path).query:
+                        raise APIError(400, "Webhook query parameters are not accepted")
+                    return self.respond(200, diagnostics.receive(self.body()))
                 if path == "/api/info" and method == "GET":
-                    return self.respond(200, {"auth_required": bool(token), "mode": "synthetic_control_plane"})
+                    return self.respond(200, {"auth_required": bool(token), "mode": "control_plane", "fleet_mode": "synthetic", "diagnostics": "minnit_operator_approved"})
                 if not path.startswith("/api/"):
                     files = {"/": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
                     if method != "GET" or path not in files:
@@ -76,6 +89,20 @@ def make_server(host, port, controller, token=""):
                     if self.headers.get("Sec-Fetch-Site") == "cross-site" or (origin and urlparse(origin).netloc != self.headers.get("Host")):
                         raise APIError(403, "Cross-origin mutation rejected")
                     data = self.body()
+                if path == "/api/diagnostics/minnit" and method == "GET":
+                    return self.respond(200, diagnostics.status())
+                if path == "/api/diagnostics/minnit/deliveries" and method == "GET":
+                    return self.respond(200, diagnostics.deliveries())
+                if path == "/api/diagnostics/minnit/arm" and method == "POST":
+                    return self.respond(200, diagnostics.arm())
+                if path == "/api/diagnostics/minnit/disarm" and method == "POST":
+                    return self.respond(200, diagnostics.disarm())
+                diagnostic_parts = path.strip("/").split("/")
+                if (len(diagnostic_parts) == 6 and diagnostic_parts[:4] == ["api", "diagnostics", "minnit", "deliveries"]
+                        and diagnostic_parts[5] == "approve" and method == "POST"):
+                    if set(data) != {"run_id"}:
+                        raise APIError(400, "Only the current diagnostic run_id is accepted; reply text is fixed")
+                    return self.respond(200, diagnostics.approve(diagnostic_parts[4], data.get("run_id")))
                 if path == "/api/platforms" and method == "GET":
                     return self.respond(200, {"platforms": registry(), "live_ready": 0})
                 if path == "/api/research" and method == "GET":
@@ -94,12 +121,18 @@ def make_server(host, port, controller, token=""):
                 if path == "/api/instances" and method == "POST":
                     return self.respond(201, controller.create(data.get("name"), data.get("adapter")))
                 if path == "/api/stop-all" and method == "POST":
-                    return self.respond(200, controller.stop_all())
+                    with diagnostics.lock:
+                        diagnostics.disarm()
+                        result = controller.stop_all()
+                    return self.respond(200, result)
                 parts = path.strip("/").split("/")
                 if len(parts) in (3, 4) and parts[:2] == ["api", "instances"]:
                     ident = parts[2]
                     if len(parts) == 3 and method == "DELETE":
-                        controller.delete(ident)
+                        with diagnostics.lock:
+                            if ident == diagnostics.settings.instance_id:
+                                diagnostics.disarm()
+                            controller.delete(ident)
                         return self.respond(200, {"deleted": True})
                     if len(parts) == 4:
                         action = parts[3]
@@ -108,7 +141,11 @@ def make_server(host, port, controller, token=""):
                         if action == "start" and method == "POST":
                             return self.respond(200, controller.start(ident))
                         if action == "stop" and method == "POST":
-                            return self.respond(200, controller.stop(ident))
+                            with diagnostics.lock:
+                                if ident == diagnostics.settings.instance_id:
+                                    diagnostics.disarm()
+                                result = controller.stop(ident)
+                            return self.respond(200, result)
                         if action == "check" and method == "POST":
                             return self.respond(200, controller.check(ident, data.get("event_id"), data.get("run_id")))
                 raise APIError(404, "API route not found")
@@ -130,6 +167,7 @@ def make_server(host, port, controller, token=""):
 
     server = ThreadingHTTPServer((host, port), Handler)
     server.daemon_threads = True
+    server.diagnostics = diagnostics
     return server
 
 
@@ -143,7 +181,8 @@ def main():
     database.parent.mkdir(parents=True, exist_ok=True)
     controller = Controller(database)
     token = os.environ.get("CONTROL_PLANE_TOKEN", "")
-    server = make_server(args.host, args.port, controller, token)
+    diagnostics = MinnitDiagnostics(controller, Settings.from_env(os.environ), token)
+    server = make_server(args.host, args.port, controller, token, diagnostics)
     stopping = threading.Event()
 
     def heartbeat():
@@ -152,7 +191,7 @@ def main():
 
     thread = threading.Thread(target=heartbeat, daemon=True)
     thread.start()
-    print(f"Control plane listening on {args.host}:{server.server_port}; synthetic adapters only; auth={'enabled' if token else 'disabled (demo only)'}", flush=True)
+    print(f"Control plane listening on {args.host}:{server.server_port}; simulator + opt-in Minnit diagnostic intake; auth={'enabled' if token else 'disabled (demo only)'}", flush=True)
     def terminate(_signum, _frame):
         raise KeyboardInterrupt
 
@@ -164,6 +203,7 @@ def main():
     finally:
         stopping.set()
         thread.join(timeout=3)
+        diagnostics.disarm()
         server.server_close()
         controller.close()
 

@@ -18,7 +18,7 @@ async function waitFor(predicate, message) {
   let dom, server;
   let checks = 0;
   try {
-    server=spawn('python',['-B','app.py','--host','127.0.0.1','--port','0','--db',path.join(directory,'test.db')],{cwd:path.resolve(__dirname,'..'),env:{...process.env,CONTROL_PLANE_TOKEN:'ui-test-only-token'},stdio:['ignore','pipe','pipe']});
+    server=spawn('python',['-B','app.py','--host','127.0.0.1','--port','0','--db',path.join(directory,'test.db')],{cwd:path.resolve(__dirname,'..'),env:{...process.env,CONTROL_PLANE_TOKEN:'ui-test-only-token',ORBIT_MINNIT_DIAGNOSTICS:'0',ORBIT_MINNIT_AUTHORIZED:'0'},stdio:['ignore','pipe','pipe']});
     const base=await new Promise((resolve,reject)=>{
       const timeout=setTimeout(()=>reject(new Error('Local test server startup timeout')),8000);
       server.once('error',reject);
@@ -117,6 +117,42 @@ async function waitFor(predicate, message) {
     await waitFor(()=>$('fixture-output').textContent.includes('sso_session_shape'),'Chatwee SSO shape');
     inspected=JSON.parse($('fixture-output').textContent);assert.equal(inspected.events[0].session_value_redacted,true);assert.equal(inspected.events[0].is_chat_message,false);assert.ok(!$('fixture-output').textContent.includes('SYNTHETIC-SESSION-NOT-A-REAL-CREDENTIAL'));
     checks++;console.log('PASS UI: Chatwee session result is redacted and not a chat message');
+    d.querySelector('[data-view=diagnostics]').click();
+    await waitFor(()=>$('diagnostic-badge').textContent==='UNCONFIGURED','diagnostics fail-closed status');
+    assert.equal($('diagnostics-view').classList.contains('hidden'),false);
+    assert.equal($('diagnostic-controls').querySelector('button').disabled,true);
+    assert.ok($('diagnostic-blockers').textContent.includes('CONTROL_PLANE_TOKEN'));
+    assert.ok($('diagnostic-deliveries').textContent.includes('No messages sent'));
+    checks++;console.log('PASS UI: diagnostic view exposes configuration blockers without enabling send');
+
+    // UI-only injected responses; real local HTTP pipeline is covered in Python.
+    const realFetch=w.fetch, approvals=[];
+    let armed=false, deliveryStatus='pending';
+    const deliveryId='synthetic-delivery', diagnosticRun='synthetic-run';
+    w.fetch=async(url,options={})=>{
+      if(url==='/api/diagnostics/minnit/arm'){armed=true;return {ok:true,json:async()=>({armed:true})};}
+      if(url==='/api/diagnostics/minnit/disarm'){armed=false;deliveryStatus='cancelled';return {ok:true,json:async()=>({armed:false})};}
+      if(url===`/api/diagnostics/minnit/deliveries/${deliveryId}/approve`){approvals.push(JSON.parse(options.body));deliveryStatus='api_accepted';return {ok:true,json:async()=>({status:'api_accepted'})};}
+      if(url==='/api/diagnostics/minnit') return {ok:true,json:async()=>({configured:true,armed,run_id:diagnosticRun,expires_at:Date.now()/1000+900,blockers:[],reply:'[Orbit diagnostic bot] pong - requested test only.'})};
+      if(url==='/api/diagnostics/minnit/deliveries') return {ok:true,json:async()=>({deliveries:[{id:deliveryId,status:deliveryStatus,run_id:diagnosticRun,event_at:Date.now()/1000,peer_delivery:'unverified',http_status:deliveryStatus==='api_accepted'?200:null}]})};
+      return realFetch(url,options);
+    };
+    await w.refresh();
+    assert.equal($('diagnostic-badge').textContent,'DISARMED');
+    $('diagnostic-controls').querySelector('button').click();
+    await waitFor(()=>$('diagnostic-badge').textContent.startsWith('ARMED'),'synthetic UI arm');
+    const approvalButton=$('diagnostic-deliveries').querySelector('button');
+    assert.equal(approvalButton.disabled,false);approvalButton.click();
+    await waitFor(()=>$('diagnostic-deliveries').querySelector('strong').textContent==='api_accepted','synthetic UI approval');
+    assert.equal(approvals.length,1);assert.deepEqual(approvals[0],{run_id:diagnosticRun});
+    assert.equal($('diagnostic-deliveries').querySelector('button').disabled,true);
+    assert.ok($('diagnostic-deliveries').textContent.includes('peer delivery: unverified'));
+    checks++;console.log('PASS UI: synthetic-response arm -> one fixed approval -> no retry control');
+    $('diagnostic-controls').querySelectorAll('button')[1].click();
+    await waitFor(()=>$('diagnostic-badge').textContent==='DISARMED','synthetic UI disarm');
+    assert.equal($('diagnostic-deliveries').querySelector('button').disabled,true);
+    w.fetch=realFetch;
+    checks++;console.log('PASS UI: disarm removes pending approval eligibility (injected responses)');
     assert.deepEqual(errors,[]);checks++;console.log('PASS UI: no JavaScript/DOM execution errors');
     console.log(`PASS: ${checks} DOM + local HTTP integration checks. No real browser or third-party chat test.`);
   } finally {

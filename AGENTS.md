@@ -25,3 +25,7 @@ The knowledge pack documents 23 source repositories and 19 archives. It is not a
 Use supported/permitted integrations and synthetic/consented test data. Never publish credentials, cookies, saved sessions, private transcripts or raw capture payloads. Keep global policy, refusal/exit handling and bot disclosure explicit. Do not port credential-checking, token-harvesting, spam or bypass functionality from historical material.
 
 End a delivery with actual commands/results, fixed defects, remaining blockers, source/ZIP and run instructions. Use `knowledge-pack/templates/SITE_DELIVERY_REPORT.md`; no feature is verified merely because a file or interface exists.
+
+## Latest implementation boundary — v0.4
+
+Minnit now has a **disabled-by-default single-room diagnostic connector**, not just an offline inspector. Read `control-plane/minnit.py`, its tests, README's server-only setup/staging section and `research/minnit-diagnostics-2026-10-16/REPORT.md`. Intake only queues fresh opt-in `!orbit ping`; a separate authenticated operator action sends one fixed disclosed pong. Persistent SQLite dedup/intent/outcome state never implies peer delivery. Keep the independent URL secret distinct from vendor-signature authentication. Fleet Start is still synthetic-only; other sites remain at prior evidence levels. No credentials or provider egress are configured here, and the sandbox host allowlist excludes Minnit endpoints. Do not claim a live pass or erase pending live gates based on mocks. Never package runtime data/secrets.

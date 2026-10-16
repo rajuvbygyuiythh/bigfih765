@@ -11,7 +11,8 @@ def entry(name, phase, configurable=True, fixture_label=None, blocker=None):
 
 PLATFORMS = {
     'simulator': entry('Synthetic sandbox', 'synthetic'),
-    'minnit': entry('Minnit', 'offline_contract', fixture_label='Minnit · message batch'),
+    'minnit': entry('Minnit', 'diagnostic_connector', fixture_label='Minnit · message batch',
+                    blocker='Fleet start stays disabled. Use Minnit diagnostics for a server-configured, operator-approved single-room test; live validation is pending.'),
     'deadsimplechat': entry('DeadSimpleChat', 'offline_contract', fixture_label='DeadSimpleChat · button action'),
     'rumbletalk': entry('RumbleTalk', 'offline_contract', fixture_label='RumbleTalk · REST history snapshot'),
     'chatwee': entry('Chatwee', 'offline_identity', fixture_label='Chatwee · redacted SSO result'),

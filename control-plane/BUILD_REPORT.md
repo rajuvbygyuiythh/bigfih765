@@ -1,34 +1,27 @@
-# Remaining-site onboarding · v0.3.0 · 2026-10-16
+# Minnit diagnostic gap closure · v0.4.0 · 2026-10-16
 
-**Status: OFFLINE_VALIDATED.** Registry/onboarding and local documented-subset work delivered, not twelve working live bots.
+**Status: OFFLINE_VALIDATED; authorized live staging pending.** This release implements the previously missing receiver/sender/durable-state slice, not just another site list. No third-party request/message was sent.
 
 ## Delivered
 
-- Shared capability registry: 12 research/reference records, eight configurable site types, plus the separate synthetic sandbox.
-- All original shortlist alternatives now appear in Site research. Chitchat/Joingy/Isexychat are reference-only; Chatzy is restricted. UI and direct API reject their configuration creation.
-- Search/phase filters and site-specific Add configuration. Slots are inactive; unsupported starts fail closed.
-- Repeatable seed utility creates only missing inactive site types, preserves existing configurations and starts no worker.
-- RumbleTalk local REST-history inspector and secret-free SYSTEM-message specification; UTF-8 byte limit enforced. No webhook/private-DM equivalence claimed.
-- Chatwee local SSO-result inspector redacts the SID and never treats it as a user message. Chat send remains unsupported.
-- Per-platform proof coverage prevents unknown/unimplemented sites from inheriting test-gate completion. Reference/restricted entries show N/A.
-- Reproducible allowlisted source/evidence packager and SHA-256 manifest; old ZIPs preserved.
+- Opt-in single-authorized-room/channel Minnit diagnostic service, server-environment-only credentials and strict documented organization endpoint pinning.
+- Dedicated shared-URL-secret webhook, checked before body parsing; not a provider signature. Strict room/name/channel, body/batch/age/run/window validation; edits/noncommands never produce replies.
+- SQLite durable unique hashed event identities, pending/submitting/outcome ledger, intent commit before network and persistent cooldown. No transcripts/IPs/profiles/keys/raw response storage.
+- Operator approval required for every fixed disclosed pong to a fresh `!orbit ping`; no arbitrary messages, campaign flow or automatic retries.
+- Real HTTPS/form/X-Key transport implementation; redirects/proxy inheritance refused, bounded response and socket timeout; accepted/rejected/unknown kept distinct from peer delivery.
+- Restart disarm/crash recovery, stale-work invalidation, Stop all/bound Stop/Delete integration and in-flight dispatch serialization.
+- Separate dashboard controls/confirmation and sanitized latest-50 ledger; fleet Start remains synthetic-only. Twelve-site registry and four offline inspectors retained.
+- Exact official Minnit sendmessage example ACK/10,000-character limit recorded; local safety limits remain independently labeled.
+- Reproducible allowlisted source/test/evidence ZIP, manifest and old backups preserved.
 
-## Executed regression scope
+## Verification
 
-`python -B tools/run_checks.py --ui`:
+`python -B tools/run_checks.py --ui`: **87 Python tests + 20 DOM checks PASS**, JS syntax PASS. Of the DOM checks, 18 use local HTTP and two use explicit synthetic injected responses for enabled diagnostic UI states. Python covers the complete local HTTP intake/approval pipeline with a fake provider; transport request/response behavior is mocked. No real browser render or vendor-delivery test. Receipt is bound to current source and catalog.
 
-- **60 Python core/HTTP/contract/catalog/bootstrap tests**.
-- **17 jsdom + actual local HTTP checks** (not rendered-browser or third-party tests).
-- JavaScript syntax check.
+Release verification includes CRC/manifest checks, tests in a clean extracted copy and a byte-identical rebuild using the packaged helper. Current SHA-256 is in the release sidecar. Full methodology and limitations: `reports/MINNIT_DIAGNOSTICS.md` in the ZIP or `research/minnit-diagnostics-2026-10-16/REPORT.md` in the repository.
 
-Coverage includes both new shapes, multibyte message boundaries, session redaction, missing/invalid schemas, unknown-site refusal, specific-platform proof, inactive-config persistence, seed idempotency, restricted API rejection, registry-derived dropdowns, research filters and card-to-configuration flow. Final PASS/FAIL and timestamp are written by the actual test runner to `data/test_results.json`, bound to current source. Packaging also runs extracted-copy checks, manifest/CRC/byte matching and deterministic rebuild validation.
+## Still required
 
-## Progress / remaining work
+Authorized room/account/paid-plan entitlement, approved publicly reachable HTTPS deployment with provider egress, live callback/secret/channel/ACK compatibility and consenting witness delivery/Stop evidence. This sandbox's outbound allowlist excludes Minnit organization endpoints. No credential or access value is requested in chat. The four live evidence gates remain pending, so the narrow scope remains 8/12 checklist gates, not a performance percentage.
 
-Four narrow local scopes: 8/12 checklist gates with fresh proof. Chatblink: 1/12; StrangerMeetup/Chatango/Chatiw: 2/12. These are documented review/planning/test milestones, not performance/success/effort estimates. Chatzy and references: N/A.
-
-All real connectors remain unimplemented/unconfigured. Appropriate supported contracts, authorization/entitlement, actual adapter implementation/staging and consenting peer-delivery/stop evidence are still required. No credentials, remote messages, acquisition traffic, campaign engine or autonomous scheduler used.
-
-## Handoff
-
-Run instructions: `README.md`. Full per-site next steps: `reports/SITE_ONBOARDING.md` in the release, or `research/site-onboarding-2026-10-16/REPORT.md` in the repository. The original upstream review and two-site analysis are historical snapshots, not rewritten claims that every source/runtime operation has been tested.
+Single operator/process, development HTTP server; no production edge/RBAC/distributed workers, hard wall-clock network cancellation, exactly-once recipient guarantee or acquisition engine. Stop waits for the current attempt; five-second timeout is per I/O, so slow/trickling responses may delay it. Runtime DB backups must stay private and outside release/Git. Setup and controlled staging: `README.md`.

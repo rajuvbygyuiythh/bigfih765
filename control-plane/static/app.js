@@ -57,7 +57,7 @@ async function refreshLogs() {
   $('log-title').textContent=instance.name; $('log-subtitle').textContent='Recent 100 events · runtime only'; box.replaceChildren();
   for(const event of [...result.logs].reverse()) {const row=el('div','log-row'); row.append(el('time','',new Date(event.at*1000).toLocaleTimeString()),el('span','action',event.action),el('span','message',event.message)); box.append(row);}
 }
-async function refresh() {if(refreshing) return; refreshing=true; try {state=await api('/api/state'); await loadRegistry(); render(); await refreshLogs(); try { researchData=await api('/api/research'); renderResearch(); } catch(error) { $('research-cards').replaceChildren(el('p','error',error.message)); } $('connection-status').textContent='CONNECTED · LOCAL STATE';} catch(error) {$('connection-status').textContent='CONNECTION ERROR'; throw error;} finally {refreshing=false;}}
+async function refresh() {if(refreshing) return; refreshing=true; try {state=await api('/api/state'); await loadRegistry(); render(); await refreshLogs(); await refreshDiagnostics(); try { researchData=await api('/api/research'); renderResearch(); } catch(error) { $('research-cards').replaceChildren(el('p','error',error.message)); } $('connection-status').textContent='CONNECTED · LOCAL STATE';} catch(error) {$('connection-status').textContent='CONNECTION ERROR'; throw error;} finally {refreshing=false;}}
 function openCreate() {$('form-error').textContent=''; $('create-dialog').showModal(); $('instance-name').focus();}
 $('add').onclick=openCreate; $('empty-add').onclick=openCreate;
 $('close-dialog').onclick=()=>$('create-dialog').close(); $('cancel-dialog').onclick=()=>$('create-dialog').close();
@@ -65,14 +65,14 @@ $('create-form').onsubmit=async(event)=>{event.preventDefault(); const submit=ev
 $('auth-form').onsubmit=async(event)=>{event.preventDefault(); token=$('operator-token').value; try{await api('/api/state'); $('auth-dialog').close(); $('operator-token').value=''; $('auth-error').textContent=''; await refresh();}catch(error){token=''; $('auth-error').textContent=error.message;}};
 $('auth-dialog').addEventListener('cancel',event=>event.preventDefault());
 $('search').oninput=render;
-$('stop-all').onclick=async()=>{try {await api('/api/stop-all','POST'); await refresh(); toast('All synthetic workers stopped.');}catch(error){toast(error.message);}};
+$('stop-all').onclick=async()=>{try {await api('/api/stop-all','POST'); await refresh(); toast('Synthetic workers stopped and Minnit diagnostics disarmed.');}catch(error){toast(error.message);}};
 for(const tab of document.querySelectorAll('[data-filter]')) tab.onclick=()=>{filter=tab.dataset.filter; for(const b of document.querySelectorAll('[data-filter]')) b.classList.toggle('active',b===tab);render();};
 for(const nav of document.querySelectorAll('[data-view]')) nav.onclick=async()=>{
   const view=nav.dataset.view;
   for(const b of document.querySelectorAll('[data-view]')) b.classList.toggle('active',b===nav);
-  for(const id of ['fleet','activity','research']) $(`${id}-view`).classList.toggle('hidden',id!==view);
-  const titles={fleet:'Instance fleet',activity:'Workspace activity',research:'Site research'};
-  const descriptions={fleet:'Configure your instances. Control every lifecycle.',activity:'A clear timeline of local lifecycle events.',research:'Source-backed analysis, local contract tests, and explicit delivery gates.'};
+  for(const id of ['fleet','activity','research','diagnostics']) $(`${id}-view`).classList.toggle('hidden',id!==view);
+  const titles={fleet:'Instance fleet',activity:'Workspace activity',research:'Site research',diagnostics:'Minnit diagnostics'};
+  const descriptions={fleet:'Configure your instances. Control every lifecycle.',activity:'A clear timeline of local lifecycle events.',research:'Source-backed analysis, local contract tests, and explicit delivery gates.',diagnostics:'One authorized room. Explicit test requests. Operator-approved sends.'};
   $('page-title').textContent=titles[view]; $('breadcrumb').textContent=titles[view]; $('page-description').textContent=descriptions[view];
   if(view==='research'&&!fixtures) {try{await loadRegistry();fixtures=(await api('/api/contracts')).fixtures;prepareFixtures();}catch(error){toast(error.message);}}
 };
@@ -106,3 +106,28 @@ $('fixture-platform').onchange=loadFixture;
 $('inspect-fixture').onclick=async()=>{const control=$('inspect-fixture');control.disabled=true;try{const fixture=JSON.parse($('fixture-input').value);const output=await api(`/api/contracts/${$('fixture-platform').value}/inspect`,'POST',fixture);$('fixture-output').textContent=JSON.stringify(output,null,2);}catch(error){$('fixture-output').textContent='Rejected: '+error.message;}finally{control.disabled=false;}};
 (async()=>{try{const info=await api('/api/info'); if(info.auth_required) $('auth-dialog').showModal();else await refresh();}catch(error){toast(error.message);}})();
 setInterval(()=>{if(!$('auth-dialog').open) refresh().catch(()=>{});},2000);
+
+async function refreshDiagnostics() {
+  try {
+    const [diagnostic, ledger] = await Promise.all([api('/api/diagnostics/minnit'), api('/api/diagnostics/minnit/deliveries')]);
+    $('diagnostic-badge').textContent=diagnostic.armed?'ARMED · TEST ONLY':diagnostic.configured?'DISARMED':'UNCONFIGURED';
+    $('diagnostic-status').textContent=diagnostic.armed?`Intake armed until ${new Date(diagnostic.expires_at*1000).toLocaleTimeString()}. Each fresh ping needs separate approval. Live validation: not verified.`:'Intake disarmed. Configure the server environment using README instructions, then arm a 15-minute test window.';
+    $('diagnostic-blockers').replaceChildren(...diagnostic.blockers.map(message=>el('li','',message)));
+    $('diagnostic-controls').replaceChildren(
+      button('Arm test intake','start',async()=>{if(confirm('Confirm this is your authorized test room with consenting participants. Arm intake for 15 minutes?')) await api('/api/diagnostics/minnit/arm','POST');},!diagnostic.configured||diagnostic.armed),
+      button('Disarm intake','danger-ghost',async()=>{await api('/api/diagnostics/minnit/disarm','POST');},!diagnostic.armed));
+    const box=$('diagnostic-deliveries');box.replaceChildren();
+    for(const delivery of ledger.deliveries) {
+      const row=el('article','diagnostic-delivery');
+      row.append(el('strong','',delivery.status),el('span','muted',` ${delivery.id.slice(0,8)} · peer delivery: ${delivery.peer_delivery} · HTTP ${delivery.http_status??'—'}`));
+      const age=Date.now()/1000-delivery.event_at;
+      row.append(button('Approve fixed pong','secondary',async()=>{if(confirm(`Send exactly this reply to the configured test room?\n\n${diagnostic.reply}`)) {const result=await api(`/api/diagnostics/minnit/deliveries/${delivery.id}/approve`,'POST',{run_id:diagnostic.run_id});toast(`${result.status} · peer delivery unverified`);}},!diagnostic.armed||delivery.status!=='pending'||delivery.run_id!==diagnostic.run_id||age>300||age< -30));
+      box.append(row);
+    }
+    if(!ledger.deliveries.length) box.append(el('p','log-empty','No diagnostic events recorded. No messages sent.'));
+  } catch(error) {
+    $('diagnostic-status').textContent='Diagnostic status unavailable: '+error.message;
+    $('diagnostic-controls').replaceChildren();
+    $('diagnostic-deliveries').replaceChildren();
+  }
+}

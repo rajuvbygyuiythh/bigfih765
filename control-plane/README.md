@@ -1,6 +1,6 @@
-# Orbit control plane · v0.3.0
+# Orbit control plane · v0.4.0
 
-Runnable first milestone: a central web dashboard, SQLite-backed instance configuration and isolated synthetic worker lifecycles. **Status: OFFLINE_VALIDATED.** This is a local control-plane implementation, not a completed Minnit/DeadSimpleChat connector or acquisition operation.
+Central web dashboard, SQLite-backed instance configuration, synthetic lifecycles and an **opt-in Minnit single-room diagnostic connector**. **Status: OFFLINE_VALIDATED; live validation pending.** Diagnostic intake and sending are implemented and locally tested, not live-connected or an acquisition operation. Fleet Start is still synthetic-only; use the separate **Minnit diagnostics** view for this narrow test flow.
 
 ## Run
 
@@ -23,14 +23,14 @@ The browser uses relative `/api/` URLs; the server accepts the preview host. No 
 
 Default launch is an **unauthenticated synthetic demo**. Do not expose it as a production or privileged service. For operator-token protection, set `CONTROL_PLANE_TOKEN` in the server environment before starting; enter it into the dashboard's token dialog. Do not paste a production secret in chat or commit it. The token stays in browser memory (not localStorage); refresh requires login again. Use HTTPS through the deployment proxy.
 
-Optional flags: `--host`, `--port`, `--db`. The database defaults to `runtime/control.db`, relative to `app.py`, not the working directory. `--port 0` selects a free port and prints the assigned port. No third-party credentials are requested or stored.
+Optional flags: `--host`, `--port`, `--db`. The database defaults to `runtime/control.db`, relative to `app.py`, not the working directory. `--port 0` selects a free port and prints the assigned port. Default mode needs no third-party credentials. Optional Minnit credentials are read only from the server environment, never stored in SQLite or accepted through the UI.
 
 ## Implemented
 
 - Responsive fleet view, search/status filters, per-instance activity and workspace audit view.
 - Create/delete configurations; server-side 100-configuration cap. **This is not a claim of 100 live platform connections or tested production capacity.**
 - Start/stop synthetic workers; idempotent start, per-run identity and heartbeat; stop-all control.
-- Synthetic event checks, atomic deduplication and stale-run rejection. No outbound messages or external socket connections.
+- Synthetic event checks, atomic deduplication and stale-run rejection. Synthetic checks make no outbound messages or external socket connections; the separate diagnostic sender requires explicit setup and approval.
 - Independent instance state: stopping one instance does not stop another.
 - SQLite configuration persistence. Restart restores configurations **stopped**, never auto-resumes them.
 - Runtime-only logs/counters, bounded to 100 events per instance and 200 audit entries. Deduplication window: latest 1,000 unique event IDs per run. Older IDs are not a durable idempotency guarantee.
@@ -39,7 +39,7 @@ Optional flags: `--host`, `--port`, `--db`. The database defaults to `runtime/co
 
 A single local scheduler maintains virtual worker heartbeats; workers are **not separate OS processes**, browser sessions or live platform connections. Synthetic checks do not generate chat conversations or acquisition counts.
 
-## Site research and onboarding (v0.3)
+## Site research and onboarding
 
 Open **Site research**: all nine shortlist alternatives, Chitchat and two upstream source references are tracked (**12 records**). Search/filter by site name, local contract, missing contract, restricted or reference phase. **Eight site types** accept inactive configuration; restricted/reference types reject configuration creation through UI and API. The synthetic sandbox is separate and remains the only runnable worker.
 
@@ -53,7 +53,7 @@ The seed utility is repeatable: it preserves existing names/configurations, crea
 
 **Four** offline inspectors exist: Minnit message batches, DeadSimpleChat button actions, RumbleTalk REST history snapshots and Chatwee SSO results. RumbleTalk's outbound specification is a **system** message limited to 2,000 UTF-8 bytes, not private-DM parity. Chatwee returns redaction/presence flags only, never a session ID or chat message; no chat-send API is invented. No inspector sends a request to any platform.
 
-Progress requires a passing receipt covering **that specific contract**. The four narrow implemented scopes reach **8/12 = 67% checklist completion**, not success probability or production readiness. Unknown protocols cannot borrow the shared suite's passing status. Chatzy/references show **N/A** rather than a misleading implementation percentage. All live starts remain disabled.
+Progress requires a passing receipt covering **that specific contract**. The four narrow implemented scopes reach **8/12 = 67% checklist completion**, not success probability or production readiness. Unknown protocols cannot borrow the shared suite's passing status. Chatzy/references show **N/A** rather than a misleading implementation percentage. Fleet live starts remain disabled; the separately guarded diagnostic path is described below.
 
 Run and save actual test evidence:
 
@@ -63,7 +63,56 @@ python -B tools/run_checks.py --ui
 
 Use `npm ci --ignore-scripts --no-audit --no-fund` first if jsdom is not installed, or omit `--ui` to run Python and JS-syntax checks only. The receipt at `data/test_results.json` is bound to a fingerprint of source/tests/catalog. Changed code or failed/missing proof reopens the local-test gates. The dashboard reloads catalog/receipt on its two-second refresh; it does not perform background research or automatically push to GitHub.
 
-Current selected scopes and unresolved provider details are in `data/site_catalog.json`. In the repository, detailed reports are `research/supported-integrations-2026-10-16/REPORT.md` and `research/multiplechat-review-2026-10-16/REPORT.md`. The v0.3 ZIP includes these plus the remaining-site onboarding report under `reports/`. They are authorship/review artifacts, not source ZIP imports.
+Current selected scopes and unresolved provider details are in `data/site_catalog.json`. In the repository, detailed reports are `research/supported-integrations-2026-10-16/REPORT.md` and `research/multiplechat-review-2026-10-16/REPORT.md`. The current ZIP includes these plus the remaining-site onboarding report under `reports/`. They are authorship/review artifacts, not source ZIP imports.
+
+## Minnit single-room diagnostics (v0.4)
+
+**Implemented, disabled by default.** This is not a general bot or promotion engine. It receives a fresh `!orbit ping`, stores an eligible one-shot intent, and waits for the operator to approve exactly `[Orbit diagnostic bot] pong - requested test only.`. Intake itself never sends. No arbitrary reply text, bulk approval, automatic retries or acquisition flow exists.
+
+### Server-only configuration
+
+Use a protected deployment environment/secret manager, outside Git and release ZIPs. The app does **not** auto-load `.env` files. Never paste values into chat, the inspector, an issue or a screenshot. Run one application process per database; use a private database directory (e.g. restrictive `umask 077`).
+
+| Environment variable | Meaning |
+| --- | --- |
+| `ORBIT_MINNIT_DIAGNOSTICS=1` | Explicit feature enablement |
+| `ORBIT_MINNIT_AUTHORIZED=1` | Operator asserts this is an authorized owned test room with consenting participants; not independent ownership verification |
+| `CONTROL_PLANE_TOKEN` | Independent high-entropy operator token, at least 32 characters |
+| `MINNIT_INSTANCE_ID` | ID of one saved Minnit configuration (from `/api/state`); not a provider room ID |
+| `MINNIT_API_URL` | Dashboard-provided `https://YOUR-ORG.minnit.org/page/api`; only this documented host/path pattern is accepted |
+| `MINNIT_API_KEY` | Organization API key for the authorized account; header only, never in a URL |
+| `MINNIT_WEBHOOK_SECRET` | Independent cryptographically random URL-safe secret, 32–128 characters; never reuse either other credential |
+| `MINNIT_CHAT_ID` / `MINNIT_CHAT_NAME` | Exact stable provider room ID and current room name; both checked on incoming messages |
+| `MINNIT_WEBHOOK_CHANNEL` | Exact incoming channel value, within the documented-subset ID syntax |
+| `MINNIT_SEND_CHANNEL` | Explicit outgoing channel value; do not assume an inbound numeric value maps to an outbound name |
+| `MINNIT_USERNAME` | Your authorized disclosed diagnostic-bot account username, not an impersonated participant |
+
+Generate high-entropy secrets on the deployment host using a secure generator (Python `secrets.token_urlsafe(32)` is suitable), not predictable sample strings. Required plan/access: official docs identify organization API and custom webhooks as paid-plan features; confirm current entitlement in the dashboard before purchasing or enabling anything.
+
+Restart the server after setting environment variables. In the provider's owned-room settings, set the message webhook URL to `https://YOUR-DEPLOYMENT/hooks/minnit/YOUR-WEBHOOK-SECRET`. Register it for this room only. **This URL-secret check authenticates possession, not Minnit's cryptographic identity.** No documented signature is assumed. Use HTTPS, suppress/redact hook paths in reverse-proxy/CDN access logs, and keep the secret out of analytics/referrers. The Python server does not log request URLs, bodies or headers. This sandbox's outbound host allowlist does not include Minnit organization endpoints: live validation needs an authorized deployment with provider HTTPS egress and a publicly reachable HTTPS callback. No network-policy bypass is implemented.
+
+### Controlled staging procedure
+
+1. Open **Minnit diagnostics**; resolve the displayed environment/binding blockers. The UI never receives keys or the webhook URL. A saved fleet slot alone cannot send.
+2. Arm a 15-minute test window. On a consenting test account in the configured room/channel, send `!orbit ping`.
+3. Confirm a `pending` ledger item appears. Wrong room/name/channel batches reject atomically. Noncommands/edits/joins and commands older than five minutes or more than 30 seconds in the future are not eligible.
+4. Click **Approve fixed pong**, read the confirmation and approve. Every send needs a fresh operator action and current run ID. The server enforces one attempt per event, a five-minute command age and at least 30 seconds between attempts. These are local safety policies, not verified vendor quotas.
+5. Inspect `api_accepted`, `rejected` or `unknown` plus HTTP status. The official API example uses HTTP 200 with JSON `success:true`; only that is API acceptance. Unexpected/redirect/5xx/timeout responses are conservatively unknown. Raw bodies are never persisted/exposed. **Peer delivery remains unverified**, including after API acceptance; a consenting witness must check the actual room. No automated witness claim exists.
+6. Disarm, use **Stop all**, or Stop/Delete the bound fleet slot. All cancel pending intents and invalidate the run. Stop serializes behind any already-dispatched attempt: it cannot recall a message. The sender has a five-second **per-socket-I/O** timeout and a 4 KiB body cap, not a hard wall-clock deadline; slow/trickling responses can delay Stop. This needs production transport hardening before broader deployment.
+7. Restart: intake is disarmed; old pending work becomes `cancelled`, interrupted `submitting` becomes `unknown`. Replayed event IDs stay suppressed. Do not retry uncertain outcomes; request a new consenting test command only after checking the room.
+
+SQLite retains only hashed event identity (organization/room/channel/message ID), instance/run/delivery IDs, timestamps, state and HTTP code. No text, sender identity, profile, IP, key or raw response is retained. Latest 50 records are shown; the durable ledger caps at 10,000 and fails closed rather than evicting replay protection. Database loss, rollback to an old backup, manual deletion or parallel deployments are not an exactly-once guarantee. For a private backup: first disarm, stop the server, then use SQLite's backup facility or copy the closed DB to protected storage; **never commit or ZIP runtime data**. Before destructive rotation, stop callbacks, settle uncertain outcomes and rotate the webhook secret. No automated retention deletion/compaction is supplied.
+
+| Method | Path | Behavior |
+| --- | --- | --- |
+| GET | `/api/diagnostics/minnit` | Sanitized configuration blockers, armed/run/expiry and policies |
+| POST | `/api/diagnostics/minnit/arm` | `{}`; validate and arm, no network request |
+| POST | `/api/diagnostics/minnit/disarm` | `{}`; invalidate run and cancel pending intents |
+| GET | `/api/diagnostics/minnit/deliveries` | Latest 50 sanitized durable outcomes; no raw payloads |
+| POST | `/api/diagnostics/minnit/deliveries/{id}/approve` | Only `{ "run_id": "CURRENT-RUN" }`; one synchronous fixed-message attempt |
+| POST | `/hooks/minnit/{independent-secret}` | Server-to-server JSON, 16 KiB maximum; authenticate before parsing; queue only |
+
+Local acceptance covers restart/replay, concurrent duplicate intake/approval, persisted-before-network intent, wrong-scope atomic rejection, age/run/arm/cooldown guards, Stop serialization, crash outcomes, secret redaction and mocked form/header/ACK/error transport. It **does not prove** provider callback delivery/retry/Content-Type compatibility, channel routing, actual authorization/entitlement, live network behavior or peer-visible delivery. The four remaining live evidence gates stay pending (8/12 checklist, not success probability).
 
 ## Try it
 
@@ -91,11 +140,11 @@ npm test
 
 Node/jsdom is a **test-only** dependency; the app itself requires no npm packages. The pinned version and transitive dependencies are in `package-lock.json`. `tests/ui.test.cjs` starts a temporary authenticated local server and closes it afterwards. It tests DOM interactions against real local HTTP endpoints, **not real-browser layout/rendering or third-party chat**.
 
-Verified in the development environment: **60 Python unit/HTTP/contract/research tests + 17 DOM/local-HTTP checks passed**, JS syntax passed. The Python tests exercise persistence/no-auto-resume, isolation, idempotency, duplicate/stale events, bounded memory, concurrent deduplication, lifecycle APIs, token checks, preview-origin behavior, payload rejection, and unsupported adapter refusal. A 100-config creation test is not a concurrent-load benchmark.
+Verified in the development environment: **87 Python unit/HTTP/contract/research/diagnostic tests + 20 DOM checks passed** (18 against local HTTP, two additional UI-only injected-response checks), JS syntax passed. The Python tests exercise persistence/no-auto-resume, isolation, idempotency, duplicate/stale events, bounded memory, concurrent deduplication, lifecycle APIs, token checks, preview-origin behavior, payload rejection, and unsupported adapter refusal. A 100-config creation test is not a concurrent-load benchmark.
 
 ## API
 
-`GET /api/info` is public and reports mode/auth requirement. Remaining routes require `Authorization: Bearer <operator token>` when configured.
+`GET /api/info` is public and reports mode/auth requirement. Operator API routes require `Authorization: Bearer <operator token>` when configured.
 
 | Method | Path | Input/result |
 | --- | --- | --- |
@@ -106,18 +155,19 @@ Verified in the development environment: **60 Python unit/HTTP/contract/research
 | POST | `/api/instances/{id}/check` | JSON `event_id` + current `run_id`; synthetic processing only |
 | GET | `/api/instances/{id}/logs` | Bounded runtime-only events |
 | DELETE | `/api/instances/{id}` | `{}`; must be stopped |
-| POST | `/api/stop-all` | `{}`; stop every local worker |
+| POST | `/api/stop-all` | `{}`; stop synthetic workers and disarm diagnostic intake |
 | GET | `/api/platforms` | Shared UI/backend capability registry; zero live-ready connectors |
 | GET | `/api/research` | Source-backed catalog, derived gates and test-receipt freshness |
 | GET | `/api/contracts` | Synthetic fixtures; offline mode |
 | POST | `/api/contracts/{platform}/inspect` | `payload` + `expected_room_id`; normalize locally, zero external requests |
 | POST | `/api/contracts/{platform}/describe-send` | Secret-free shape specification only, `transmitted: false` |
 
-Mutation body limit is 16 KiB; JSON objects only. Browser mutations must be same-origin. Static paths are allowlisted; there is no generic file server, proxy or webhook receiver.
+Mutation body limit is 16 KiB; JSON objects only. Browser mutations must be same-origin. Static paths are allowlisted; there is no generic file server or proxy. Only the dedicated shared-secret diagnostic webhook bypasses operator Bearer authentication, using its own independent secret; it rejects browser-origin requests.
 
 ## Architecture / next implementation boundary
 
 - `app.py`: HTTP transport, request/auth/origin validation and scheduler lifecycle.
+- `minnit.py`: narrow diagnostic intake, SQLite idempotency/ledger, operator-approved HTTPS transport and lifecycle guards.
 - `core.py`: SQLite config repository, atomic instance state, bounded logs, synthetic event checks.
 - `static/`: dependency-free UI; no external CDN requests.
 - `platforms.py`: canonical capability/configuration/reference registry.
@@ -141,4 +191,4 @@ The explicit allowlist packages source, tests, catalog/receipt and authored repo
 
 ## Limits
 
-Single operator/single process; no user accounts, roles, secret manager, durable event queue, distributed workers, guaranteed delivery, campaign/outreach engine, live platform adapter or Snap integration. Python's standard-library HTTP server is a development server, not a production edge server. Add production authentication/authorization, deployment hardening and measured load tests before broader deployment. No acquisition traffic was generated. The previous research/knowledge ZIPs are unchanged.
+Single operator/single process; no user accounts, roles, managed secret store, general-purpose queue, distributed workers, guaranteed delivery, campaign/outreach engine, validated production adapter or Snap integration. The narrow diagnostic queue/ledger is durable, but never auto-drains and does not offer exactly-once recipient delivery. Python's standard-library HTTP server is a development server, not a production edge server. Add production authentication/authorization, deployment hardening and measured load tests before broader deployment. No acquisition traffic was generated. The previous research/knowledge ZIPs are unchanged.

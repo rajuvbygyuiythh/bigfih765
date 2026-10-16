@@ -5,7 +5,7 @@
     {
       "id": "minnit",
       "name": "Minnit",
-      "scope": "One authorized room/channel; documented message events and send specification",
+      "scope": "One authorized room/channel; shared-secret intake, durable dedup and operator-approved fixed diagnostic send",
       "recommendation": "supported_owned_room_candidate",
       "sources": [
         {
@@ -63,7 +63,7 @@
           "id": "send_contract",
           "label": "Outbound contract design",
           "status": "complete",
-          "evidence": "POST action=sendmessage, chatname/channel/username/message, form encoding. Endpoint must come from organization dashboard.",
+          "evidence": "POST action=sendmessage, chatname/channel/username/message, form encoding + X-Key. Official docs: max 10,000 characters and success:true / response:Message sent example. Diagnostic sender emits only a fixed disclosed pong.",
           "requires_suite": false
         },
         {
@@ -91,7 +91,7 @@
           "id": "inbound_verification",
           "label": "Provider-compatible inbound authenticity/replay verification",
           "status": "pending",
-          "evidence": "No signature format assumed; confirm supported secret/signature and replay protection",
+          "evidence": "Local URL shared-secret check, age window and durable replay suppression implemented/tested. Provider callback compatibility and cryptographic authenticity are not live verified; no signature invented.",
           "requires_suite": false
         },
         {
@@ -105,7 +105,7 @@
           "id": "staging_contract",
           "label": "Authenticated staging integration",
           "status": "pending",
-          "evidence": "Real adapter receiver/sender is not implemented or live-tested",
+          "evidence": "Receiver/sender and local HTTP integration tests implemented. Authorized provider staging not run; no credentials or provider-egress deployment configured.",
           "requires_suite": false
         },
         {
@@ -120,9 +120,10 @@
         "authentication": "Organization endpoint + X-Key; API Basic+, custom webhooks Community+. Secret kept server-side.",
         "guest_access": "Guests talk/view by default unless owner restricts; disposable guest ID is not provider account signup.",
         "receive_contract": "chat_message -> data[] with msg_id/chat_id/channel/user_id/message. Edits remain a separate kind. Local fixture cap: 100 events.",
-        "send_contract": "POST action=sendmessage, chatname/channel/username/message, form encoding. Endpoint must come from organization dashboard.",
+        "send_contract": "POST action=sendmessage, chatname/channel/username/message, form encoding + X-Key. Official docs: max 10,000 characters and success:true / response:Message sent example. Diagnostic sender emits only a fixed disclosed pong.",
         "storage": "Documented auth/guest/CSRF cookies; our public-API contract should not import browser-profile sessions.",
-        "open_questions": "Confirm vendor message/rate limits, exact API acknowledgement schema, retry contract and inbound authentication. channel example is numeric while table labels it by name; confirm actual deployment value."
+        "open_questions": "Live plan/access, callback compatibility, vendor rates/retries and any signature mechanism remain unverified. Channel example is numeric while description uses a name: inbound and outbound channel values are configured separately, never guessed. Current sandbox has no approved provider egress.",
+        "implementation": "minnit.py implements URL-shared-secret intake (not vendor identity proof), strict single-room/channel binding, fresh !orbit ping eligibility, SQLite durable dedup/one-shot intents/outcomes, manual operator approval, persistent cooldown, restart disarm and Stop coordination. No automatic replies or raw transcript retention."
       },
       "security_runtime": "Headers/TLS/CSP/WAF and browser storage not measured; docs are not a security audit",
       "can_start_live": false
