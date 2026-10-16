@@ -11,6 +11,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from research import source_fingerprint
+from contracts import FIXTURES
 
 
 def main():
@@ -38,7 +39,7 @@ def main():
     passed = all(r['exit_code'] == 0 for r in results) and unchanged
     receipt = {'schema_version': 1, 'finished_at': datetime.now(timezone.utc).isoformat(),
                'source_sha256': fingerprint, 'source_unchanged_during_tests': unchanged,
-               'passed': passed, 'checks': results,
+               'passed': passed, 'checks': results, 'covered_contracts': sorted(FIXTURES) if passed else [],
                'scope': 'Local regression only; no provider credentials or third-party delivery'}
     dest = ROOT / 'data/test_results.json'
     temp = dest.with_suffix('.tmp')

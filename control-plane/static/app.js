@@ -1,8 +1,15 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
-let researchData = null, fixtures = null;
+let researchData = null, fixtures = null, platforms = null;
 let token = '', state = {instances: [], audit: []}, selected = null, filter = 'all', refreshing = false, toastTimer;
-const adapterNames = {simulator: 'Synthetic sandbox', minnit: 'Minnit · not connected', deadsimplechat: 'DeadSimpleChat · not connected'};
+const adapterNames = {};
+async function loadRegistry() {
+  if(platforms) return;
+  const result=await api('/api/platforms'); platforms=result.platforms;
+  const select=$('adapter');select.replaceChildren();
+  for(const platform of platforms){adapterNames[platform.id]=platform.name+(platform.local_ready?'':' · not connected');const option=el('option','',platform.name+(platform.local_ready?' · ready':platform.configurable?' · configuration only':' · '+platform.phase));option.value=platform.id;option.disabled=!platform.configurable;select.append(option);}
+}
+function prepareFixtures() {const select=$('fixture-platform');select.replaceChildren();for(const platform of platforms||[]){if(fixtures[platform.id]){const option=el('option','',platform.fixture_label);option.value=platform.id;select.append(option);}}loadFixture();}
 function toast(message) { $('toast').textContent = message; $('toast').classList.remove('hidden'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.add('hidden'), 4500); }
 async function api(path, method = 'GET', data) {
   const response = await fetch(path, {method, headers: {'Content-Type': 'application/json', ...(token ? {Authorization: `Bearer ${token}`} : {})}, ...(method !== 'GET' ? {body: JSON.stringify(data || {})} : {})});
@@ -50,11 +57,11 @@ async function refreshLogs() {
   $('log-title').textContent=instance.name; $('log-subtitle').textContent='Recent 100 events · runtime only'; box.replaceChildren();
   for(const event of [...result.logs].reverse()) {const row=el('div','log-row'); row.append(el('time','',new Date(event.at*1000).toLocaleTimeString()),el('span','action',event.action),el('span','message',event.message)); box.append(row);}
 }
-async function refresh() {if(refreshing) return; refreshing=true; try {state=await api('/api/state'); render(); await refreshLogs(); try { researchData=await api('/api/research'); renderResearch(); } catch(error) { $('research-cards').replaceChildren(el('p','error',error.message)); } $('connection-status').textContent='CONNECTED · LOCAL STATE';} catch(error) {$('connection-status').textContent='CONNECTION ERROR'; throw error;} finally {refreshing=false;}}
+async function refresh() {if(refreshing) return; refreshing=true; try {state=await api('/api/state'); await loadRegistry(); render(); await refreshLogs(); try { researchData=await api('/api/research'); renderResearch(); } catch(error) { $('research-cards').replaceChildren(el('p','error',error.message)); } $('connection-status').textContent='CONNECTED · LOCAL STATE';} catch(error) {$('connection-status').textContent='CONNECTION ERROR'; throw error;} finally {refreshing=false;}}
 function openCreate() {$('form-error').textContent=''; $('create-dialog').showModal(); $('instance-name').focus();}
 $('add').onclick=openCreate; $('empty-add').onclick=openCreate;
 $('close-dialog').onclick=()=>$('create-dialog').close(); $('cancel-dialog').onclick=()=>$('create-dialog').close();
-$('create-form').onsubmit=async(event)=>{event.preventDefault(); const submit=event.submitter; submit.disabled=true; try {const item=await api('/api/instances','POST',{name:$('instance-name').value,adapter:$('adapter').value}); selected=item.id; $('create-dialog').close(); $('create-form').reset(); await refresh(); toast('Instance configuration saved.');} catch(error){$('form-error').textContent=error.message;} finally{submit.disabled=false;}};
+$('create-form').onsubmit=async(event)=>{event.preventDefault(); const submit=event.submitter; submit.disabled=true; try {const item=await api('/api/instances','POST',{name:$('instance-name').value,adapter:$('adapter').value}); selected=item.id; $('create-dialog').close(); $('create-form').reset(); await refresh(); document.querySelector('[data-view=fleet]').click(); toast('Instance configuration saved.');} catch(error){$('form-error').textContent=error.message;} finally{submit.disabled=false;}};
 $('auth-form').onsubmit=async(event)=>{event.preventDefault(); token=$('operator-token').value; try{await api('/api/state'); $('auth-dialog').close(); $('operator-token').value=''; $('auth-error').textContent=''; await refresh();}catch(error){token=''; $('auth-error').textContent=error.message;}};
 $('auth-dialog').addEventListener('cancel',event=>event.preventDefault());
 $('search').oninput=render;
@@ -67,23 +74,33 @@ for(const nav of document.querySelectorAll('[data-view]')) nav.onclick=async()=>
   const titles={fleet:'Instance fleet',activity:'Workspace activity',research:'Site research'};
   const descriptions={fleet:'Configure your instances. Control every lifecycle.',activity:'A clear timeline of local lifecycle events.',research:'Source-backed analysis, local contract tests, and explicit delivery gates.'};
   $('page-title').textContent=titles[view]; $('breadcrumb').textContent=titles[view]; $('page-description').textContent=descriptions[view];
-  if(view==='research'&&!fixtures) {try{fixtures=(await api('/api/contracts')).fixtures;loadFixture();}catch(error){toast(error.message);}}
+  if(view==='research'&&!fixtures) {try{await loadRegistry();fixtures=(await api('/api/contracts')).fixtures;prepareFixtures();}catch(error){toast(error.message);}}
 };
 function renderResearch() {
+  if(!researchData) return;
   const box=$('research-cards');box.replaceChildren();
-  for(const site of researchData.sites) {
-    const card=el('article','panel research-card');
-    const heading=el('div','research-card-heading');heading.append(el('h2','',site.name),el('span','badge','Live: not connected'));card.append(heading);
+  $('research-count').textContent=researchData.summary.tracked;
+  $('research-summary').textContent=`${researchData.summary.tracked} tracked · ${researchData.summary.local_contracts} local contracts · 0 live`;
+  const query=$('research-search').value.toLowerCase(), phase=$('research-filter').value;
+  const visible=researchData.sites.filter(site=>site.name.toLowerCase().includes(query)&&(phase==='all'||(phase==='contract'?site.has_local_contract:site.phase===phase)));
+  for(const site of visible) {
+    const card=el('article','panel research-card');card.dataset.platform=site.id;
+    const heading=el('div','research-card-heading');heading.append(el('h2','',site.name),el('span','badge',site.phase.replaceAll('_',' ')));card.append(heading);
     card.append(el('p','',site.scope));
-    const progress=el('div','research-progress'); progress.append(el('strong','',`${site.progress.percent}%`),el('span','',`${site.progress.completed}/${site.progress.total} checklist gates complete`));card.append(progress);
-    const bar=el('progress','');bar.max=site.progress.total;bar.value=site.progress.completed;bar.setAttribute('aria-label',`${site.name} checklist completion`);card.append(bar);
+    const progress=el('div','research-progress'); progress.append(el('strong','',site.progress.applicable?`${site.progress.percent}%`:'N/A'),el('span','',site.progress.applicable?`${site.progress.completed}/${site.progress.total} checklist gates complete`:'Research/reference only — not an implementation target'));card.append(progress);
+    if(site.progress.applicable){const bar=el('progress','');bar.max=site.progress.total;bar.value=site.progress.completed;bar.setAttribute('aria-label',`${site.name} checklist completion`);card.append(bar);}
     card.append(el('p','muted',`Documentation/design review: ${site.progress.documentation_review_completed}/${site.progress.documentation_review_total}. This is not a success probability.`));
+    card.append(el('p','muted',site.start_blocker));
+    const addConfig=button(site.configurable?'Add configuration':'Tracking only','secondary',async()=>{openCreate();$('adapter').value=site.id;$('instance-name').value=site.name+' workspace';},!site.configurable);card.append(addConfig);
     const gates=el('ul','gate-list');for(const gate of site.gates) {const row=el('li',gate.status);row.append(el('span','',gate.status==='complete'?'✓':'○'),el('span','',gate.label));row.title=gate.evidence;gates.append(row);}card.append(gates);
     const sources=el('div','research-sources');sources.append(el('strong','','Primary sources: '));for(const [index,source] of site.sources.entries()){const link=el('a','',String(index+1));link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label',source.id);sources.append(link);}card.append(sources);
     const details=el('details','');details.append(el('summary','','Technical findings / unresolved questions'));for(const [key,value] of Object.entries(site.findings)){details.append(el('h3','',key.replaceAll('_',' ')),el('p','',value));}card.append(details);
     box.append(card);
   }
+  if(!visible.length) box.append(el('p','muted','No tracked sites match this filter.'));
 }
+$('research-search').oninput=renderResearch;
+$('research-filter').onchange=renderResearch;
 function loadFixture(){if(fixtures){$('fixture-input').value=JSON.stringify(fixtures[$('fixture-platform').value],null,2);$('fixture-output').textContent='Ready. This check never sends a message.';}}
 $('fixture-platform').onchange=loadFixture;
 $('inspect-fixture').onclick=async()=>{const control=$('inspect-fixture');control.disabled=true;try{const fixture=JSON.parse($('fixture-input').value);const output=await api(`/api/contracts/${$('fixture-platform').value}/inspect`,'POST',fixture);$('fixture-output').textContent=JSON.stringify(output,null,2);}catch(error){$('fixture-output').textContent='Rejected: '+error.message;}finally{control.disabled=false;}};

@@ -10,6 +10,7 @@ from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from core import APIError, Controller
+from workspace import seed_inactive_configurations
 from app import make_server
 
 
@@ -100,6 +101,22 @@ class CoreTests(unittest.TestCase):
         self.c.delete(items[0]['id'])
         with self.assertRaises(APIError):
             self.c.logs(items[0]['id'])
+
+    def test_bootstrap_adds_only_missing_inactive_configs(self):
+        result=seed_inactive_configurations(self.c)
+        self.assertEqual(result['added'],8)
+        self.assertEqual(result['workers_started'],0)
+        self.assertTrue(all(i['status']=='stopped' and not i['ready'] for i in result['instances']))
+        self.assertEqual(seed_inactive_configurations(self.c)['added'],0)
+        self.c.close();self.c=Controller(self.path)
+        self.assertEqual(len(self.c.snapshot()['instances']),8)
+        self.assertEqual(self.c.snapshot()['summary']['running'],0)
+
+    def test_bootstrap_preserves_existing_configuration(self):
+        existing=self.c.create('My existing room','minnit')
+        self.assertEqual(seed_inactive_configurations(self.c)['added'],7)
+        saved=next(i for i in self.c.snapshot()['instances'] if i['id']==existing['id'])
+        self.assertEqual(saved['name'],'My existing room')
 
     def test_invalid_configuration(self):
         for name in ('', 'x'*65, None, ['x'], 'bad\nname'):
@@ -206,7 +223,7 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request('/api/research', auth=False)[0], 401)
         status, research, _ = self.request('/api/research')
         self.assertEqual(status, 200)
-        self.assertEqual(len(research['sites']), 2)
+        self.assertEqual(len(research['sites']), 12)
         for site in research['sites']:
             self.assertFalse(site['can_start_live'])
         fixtures = self.request('/api/contracts')[1]['fixtures']
@@ -219,6 +236,19 @@ class HTTPTests(unittest.TestCase):
             self.assertEqual(result['external_requests'], 0)
             self.assertEqual(result['messages_sent'], 0)
         self.assertEqual(self.request('/api/contracts/unknown/inspect', 'POST', {})[0], 404)
+
+    def test_registry_and_configuration_only_sites(self):
+        self.assertEqual(self.request('/api/platforms',auth=False)[0],401)
+        status,result,_=self.request('/api/platforms')
+        self.assertEqual(status,200);self.assertEqual(len(result['platforms']),13)
+        self.assertEqual(result['live_ready'],0)
+        for platform in result['platforms']:
+            status,item,_=self.request('/api/instances','POST',{'name':platform['name'],'adapter':platform['id']})
+            if platform['configurable']:
+                self.assertEqual(status,201)
+                if platform['id']!='simulator':
+                    self.assertFalse(item['ready']);self.assertEqual(self.request('/api/instances/'+item['id']+'/start','POST')[0],409)
+            else:self.assertEqual(status,409)
 
     def test_secret_free_specification_endpoint(self):
         body = {'bot_id':'bot','room_id':'room','message':'Synthetic only'}
@@ -238,10 +268,12 @@ class HTTPTests(unittest.TestCase):
         with self.assertRaises(HTTPError) as caught:
             urlopen(request,timeout=5)
         self.assertEqual(caught.exception.code,400)
+        caught.exception.close()
         request = Request(self.base+'/api/instances',data=b'[]',method='POST',headers={'Authorization':'Bearer test-operator-token','Content-Type':'application/json'})
         with self.assertRaises(HTTPError) as caught:
             urlopen(request,timeout=5)
         self.assertEqual(caught.exception.code,400)
+        caught.exception.close()
 
 
 if __name__ == '__main__':

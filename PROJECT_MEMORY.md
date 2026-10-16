@@ -80,3 +80,11 @@ Owner correction: owner জানেন না কোন site বেছে ন�
 - Actual tests: **43 Python + 12 jsdom/local-HTTP checks passed**, JS syntax passed. No provider credentials, platform messages or acquisition campaign.
 - `multiplechat` pinned at `c24e1f94174b458860f0a16c4725adc59a6fe40e`: 740 file entries inventoried, all 26 Python files syntax-parsed; seven files' selected lifecycle/state/send/debug methods reviewed deeply. Raw captures/profile/DB contents not read/imported/repacked; no upstream code executed/copied. Findings: shares are not acquisitions, DOM Enter is not peer ACK, content-based dedup, pre-delivery state advance, cancellation/cleanup and service-wiring risks.
 - Reports: `research/supported-integrations-2026-10-16/REPORT.md`, `research/multiplechat-review-2026-10-16/REPORT.md` + inventory. Source/ZIP v0.2.0 preserve sanitized findings and runnable local work; previous ZIPs unchanged. Dashboard polls evidence on refresh; no autonomous research/push scheduler.
+
+## Remaining-site onboarding — 2026-10-16
+
+- v0.3.0 adds all nine shortlist alternatives + Chitchat baseline + Joingy/Isexychat source references: **12 tracked records**, **eight configurable site types**, four local documented-subset inspectors and zero live platform connectors. Synthetic sandbox remains the sole runnable worker.
+- Canonical `control-plane/platforms.py` drives UI/API choices, blocked reference types and local fixture capabilities. `workspace.py`/`tools/seed_workspace.py` repeatably create missing inactive slots without changing existing names or starting workers.
+- New RumbleTalk inspector is a REST-history snapshot, not webhook; system-send spec enforces 2000 UTF-8 bytes. New Chatwee inspector redacts session-ID result, not a message; chat sending remains unsupported.
+- Per-site test receipt coverage required; unknown transports cannot inherit another site's tests. Four narrow scopes 8/12 with fresh proof; Chatblink 1/12, StrangerMeetup/Chatango/Chatiw 2/12. Restricted/reference implementation percentages are N/A. No success-probability claim.
+- Report: `research/site-onboarding-2026-10-16/REPORT.md`. Reproducible backup: `control-plane/tools/package_release.py`; old ZIPs unchanged. No raw captured sessions/upstream code imported, no unsolicited platform messages or acquisition traffic.

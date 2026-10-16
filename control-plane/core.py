@@ -6,6 +6,8 @@ import threading
 import time
 import uuid
 
+from platforms import PLATFORMS
+
 
 class APIError(Exception):
     def __init__(self, status, message):
@@ -14,7 +16,7 @@ class APIError(Exception):
 
 
 class Controller:
-    ADAPTERS = {"simulator", "minnit", "deadsimplechat"}
+    ADAPTERS = frozenset(PLATFORMS)
     MAX_INSTANCES = 100
 
     def __init__(self, database):
@@ -54,7 +56,9 @@ class Controller:
         state = self.runtime[row["id"]]
         return {**row, **{k: v for k, v in state.items() if k not in ("logs", "seen")},
                 "mode": "synthetic" if row["adapter"] == "simulator" else "not_connected",
-                "ready": row["adapter"] == "simulator"}
+                "ready": row["adapter"] == "simulator",
+                "phase": PLATFORMS[row["adapter"]]["phase"],
+                "start_blocker": None if row["adapter"] == "simulator" else PLATFORMS[row["adapter"]]["start_blocker"]}
 
     def snapshot(self):
         with self.lock:
@@ -76,6 +80,8 @@ class Controller:
             raise APIError(400, "Name contains control characters")
         if not isinstance(adapter, str) or adapter not in self.ADAPTERS:
             raise APIError(400, "Unknown adapter")
+        if not PLATFORMS[adapter]["configurable"]:
+            raise APIError(409, PLATFORMS[adapter]["start_blocker"])
         with self.lock:
             self._ensure_open()
             if len(self.runtime) >= self.MAX_INSTANCES:
@@ -92,7 +98,7 @@ class Controller:
             self._ensure_open()
             row = self._row(ident)
             if row["adapter"] != "simulator":
-                raise APIError(409, "Live adapter not implemented. Choose Synthetic sandbox for local testing.")
+                raise APIError(409, PLATFORMS[row["adapter"]]["start_blocker"])
             state = self.runtime[ident]
             if state["status"] != "running":
                 logs = state["logs"]

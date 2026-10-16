@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "finished_at": "2026-10-16T09:58:01.557432+00:00",
-  "source_sha256": "9bd648b5c2e8777fcd3a50d7da348525e1d51c5346000d7026278808622cf8c2",
+  "finished_at": "2026-10-16T10:28:39.979079+00:00",
+  "source_sha256": "de13300201a231da36aedb1599279adeb5e8e5dc56b040b79539ee2bbf218684",
   "source_unchanged_during_tests": true,
   "passed": true,
   "checks": [
     {
       "id": "python_suite",
       "exit_code": 0,
-      "tests_ran": 43
+      "tests_ran": 60
     },
     {
       "id": "js_syntax",
@@ -18,8 +18,14 @@
     {
       "id": "dom_http_suite",
       "exit_code": 0,
-      "tests_ran": 12
+      "tests_ran": 17
     }
+  ],
+  "covered_contracts": [
+    "chatwee",
+    "deadsimplechat",
+    "minnit",
+    "rumbletalk"
   ],
   "scope": "Local regression only; no provider credentials or third-party delivery"
 }

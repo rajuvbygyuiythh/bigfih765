@@ -72,10 +72,49 @@ def inspect_deadsimplechat(payload, room_id):
              'automatic_reply_allowed': False}]
 
 
+def inspect_rumbletalk(payload, room_id):
+    payload = mapping(payload, 'History fixture')
+    room = identity(room_id, 'Expected room ID')
+    if identity(payload.get('route_chat_id'), 'Route chat ID') != room:
+        raise APIError(400, 'Unexpected room ID')
+    response = mapping(payload.get('response'), 'REST response')
+    if response.get('status') is not True:
+        raise APIError(400, 'History response must have boolean status:true')
+    rows = response.get('data')
+    if not isinstance(rows, list) or len(rows) > 100:
+        raise APIError(400, 'History data must be an array of at most 100 rows (local limit)')
+    result = []
+    for row in rows:
+        row = mapping(row, 'History row')
+        result.append({'platform': 'rumbletalk', 'kind': 'history_record',
+                       'event_id': identity(row.get('messageId'), 'messageId'),
+                       'room_id': room, 'room_scope_verified': False,
+                       'scope_note': 'Room comes from local request-route context; response has no room ID',
+                       'sender_id': identity(row.get('userId'), 'userId'),
+                       'text': content(row.get('text'), 'text', 10000),
+                       'automatic_reply_allowed': False})
+    return result
+
+
+def inspect_chatwee(payload, room_id):
+    payload = mapping(payload, 'SSO fixture')
+    room = identity(room_id, 'Expected chat ID')
+    if identity(payload.get('request_chat_id'), 'Request chat ID') != room:
+        raise APIError(400, 'Unexpected room ID')
+    if payload.get('operation') != 'sso_login':
+        raise APIError(400, 'Only the documented SSO-login result shape is inspected here')
+    content(payload.get('response'), 'Session-ID response', 4096)
+    # Never echo an SID, clientKey, cookie, user IP or raw response.
+    return [{'platform': 'chatwee', 'kind': 'sso_session_shape', 'room_id': room,
+             'session_value_present': True, 'session_value_redacted': True,
+             'is_chat_message': False, 'room_scope_verified': False,
+             'automatic_reply_allowed': False}]
+
+
 def describe_send(platform, request):
     """Return a secret-free specification; never transmit or infer delivery."""
     request = mapping(request, 'Request')
-    message = content(request.get('message'), 'message')
+    message = content(request.get('message'), 'message', 2000 if platform == 'rumbletalk' else 1000)
     if platform == 'minnit':
         chatname = content(request.get('chatname'), 'chatname', 50)
         channel = identity(request.get('channel'), 'channel')
@@ -95,11 +134,22 @@ def describe_send(platform, request):
                 'fields': {'message': message},
                 'limit_note': 'Documented message maximum: 1000. Optional per-user targeting not implemented here.',
                 'transmitted': False}
+    if platform == 'rumbletalk':
+        room = quote(identity(request.get('room_id'), 'room_id'), safe='')
+        if len(message.encode('utf-8')) > 2000:
+            raise APIError(400, 'System message exceeds the documented 2000 UTF-8 byte limit')
+        return {'method': 'POST', 'endpoint': 'https://api.rumbletalk.com/chats/' + room + '/messages',
+                'content_type': 'application/json', 'auth_location': 'Authorization Bearer token (omitted)',
+                'fields': {'text': message}, 'message_type': 'system',
+                'limit_note': '2000 bytes, not characters; no private-DM parity claimed', 'transmitted': False}
+    if platform == 'chatwee':
+        raise APIError(409, 'SSO is not a message-send API; no documented chat-send route implemented')
     raise APIError(404, 'Unsupported contract')
 
 
 def inspect(platform, payload, room_id):
-    parsers = {'minnit': inspect_minnit, 'deadsimplechat': inspect_deadsimplechat}
+    parsers = {'minnit': inspect_minnit, 'deadsimplechat': inspect_deadsimplechat,
+               'rumbletalk': inspect_rumbletalk, 'chatwee': inspect_chatwee}
     if platform not in parsers:
         raise APIError(404, 'Unsupported contract')
     return {'mode': 'offline_contract_check', 'events': parsers[platform](payload, room_id),
@@ -126,5 +176,10 @@ FIXTURES = {
     'deadsimplechat': {'expected_room_id': 'demo-room', 'payload': {
         'triggeredBy': 'actionButtonPressed', 'chatRoom': {'roomId': 'demo-room'},
         'user': {'_id': 'demo-user'}, 'message': {'_id': 'bot-question', 'message': 'Bot-authored question'},
-        'actionButtonPressed': {'_id': 'demo-action-event', 'id': 'answer-1', 'messageId': 'bot-question'}}}
+        'actionButtonPressed': {'_id': 'demo-action-event', 'id': 'answer-1', 'messageId': 'bot-question'}}},
+    'rumbletalk': {'expected_room_id': 'demo-room', 'payload': {'route_chat_id': 'demo-room',
+        'response': {'status': True, 'count': 1, 'data': [
+            {'messageId': 101, 'userId': 7, 'text': 'Synthetic history record'}]}}},
+    'chatwee': {'expected_room_id': 'demo-room', 'payload': {'request_chat_id': 'demo-room',
+        'operation': 'sso_login', 'response': 'SYNTHETIC-SESSION-NOT-A-REAL-CREDENTIAL'}}
 }

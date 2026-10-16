@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "progress_definition": "Completed gates / 12, rounded to integer; NOT success probability or security coverage. Documentation review = six explicit desk-review gates. Two regression gates require fresh passing test proof.",
+  "progress_definition": "Completed gates / 12, NOT success probability. Test gates require fresh proof covering that specific contract. Restricted/reference entries have no implementation percentage. Saved configuration is not a working connector.",
   "sites": [
     {
       "id": "minnit",
@@ -242,6 +242,1144 @@
         "open_questions": "Confirm inbound authenticity/replay handling, mention/new-message schemas, auth-header discrepancy, rate limits and actual entitlement. Button-action IDs may represent button definitions rather than unique click occurrences: confirm before production deduplication."
       },
       "security_runtime": "Headers/TLS/CSP/WAF and browser storage not measured; docs are not a security audit",
+      "can_start_live": false
+    },
+    {
+      "id": "rumbletalk",
+      "name": "RumbleTalk",
+      "scope": "Authorized owner REST history snapshot + system-message specification; not random matching or private DM",
+      "recommendation": "supported_owner_rest_subset",
+      "sources": [
+        {
+          "id": "rumble_api",
+          "url": "https://dev.rumbletalk.com/rest"
+        },
+        {
+          "id": "rumble_auth",
+          "url": "https://dev.rumbletalk.com/rest/authentication"
+        },
+        {
+          "id": "rumble_messages",
+          "url": "https://dev.rumbletalk.com/rest/messages"
+        },
+        {
+          "id": "rumble_login",
+          "url": "https://rumbletalk.com/blog/index.php/knowledge-base/how-do-i-join-a-chat/"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Official owner REST integration documented; no public-stranger automation.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "complete",
+          "evidence": "Owner key+secret -> expiring bearer token. No token issued here.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Guest nickname access is owner-configurable; SSO/member modes separate.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "complete",
+          "evidence": "GET /chats/{chatId}/messages?fast=true history response, not webhook. Response lacks chatId: route context is local metadata, not cryptographic room verification.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "complete",
+          "evidence": "POST /chats/{chatId}/messages is a SYSTEM message. Text limit 2000 UTF-8 bytes, not characters. Secret-free specification only.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "scope": "Official owner REST integration documented; no public-stranger automation.",
+        "authentication": "Owner key+secret -> expiring bearer token. No token issued here.",
+        "guest_access": "Guest nickname access is owner-configurable; SSO/member modes separate.",
+        "receive_contract": "GET /chats/{chatId}/messages?fast=true history response, not webhook. Response lacks chatId: route context is local metadata, not cryptographic room verification.",
+        "send_contract": "POST /chats/{chatId}/messages is a SYSTEM message. Text limit 2000 UTF-8 bytes, not characters. Secret-free specification only.",
+        "lifecycle": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+        "next_step": "Confirm owner access/limits and polling cursor semantics; implement guarded adapter and staging. Private conversation parity not established.",
+        "open_questions": "Ordering/pagination duplicates, exact auth expiry/revocation, provider rate limits and two-party visible system-message delivery."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "chatwee",
+      "name": "Chatwee",
+      "scope": "Authorized-host SSO result shape, redacted locally; this is identity integration, NOT a chat-message connector",
+      "recommendation": "supported_identity_subset_only",
+      "sources": [
+        {
+          "id": "chatwee_register",
+          "url": "https://chatwee.com/http-api/sso-user/register"
+        },
+        {
+          "id": "chatwee_login",
+          "url": "https://chatwee.com/http-api/sso-user/login"
+        },
+        {
+          "id": "chatwee_js",
+          "url": "https://chatwee.com/javascript-api"
+        },
+        {
+          "id": "chatwee_faq",
+          "url": "https://chatwee.com/faq"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Official owner HTTP SSO integration documented; no ordinary message-send/receive contract established.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "complete",
+          "evidence": "chatId/clientKey and host userId documented for login. Query-secret values are never collected by this workbench.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Guest/account/Facebook/SSO methods configurable by owner according to FAQ; no live login tested.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "complete",
+          "evidence": "SSO login returns a session-ID string, not an incoming user message. Inspector returns presence/redaction flags only, never echoes the SID.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "complete",
+          "evidence": "Reviewed outgoing SSO request shape only: GET /v2/sso-user/login or /register with owner clientKey. No chat send route guessed or implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "scope": "Official owner HTTP SSO integration documented; no ordinary message-send/receive contract established.",
+        "authentication": "chatId/clientKey and host userId documented for login. Query-secret values are never collected by this workbench.",
+        "guest_access": "Guest/account/Facebook/SSO methods configurable by owner according to FAQ; no live login tested.",
+        "receive_contract": "SSO login returns a session-ID string, not an incoming user message. Inspector returns presence/redaction flags only, never echoes the SID.",
+        "send_contract": "Reviewed outgoing SSO request shape only: GET /v2/sso-user/login or /register with owner clientKey. No chat send route guessed or implemented.",
+        "lifecycle": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+        "next_step": "Obtain a supported conversational API/event contract if chat automation is required; verify cookie/deployment handling in an authorized host.",
+        "storage": "Docs use chatwee-SID-[CHAT_ID] cookie. Runtime cookie flags/TTL not measured; no SID stored here.",
+        "open_questions": "Message send/receive API coverage, deployment entitlement, inbound events and actual host/session security."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "chatblink",
+      "name": "Chatblink",
+      "scope": "Research + inactive configuration only; no live connector",
+      "recommendation": "operator_contract_needed",
+      "sources": [
+        {
+          "id": "chatblink_home",
+          "url": "https://www.chatblink.com/"
+        },
+        {
+          "id": "chatblink_terms",
+          "url": "https://www.chatblink.com/terms-of-use"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "pending",
+          "evidence": "Public product overlap only; supported automation route not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Signup/login/Google link and Turnstile markup observed in earlier public page; successful auth/session protocol unverified.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "pending",
+          "evidence": "Guest flow not established by reviewed signup/login page.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported inbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported outbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "authentication": "Signup/login/Google link and Turnstile markup observed in earlier public page; successful auth/session protocol unverified.",
+        "guest_access": "Guest flow not established by reviewed signup/login page.",
+        "next_step": "Obtain operator-approved bot route and scoped account; inspect permitted auth/message contract. Do not bypass Turnstile.",
+        "open_questions": "Supported bot API, successful auth, inbound/outbound message schema, acknowledgements, limits.",
+        "lifecycle": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+        "scope": "Public product overlap only; supported automation route not established.",
+        "receive_contract": "Unknown: no supported inbound contract implemented.",
+        "send_contract": "Unknown: no supported outbound contract implemented."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "strangermeetup",
+      "name": "StrangerMeetup",
+      "scope": "Research + inactive configuration only; no live connector",
+      "recommendation": "operator_contract_needed",
+      "sources": [
+        {
+          "id": "stranger_home",
+          "url": "https://strangermeetup.com/"
+        },
+        {
+          "id": "stranger_terms",
+          "url": "https://strangermeetup.com/terms"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "pending",
+          "evidence": "Public product overlap only; supported automation route not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Homepage advertises anonymous service but public rooms require an account; inspect each mode separately.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported inbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported outbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "guest_access": "Homepage advertises anonymous service but public rooms require an account; inspect each mode separately.",
+        "next_step": "Confirm operator-approved integration and select random-mode vs room-mode before implementing transport.",
+        "open_questions": "Permission, exact auth/events, IDs, acknowledgement, reconnect and limits.",
+        "lifecycle": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+        "scope": "Public product overlap only; supported automation route not established.",
+        "receive_contract": "Unknown: no supported inbound contract implemented.",
+        "send_contract": "Unknown: no supported outbound contract implemented."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "chatango",
+      "name": "Chatango",
+      "scope": "Research + inactive configuration only; no live connector",
+      "recommendation": "operator_contract_needed",
+      "sources": [
+        {
+          "id": "chatango_home",
+          "url": "https://chatango.com/"
+        },
+        {
+          "id": "chatango_terms",
+          "url": "https://chatango.com/page?full_terms"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "pending",
+          "evidence": "Public product overlap only; supported automation route not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Homepage advertises owner-configurable anonymity; actual room access is not tested.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported inbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported outbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "guest_access": "Homepage advertises owner-configurable anonymity; actual room access is not tested.",
+        "next_step": "Establish provider/room-owner-supported bot contract and safe mixed-age scope; no existing adult/funnel flow transplanted.",
+        "open_questions": "Bot interface/permission, room restrictions, identity lifecycle, message IDs and delivery confirmation.",
+        "lifecycle": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+        "scope": "Public product overlap only; supported automation route not established.",
+        "receive_contract": "Unknown: no supported inbound contract implemented.",
+        "send_contract": "Unknown: no supported outbound contract implemented."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "chatiw",
+      "name": "Chatiw",
+      "scope": "Research + inactive configuration only; no live connector",
+      "recommendation": "operator_contract_needed",
+      "sources": [
+        {
+          "id": "chatiw_home",
+          "url": "https://www.chatiw.com/"
+        },
+        {
+          "id": "chatiw_terms",
+          "url": "https://www.chatiw.com/disclaimer_and_tos.php"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "pending",
+          "evidence": "Public product overlap only; supported automation route not established.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Guest-style nickname/age/country entry visible in retrieved homepage; not submitted.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported inbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Unknown: no supported outbound contract implemented.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "guest_access": "Guest-style nickname/age/country entry visible in retrieved homepage; not submitted.",
+        "next_step": "Establish operator-approved guest/member integration; no private transport endpoints are guessed.",
+        "open_questions": "Successful join, session schema, messaging/ACK contract, allowed automation, reconnect and limits.",
+        "lifecycle": "Plan only: instance/run isolation, normalized IDs, bounded diagnostics, cancellation, accepted/rejected/unknown outcomes; no automatic outreach.",
+        "scope": "Public product overlap only; supported automation route not established.",
+        "receive_contract": "Unknown: no supported inbound contract implemented.",
+        "send_contract": "Unknown: no supported outbound contract implemented."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "chatzy",
+      "name": "Chatzy",
+      "scope": "Policy/reference tracking only; default behavior-modifying script route excluded",
+      "recommendation": "restricted_not_implementation_target",
+      "sources": [
+        {
+          "id": "chatzy_terms",
+          "url": "https://www.chatzy.com/terms.htm"
+        },
+        {
+          "id": "chatzy_faq",
+          "url": "https://www.chatzy.com/faq.htm"
+        },
+        {
+          "id": "chatzy_create",
+          "url": "https://www.chatzy.com/advanced.htm"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Terms explicitly restrict behavior-modifying user scripts; default route excluded, not bypassed.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Explicit operator exception or documented alternative API required before any build scope.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "scope": "Terms explicitly restrict behavior-modifying user scripts; default route excluded, not bypassed.",
+        "next_step": "Explicit operator exception or documented alternative API required before any build scope.",
+        "open_questions": "No supported approved bot receive/send interface established."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "chitchat",
+      "name": "Chitchat reference",
+      "scope": "Historical baseline/reference only, not an enabled connector",
+      "recommendation": "reference_only",
+      "sources": [
+        {
+          "id": "chitchat_terms",
+          "url": "https://www.chitchat.gg/terms/"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Historical code is architectural reference, not current API permission or live proof.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "scope": "Historical code is architectural reference, not current API permission or live proof.",
+        "next_step": "Current supported/authorized contract and new acceptance evidence are needed; no direct start path.",
+        "open_questions": "Current permitted integration, auth/events/ACK schema and lifecycle."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "joingy",
+      "name": "Joingy source reference",
+      "scope": "Static upstream source reference only; no adapter imported or enabled",
+      "recommendation": "upstream_reference_only",
+      "sources": [
+        {
+          "id": "multiplechat_commit",
+          "url": "https://github.com/sff96918-byte/multiplechat/tree/c24e1f94174b458860f0a16c4725adc59a6fe40e"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Module found in supplied multiplechat archive; syntax/source review is not live compatibility or provider permission.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "scope": "Module found in supplied multiplechat archive; syntax/source review is not live compatibility or provider permission.",
+        "source_reference": "sff96918-byte/multiplechat @ c24e1f94174b458860f0a16c4725adc59a6fe40e; multi-site-bot.zip/sites/joingy.py",
+        "next_step": "Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+        "open_questions": "Authorization, current protocol, delivery semantics and safe lifecycle not verified. Raw captures/sessions excluded."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
+      "can_start_live": false
+    },
+    {
+      "id": "isexychat",
+      "name": "Isexychat source reference",
+      "scope": "Static upstream source reference only; no adapter imported or enabled",
+      "recommendation": "upstream_reference_only",
+      "sources": [
+        {
+          "id": "multiplechat_commit",
+          "url": "https://github.com/sff96918-byte/multiplechat/tree/c24e1f94174b458860f0a16c4725adc59a6fe40e"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Module found in supplied multiplechat archive; syntax/source review is not live compatibility or provider permission.",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "Not implemented or verified for this site. Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "scope": "Module found in supplied multiplechat archive; syntax/source review is not live compatibility or provider permission.",
+        "source_reference": "sff96918-byte/multiplechat @ c24e1f94174b458860f0a16c4725adc59a6fe40e; multi-site-bot.zip/sites/isexychat.py",
+        "next_step": "Establish supported/authorized interface and independent current tests; resolve reuse license before importing any code.",
+        "open_questions": "Authorization, current protocol, delivery semantics and safe lifecycle not verified. Raw captures/sessions excluded."
+      },
+      "security_runtime": "Unmeasured unless explicitly evidenced; no raw header/TLS/browser/storage audit claimed.",
       "can_start_live": false
     }
   ]

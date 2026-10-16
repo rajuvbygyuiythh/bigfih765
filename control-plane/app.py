@@ -14,6 +14,7 @@ from urllib.parse import urlparse
 from core import APIError, Controller
 from contracts import FIXTURES, describe_send, inspect
 from research import catalog
+from platforms import registry
 
 STATIC = Path(__file__).resolve().parent / "static"
 
@@ -75,6 +76,8 @@ def make_server(host, port, controller, token=""):
                     if self.headers.get("Sec-Fetch-Site") == "cross-site" or (origin and urlparse(origin).netloc != self.headers.get("Host")):
                         raise APIError(403, "Cross-origin mutation rejected")
                     data = self.body()
+                if path == "/api/platforms" and method == "GET":
+                    return self.respond(200, {"platforms": registry(), "live_ready": 0})
                 if path == "/api/research" and method == "GET":
                     return self.respond(200, catalog())
                 if path == "/api/contracts" and method == "GET":

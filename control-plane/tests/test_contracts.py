@@ -166,13 +166,13 @@ class CatalogTests(unittest.TestCase):
 
     def receipt(self, passed=True, exit_code=0):
         receipt = {'passed':passed,'source_sha256':source_fingerprint(self.root),
-                   'checks':[{'id':'python_suite','exit_code':exit_code,'tests_ran':1}]}
+                   'checks':[{'id':'python_suite','exit_code':exit_code,'tests_ran':1}], 'covered_contracts':sorted(FIXTURES)}
         (self.root/'data/test_results.json').write_text(json.dumps(receipt))
 
     def test_missing_proof_does_not_fake_test_completion(self):
         result = catalog(self.root)
         self.assertFalse(result['local_test_receipt']['fresh_and_passed'])
-        for site in result['sites']:
+        for site in result['sites'][:4]:
             self.assertEqual(site['progress']['completed'], 6)
             self.assertEqual(site['progress']['percent'], 50)
             self.assertFalse(site['can_start_live'])
@@ -180,7 +180,7 @@ class CatalogTests(unittest.TestCase):
     def test_fresh_proof_unlocks_only_local_test_gates(self):
         self.receipt()
         result = catalog(self.root)
-        for site in result['sites']:
+        for site in result['sites'][:4]:
             self.assertEqual(site['progress']['completed'], 8)
             self.assertEqual(site['progress']['percent'], 67)
             self.assertEqual(len(site['remaining']), 4)
@@ -220,3 +220,109 @@ class CatalogTests(unittest.TestCase):
         with self.assertRaises(APIError) as caught:
             catalog(self.root)
         self.assertEqual(caught.exception.status, 503)
+
+
+class ExpandedContractTests(unittest.TestCase):
+    def fixture(self, platform):
+        return copy.deepcopy(FIXTURES[platform])
+
+    def inspect_fixture(self, platform, fixture):
+        return inspect(platform, fixture['payload'], fixture['expected_room_id'])
+
+    def test_rumble_history_is_not_live_webhook(self):
+        result=self.inspect_fixture('rumbletalk',self.fixture('rumbletalk'))
+        event=result['events'][0]
+        self.assertEqual(event['kind'],'history_record')
+        self.assertEqual(event['event_id'],'101')
+        self.assertFalse(event['room_scope_verified'])
+        self.assertFalse(result['authenticated_webhook'])
+        self.assertEqual(result['external_requests'],0)
+
+    def test_rumble_snapshot_filters_extra_secrets(self):
+        f=self.fixture('rumbletalk')
+        f['payload']['response']['token']='not-a-real-token'
+        f['payload']['response']['data'][0]['ip']='not-a-real-ip'
+        result=json.dumps(self.inspect_fixture('rumbletalk',f))
+        self.assertNotIn('not-a-real-token',result)
+        self.assertNotIn('not-a-real-ip',result)
+
+    def test_rumble_rejects_false_or_wrong_typed_status(self):
+        for status in (False,'true',1,None):
+            f=self.fixture('rumbletalk');f['payload']['response']['status']=status
+            with self.subTest(status=status),self.assertRaises(APIError):self.inspect_fixture('rumbletalk',f)
+
+    def test_rumble_invalid_and_bounded_history(self):
+        for rows in (None,{},[{}],['bad'],[{}]*101):
+            f=self.fixture('rumbletalk');f['payload']['response']['data']=rows
+            with self.assertRaises(APIError):self.inspect_fixture('rumbletalk',f)
+        f=self.fixture('rumbletalk');f['payload']['response']['data']=[]
+        self.assertEqual(self.inspect_fixture('rumbletalk',f)['events'],[])
+
+    def test_rumble_system_send_limit_is_bytes(self):
+        for message in ('x'*2000,'é'*1000,'🙂'*500):
+            spec=describe_send('rumbletalk',{'room_id':'room','message':message})
+            self.assertFalse(spec['transmitted']);self.assertEqual(spec['message_type'],'system')
+        for message in ('x'*2001,'é'*1001,'🙂'*501):
+            with self.assertRaises(APIError):describe_send('rumbletalk',{'room_id':'room','message':message})
+
+    def test_rumble_spec_rejects_path_injection(self):
+        with self.assertRaises(APIError):describe_send('rumbletalk',{'room_id':'../other','message':'x'})
+
+    def test_chatwee_session_value_never_echoed(self):
+        f=self.fixture('chatwee');f['payload']['response']='SYNTHETIC-UNIQUE-SECRET-MARKER'
+        f['payload']['clientKey']='SYNTHETIC-CLIENT-KEY'
+        result=self.inspect_fixture('chatwee',f)
+        self.assertNotIn('SYNTHETIC-UNIQUE-SECRET-MARKER',json.dumps(result))
+        self.assertNotIn('SYNTHETIC-CLIENT-KEY',json.dumps(result))
+        event=result['events'][0]
+        self.assertTrue(event['session_value_redacted']);self.assertFalse(event['is_chat_message'])
+        self.assertNotIn('text',event);self.assertFalse(event['automatic_reply_allowed'])
+
+    def test_chatwee_invalid_login_shapes(self):
+        for response in (None,{},True,'',' ','x'*4097):
+            f=self.fixture('chatwee');f['payload']['response']=response
+            with self.assertRaises(APIError):self.inspect_fixture('chatwee',f)
+        f=self.fixture('chatwee');f['payload']['operation']='guessed_send_message'
+        with self.assertRaises(APIError):self.inspect_fixture('chatwee',f)
+
+    def test_chatwee_sso_does_not_unlock_send(self):
+        with self.assertRaises(APIError) as caught:describe_send('chatwee',{'message':'x'})
+        self.assertEqual(caught.exception.status,409)
+
+    def test_unknown_site_cannot_borrow_existing_fixture(self):
+        for platform in ('chatblink','strangermeetup','chatango','chatiw','chatzy','joingy','isexychat'):
+            with self.subTest(platform=platform),self.assertRaises(APIError):inspect(platform,{},'room')
+
+
+class ExpandedCatalogTests(unittest.TestCase):
+    setUp = CatalogTests.setUp
+    tearDown = CatalogTests.tearDown
+    save = CatalogTests.save
+    receipt = CatalogTests.receipt
+    def test_reference_and_restricted_percent_not_applicable(self):
+        self.receipt();result=catalog(self.root)
+        self.assertEqual(result['summary']['tracked'],12)
+        self.assertEqual(result['summary']['local_contracts'],4)
+        for site in result['sites']:
+            if site['phase'] in ('restricted','reference'):
+                self.assertIsNone(site['progress']['percent'])
+                self.assertFalse(site['progress']['applicable'])
+                self.assertFalse(site['configurable'])
+
+    def test_unknown_contracts_do_not_inherit_global_suite(self):
+        self.receipt();result=catalog(self.root)
+        for site in result['sites']:
+            if not site['has_local_contract']:
+                for gate in site['gates']:
+                    if gate['id'] in ('parser_tests','failure_tests'):self.assertEqual(gate['status'],'pending')
+
+    def test_proof_requires_specific_platform_coverage(self):
+        self.receipt();p=self.root/'data/test_results.json';receipt=json.loads(p.read_text());receipt['covered_contracts']=['minnit'];p.write_text(json.dumps(receipt))
+        result=catalog(self.root)
+        self.assertEqual(result['sites'][0]['progress']['completed'],8)
+        self.assertEqual(result['sites'][1]['progress']['completed'],6)
+
+    def test_missing_or_malformed_coverage_cannot_complete_tests(self):
+        for value in (None,'minnit',{}):
+            self.receipt();p=self.root/'data/test_results.json';receipt=json.loads(p.read_text());receipt['covered_contracts']=value;p.write_text(json.dumps(receipt))
+            self.assertEqual(catalog(self.root)['sites'][0]['progress']['completed'],6)

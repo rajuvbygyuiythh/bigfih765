@@ -71,8 +71,8 @@ async function waitFor(predicate, message) {
     await create('Minnit configuration','minnit');const platform=cards().find(c=>c.querySelector('h3').textContent==='Minnit configuration');
     assert.equal(platform.querySelector('.start').disabled,true);assert.ok(platform.textContent.includes('Not connected'));checks++;console.log('PASS UI: unimplemented live adapter cannot start');
     d.querySelector('[data-view=research]').click();
-    await waitFor(()=>$('research-view').classList.contains('hidden')===false&&d.querySelectorAll('.research-card').length===2,'research navigation');
-    for(const card of d.querySelectorAll('.research-card')) {assert.equal(card.querySelectorAll('.gate-list li').length,12);assert.ok(card.textContent.includes('not a success probability'));assert.ok(card.querySelectorAll('.research-sources a').length>=3);}
+    await waitFor(()=>$('research-view').classList.contains('hidden')===false&&d.querySelectorAll('.research-card').length===12,'research navigation');
+    for(const card of d.querySelectorAll('.research-card')) {assert.equal(card.querySelectorAll('.gate-list li').length,12);assert.ok(card.textContent.includes('not a success probability'));assert.ok(card.querySelectorAll('.research-sources a').length>=1);}
     checks++;console.log('PASS UI: source-backed research cards and explicit progress meaning');
     await waitFor(()=>$('fixture-input').value.includes('chat_message'),'Minnit fixture load');
     $('inspect-fixture').click();await waitFor(()=>$('fixture-output').textContent.includes('offline_contract_check'),'Minnit fixture inspected');
@@ -86,6 +86,37 @@ async function waitFor(predicate, message) {
     await waitFor(()=>$('fixture-output').textContent.includes('Unexpected room ID'),'scope rejection');
     $('fixture-input').value='{broken';$('inspect-fixture').click();await waitFor(()=>$('fixture-output').textContent.startsWith('Rejected:'),'invalid JSON rejected');
     checks++;console.log('PASS UI: contract workbench rejects wrong-room and malformed input');
+    assert.equal($('adapter').options.length,13);
+    for(const id of ['chatzy','chitchat','joingy','isexychat']) assert.equal(Array.from($('adapter').options).find(o=>o.value===id).disabled,true);
+    assert.equal($('research-count').textContent,'12');
+    checks++;console.log('PASS UI: shared registry with 12 tracked sites and blocked reference options');
+    $('research-search').value='Chatiw';$('research-search').dispatchEvent(new w.Event('input'));
+    assert.equal(d.querySelectorAll('.research-card').length,1);
+    d.querySelector('.research-card[data-platform=chatiw] .secondary').click();
+    await waitFor(()=>$('create-dialog').open,'site-specific config dialog');
+    assert.equal($('adapter').value,'chatiw');
+    const configCount=Number($('configured').textContent);submit('create-form');
+    await waitFor(()=>Number($('configured').textContent)===configCount+1,'new Chatiw configuration');
+    const inactive=cards().find(c=>c.querySelector('h3').textContent==='Chatiw workspace');
+    assert.equal(inactive.querySelector('.start').disabled,true);
+    checks++;console.log('PASS UI: research search -> add inactive site configuration');
+    d.querySelector('[data-view=research]').click();$('research-search').value='';$('research-search').dispatchEvent(new w.Event('input'));
+    $('research-filter').value='contract';$('research-filter').dispatchEvent(new w.Event('change'));assert.equal(d.querySelectorAll('.research-card').length,4);
+    $('research-filter').value='needs_contract';$('research-filter').dispatchEvent(new w.Event('change'));assert.equal(d.querySelectorAll('.research-card').length,4);
+    $('research-filter').value='restricted';$('research-filter').dispatchEvent(new w.Event('change'));assert.equal(d.querySelectorAll('.research-card').length,1);assert.equal(d.querySelector('.research-card .secondary').disabled,true);assert.equal(d.querySelector('.research-progress strong').textContent,'N/A');
+    $('research-filter').value='reference';$('research-filter').dispatchEvent(new w.Event('change'));assert.equal(d.querySelectorAll('.research-card').length,3);
+    for(const card of d.querySelectorAll('.research-card')) assert.equal(card.querySelector('.secondary').disabled,true);
+    $('research-filter').value='all';$('research-filter').dispatchEvent(new w.Event('change'));
+    checks++;console.log('PASS UI: phase filters and restricted/reference entries cannot activate');
+    assert.equal($('fixture-platform').options.length,4);
+    $('fixture-platform').value='rumbletalk';$('fixture-platform').dispatchEvent(new w.Event('change'));$('inspect-fixture').click();
+    await waitFor(()=>$('fixture-output').textContent.includes('history_record'),'RumbleTalk snapshot');
+    inspected=JSON.parse($('fixture-output').textContent);assert.equal(inspected.external_requests,0);assert.equal(inspected.events[0].room_scope_verified,false);
+    checks++;console.log('PASS UI: RumbleTalk local history snapshot, not a live webhook');
+    $('fixture-platform').value='chatwee';$('fixture-platform').dispatchEvent(new w.Event('change'));$('inspect-fixture').click();
+    await waitFor(()=>$('fixture-output').textContent.includes('sso_session_shape'),'Chatwee SSO shape');
+    inspected=JSON.parse($('fixture-output').textContent);assert.equal(inspected.events[0].session_value_redacted,true);assert.equal(inspected.events[0].is_chat_message,false);assert.ok(!$('fixture-output').textContent.includes('SYNTHETIC-SESSION-NOT-A-REAL-CREDENTIAL'));
+    checks++;console.log('PASS UI: Chatwee session result is redacted and not a chat message');
     assert.deepEqual(errors,[]);checks++;console.log('PASS UI: no JavaScript/DOM execution errors');
     console.log(`PASS: ${checks} DOM + local HTTP integration checks. No real browser or third-party chat test.`);
   } finally {
