@@ -15,6 +15,8 @@ Scope: supported/authorized integrations and consenting tests. Mission remains u
 
 Each turn: read PROJECT_MEMORY → SITES → SKILLS → GOALS → PLAN; code/test/push on the fixed Arena branch; update memory/queue and append CHANGELOG. Delivery percent = completed steps / 8, independent of the older twelve-gate evidence checklist. Steps may contain multiple implementation turns; do not award completion for a scaffold alone.
 
+Sequential lock rule: only the ACTIVE site in SITES may advance. All other targets stay LOCKED. Complete all eight steps and live acceptance, then use `site_queue.py complete-and-next` to unlock exactly one successor. Do not pick another QUEUED/BLOCKED site as a workaround, skip steps or unlock everything. The current lock-feature request does not advance site delivery progress.
+
 Current next: **DeadSimpleChat Step 2**. Do not copy Minnit webhook auth, infer normal-message schemas, turn button definitions into unique occurrences, or guess whether the extra Authorization header is required. No capture requested in Step 1: first establish exactly which evidence Step 2 actually needs. Credentials, if later necessary, are entered by the owner in ignored `.env.local`; tools do not automatically source it.
 
 User-requested system OUTPUT FORMAT was not present in the supplied instructions. Until supplied, use only one concise handoff block containing SITE, STEP, PROGRESS, CODE, TEST, PUSH, NEXT; Bangla/Banglish values are preferred. Do not claim this fallback originated in a system prompt.

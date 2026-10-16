@@ -153,6 +153,20 @@ async function waitFor(predicate, message) {
     assert.equal($('diagnostic-deliveries').querySelector('button').disabled,true);
     w.fetch=realFetch;
     checks++;console.log('PASS UI: disarm removes pending approval eligibility (injected responses)');
+    d.querySelector('[data-view=queue]').click();
+    await waitFor(()=>d.querySelectorAll('.queue-card').length===12,'locked queue cards');
+    assert.equal($('queue-view').classList.contains('hidden'),false);
+    const queueCards=Array.from(d.querySelectorAll('.queue-card'));
+    assert.equal(queueCards.filter(c=>c.querySelector('.badge').textContent==='UNLOCKED · ACTIVE').length,1);
+    assert.equal(queueCards.filter(c=>c.querySelector('.badge').textContent==='LOCKED').length,7);
+    assert.ok($('queue-active').textContent.includes('DeadSimpleChat'));
+    assert.ok(d.querySelector('.queue-card[data-site=deadsimplechat]').textContent.includes('12.5%'));
+    checks++;console.log('PASS UI: one active target, seven locked targets and protected reference cards');
+    const complete=d.querySelector('.queue-card[data-site=deadsimplechat] button');
+    assert.equal(complete.disabled,true);
+    assert.ok($('queue-blockers').textContent.includes('eight'));
+    assert.equal(d.querySelector('.queue-card[data-site=minnit] button'),null);
+    checks++;console.log('PASS UI: incomplete completion blocked; locked sites have no unlock/skip control');
     assert.deepEqual(errors,[]);checks++;console.log('PASS UI: no JavaScript/DOM execution errors');
     console.log(`PASS: ${checks} DOM + local HTTP integration checks. No real browser or third-party chat test.`);
   } finally {

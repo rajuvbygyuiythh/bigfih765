@@ -1,16 +1,16 @@
 # Project memory — শুরু এখান থেকে
 
-## ACTIVE SESSION — 2026-10-16 workflow reset
+## ACTIVE SESSION — 2026-10-16 sequential site locks
 
-- **Active site:** `deadsimplechat` (selected first QUEUED after bootstrapping missing `SITES.md` from the existing catalog; Minnit stays BLOCKED on live staging).
-- **Step:** 1 Recon COMPLETE; next 2 Contract/safety design. **Delivery progress: 1/8 = 12.5%**; different from the existing 8/12 evidence checklist (67%), not live readiness or success probability.
-- **Last commit:** `HEAD` of this pushed recon turn (resolve with `git log -1`); previous implementation baseline `c920fba`. Branch remains `arena/d73f03f8-bigfih765`; never switch or force-push.
-- **Implemented:** `control-plane/recon_deadsimplechat.py`, `tools/recon_site.py`, `tests/test_recon.py`, generated `data/deadsimplechat_recon.json`. No network replay, body/cookie collection, credential read or message send. HAR triage exports only fixed route/auth-location booleans/status, never raw IDs/URLs/values; metadata cannot verify auth or delivery.
-- **Evidence:** two official DeadSimpleChat pages refreshed for this site only; auth table/query vs extra-header examples conflict, quiz uses query-only; action button `_id` not proven a unique click occurrence. Details in `research/deadsimplechat-recon-2026-10-16/REPORT.md`.
-- **Workflow repair:** root SITES/SKILLS/GOALS/PLAN were absent. Added queue/index/roadmap; `GOALS.md` is a symlink to the existing unchanged `knowledge-pack/GOALS.md`, not a rewritten mission. Existing historical notes below are preserved, not current resume instructions. Requested system output block was absent; concise fallback is recorded in PLAN.
-- **Tests:** `python -B control-plane/tools/run_checks.py --ui` PASS: **98 Python + 20 DOM checks**, JS syntax PASS; fresh source-bound receipt saved. Eleven new synthetic recon tests; no real HAR/live transport used. Step 1 does not generate a Step 8 ZIP; previous ZIPs remain unchanged.
-- **Next action:** design/test DeadSimpleChat one-room action diagnostic contracts, especially auth discrepancy and occurrence identity. Reuse shared lifecycle/ledger patterns, not Minnit-specific auth. No HAR requested yet; browser HAR does not usually capture server-to-server events. Never ask for secret values in chat; owner will enter required values in ignored `.env.local`.
-- **External blockers:** authorized plan/room/bot, provider-egress deployment, actual callback authentication/occurrence identity and consenting peer evidence. No live pass or autonomous continuation claimed.
+- **Active site:** `deadsimplechat`, the only UNLOCKED/ACTIVE target. **Seven targets locked**; four restricted/reference records never enter the unlock queue. Order: DeadSimpleChat → Minnit → RumbleTalk → Chatwee → Chatblink → StrangerMeetup → Chatango → Chatiw.
+- **Step/progress:** DeadSimpleChat Step 1 remains complete, **1/8 = 12.5%**. This turn implements the owner's explicit sequential-lock feature; it does not falsely award Step 2 or any live gate. Next site work remains DS Step 2 contract/safety design.
+- **Last commit:** HEAD of this tested/pushed lock-feature turn; preceding implementation `1dabcb5`. Branch `arena/d73f03f8-bigfih765` only.
+- **Source of truth:** `SITES.md` now embeds canonical machine state plus generated table. `control-plane/site_workflow.py` validates it; `tools/site_queue.py` records sequential evidenced steps and atomically completes/unlocks one successor. No parallel JSON/DB queue, force override, skip or unlock-all. Restart preserves state.
+- **Done gate:** all eight steps, existing evidence files, all twelve actual site acceptance gates, fresh passing source-bound tests and a valid Step 8 ZIP/checksum. Steps 6–8 cannot advance without live evidence. Blocked site stays active; do not silently skip or fake done.
+- **Dashboard/API:** Locked site queue shows one active/seven locked, protected references, progress and completion blockers. POST completion requires strong operator token, current revision and exact fields; demo cannot mutate. Minnit webhook/arm/send obey project lock; shared queue lock serializes sends versus unlock. Disarm/Stop always available.
+- **Tests:** **113 Python + 22 DOM PASS**, JavaScript syntax PASS; fresh source-bound results in `control-plane/data/test_results.json` (two DOM checks use injected responses). Synthetic transition fixtures mock acceptance only in tests; no actual site marked complete/unlocked and no live messages sent.
+- **Next action:** continue DeadSimpleChat Step 2 without touching a locked site. Use queue CLI only for honest evidence-backed progress; successful completion unlocks exactly the next target. GOALS unchanged; preserve all historical files/ZIPs. This is not Step 8, so no new ZIP generated.
+- **Access:** owner sets required secrets in ignored `.env.local`/server environment; never request values in chat. Provider access, occurrence identity, callback authenticity and consenting peer delivery remain unresolved. No irrelevant HAR request.
 
 
 পর্যালোচনার তারিখ: **2026-10-15 (UTC)**

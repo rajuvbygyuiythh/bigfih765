@@ -13,6 +13,7 @@ from urllib.parse import parse_qs
 from urllib.request import Request, urlopen
 
 from app import make_server
+from site_workflow import SiteWorkflow, render, initial_state
 from core import APIError, Controller
 from minnit import (ARM_TTL, MAX_AGE, REPLY, SEND_INTERVAL, MinnitDiagnostics,
                     NoRedirect, Outcome, Settings, classify, transmit)
@@ -313,7 +314,10 @@ class TransportTests(unittest.TestCase):
 class HTTPTests(Fixture):
     def setUp(self):
         super().setUp()
-        self.server = make_server('127.0.0.1', 0, self.controller, TOKEN, self.service)
+        workflow_source = Path(self.directory.name) / 'SITES.md'
+        workflow_source.write_text(render(initial_state('minnit')))
+        workflow = SiteWorkflow(workflow_source, Path(self.directory.name))
+        self.server = make_server('127.0.0.1', 0, self.controller, TOKEN, self.service, workflow)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.thread.start()
         self.base = 'http://127.0.0.1:' + str(self.server.server_port)

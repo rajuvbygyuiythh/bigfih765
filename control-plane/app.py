@@ -16,11 +16,13 @@ from contracts import FIXTURES, describe_send, inspect
 from research import catalog
 from platforms import registry
 from minnit import MinnitDiagnostics, Settings
+from site_workflow import SiteWorkflow
 
 STATIC = Path(__file__).resolve().parent / "static"
 
 
-def make_server(host, port, controller, token="", diagnostics=None):
+def make_server(host, port, controller, token="", diagnostics=None, workflow=None):
+    workflow = workflow or SiteWorkflow()
     diagnostics = diagnostics or MinnitDiagnostics(controller, operator_token=token)
     if diagnostics.operator_token != token:
         raise ValueError("Diagnostic and HTTP operator authentication must match")
@@ -70,6 +72,7 @@ def make_server(host, port, controller, token="", diagnostics=None):
                         raise APIError(405, "Webhook requires POST")
                     if self.headers.get("Origin") or self.headers.get("Sec-Fetch-Site"):
                         raise APIError(403, "Webhook is server-to-server only")
+                    workflow.require_active('minnit')
                     diagnostics.authenticate_webhook(path[len("/hooks/minnit/"):])
                     if urlparse(self.path).query:
                         raise APIError(400, "Webhook query parameters are not accepted")
@@ -89,12 +92,33 @@ def make_server(host, port, controller, token="", diagnostics=None):
                     if self.headers.get("Sec-Fetch-Site") == "cross-site" or (origin and urlparse(origin).netloc != self.headers.get("Host")):
                         raise APIError(403, "Cross-origin mutation rejected")
                     data = self.body()
+                if path == "/api/workflow" and method == "GET":
+                    return self.respond(200, {**workflow.snapshot(), "operator_mutations_enabled": len(token) >= 32})
+                if path == "/api/workflow/complete-and-next" and method == "POST":
+                    if len(token) < 32:
+                        raise APIError(403, "Queue mutation requires a strong configured operator token")
+                    if set(data) != {"site", "revision"}:
+                        raise APIError(400, "Only site and revision are accepted; no unlock override")
+                    with diagnostics.lock:
+                        result = workflow.complete_and_next(data.get("site"), data.get("revision"))
+                        diagnostics.disarm()
+                    return self.respond(200, result)
                 if path == "/api/diagnostics/minnit" and method == "GET":
-                    return self.respond(200, diagnostics.status())
+                    status = diagnostics.status()
+                    try:
+                        workflow.require_active('minnit')
+                        status['workflow_locked'] = False
+                    except APIError:
+                        status['workflow_locked'] = True
+                        status['blockers'].append('Minnit is workflow-locked; complete the active site first')
+                    return self.respond(200, status)
                 if path == "/api/diagnostics/minnit/deliveries" and method == "GET":
                     return self.respond(200, diagnostics.deliveries())
                 if path == "/api/diagnostics/minnit/arm" and method == "POST":
-                    return self.respond(200, diagnostics.arm())
+                    with diagnostics.lock, workflow._exclusive():
+                        workflow.require_active('minnit')
+                        result = diagnostics.arm()
+                    return self.respond(200, result)
                 if path == "/api/diagnostics/minnit/disarm" and method == "POST":
                     return self.respond(200, diagnostics.disarm())
                 diagnostic_parts = path.strip("/").split("/")
@@ -102,7 +126,10 @@ def make_server(host, port, controller, token="", diagnostics=None):
                         and diagnostic_parts[5] == "approve" and method == "POST"):
                     if set(data) != {"run_id"}:
                         raise APIError(400, "Only the current diagnostic run_id is accepted; reply text is fixed")
-                    return self.respond(200, diagnostics.approve(diagnostic_parts[4], data.get("run_id")))
+                    with diagnostics.lock, workflow._exclusive():
+                        workflow.require_active('minnit')
+                        result = diagnostics.approve(diagnostic_parts[4], data.get("run_id"))
+                    return self.respond(200, result)
                 if path == "/api/platforms" and method == "GET":
                     return self.respond(200, {"platforms": registry(), "live_ready": 0})
                 if path == "/api/research" and method == "GET":

@@ -1,26 +1,119 @@
-# Site queue — source of truth
+# Locked site queue — source of truth
 
-Active: **deadsimplechat**. One site per turn; choose first IN-PROGRESS, otherwise first QUEUED. Do not advance a BLOCKED site by inventing access or transport contracts.
+**Active: DeadSimpleChat. All seven remaining target sites are LOCKED.** Complete the active site before unlocking exactly the next site. No skip/unlock-all path. Restricted/reference sites never enter the unlock queue.
 
-Root workflow files were absent at the start of 2026-10-16's workflow reset. This queue is bootstrapped from the existing catalog/committed work, not new batch research. Existing twelve-gate evidence stays in `control-plane/data/site_catalog.json`; the percentages below separately count **completed delivery steps / 8**, not success probability or live readiness.
+Percent = completed delivery steps / 8, not success probability. Legacy offline work is preserved; Minnit still lacks live evidence. A blocked active site stays active/locked-in rather than being falsely marked done. Pure offline inspectors and historical configuration slots remain available; project advancement and real diagnostic arming/sending are gated.
 
-| Order | Site ID | Status | Current/resume point | Delivery steps | % |
-| --- | --- | --- | --- | --- | --- |
-| 1 | minnit | BLOCKED | v0.4 local diagnostic delivered; live access/egress/witness missing | Prior workflow; no retroactive score | N/A |
-| 2 | deadsimplechat | IN-PROGRESS | Step 1 Recon complete; next Step 2 contract/safety design | 1/8 | 12.5% |
-| 3 | rumbletalk | QUEUED | Existing history inspector/system-send spec only | 0/8 | 0% |
-| 4 | chatwee | QUEUED | Existing redacted SSO inspector; no chat-send contract | 0/8 | 0% |
-| 5 | chatblink | QUEUED | Supported interface/authorization enquiry required; no bypass | 0/8 | 0% |
-| 6 | strangermeetup | QUEUED | Supported interface/authorization enquiry required | 0/8 | 0% |
-| 7 | chatango | QUEUED | Establish supported integration before transport work | 0/8 | 0% |
-| 8 | chatiw | QUEUED | Establish supported integration before transport work | 0/8 | 0% |
-| — | chatzy | RESTRICTED | Existing script restriction; do not silently queue automation | N/A | N/A |
-| — | chitchat | REFERENCE | Historical baseline only | N/A | N/A |
-| — | joingy | REFERENCE | Static upstream reference only | N/A | N/A |
-| — | isexychat | REFERENCE | Static upstream reference only | N/A | N/A |
+<!-- site-workflow:start -->
+| Site | Lock | Delivery steps | Progress |
+| --- | --- | --- | --- |
+| deadsimplechat | ACTIVE | 1/8 | 12.5% |
+| minnit | LOCKED | 0/8 | 0.0% |
+| rumbletalk | LOCKED | 0/8 | 0.0% |
+| chatwee | LOCKED | 0/8 | 0.0% |
+| chatblink | LOCKED | 0/8 | 0.0% |
+| strangermeetup | LOCKED | 0/8 | 0.0% |
+| chatango | LOCKED | 0/8 | 0.0% |
+| chatiw | LOCKED | 0/8 | 0.0% |
+| chatzy | RESTRICTED | — | N/A |
+| chitchat | REFERENCE | — | N/A |
+| joingy | REFERENCE | — | N/A |
+| isexychat | REFERENCE | — | N/A |
+
+<details><summary>Machine-readable queue (canonical)</summary>
+
+```json
+{
+  "schema_version": 1,
+  "revision": 0,
+  "active_site": "deadsimplechat",
+  "order": [
+    "deadsimplechat",
+    "minnit",
+    "rumbletalk",
+    "chatwee",
+    "chatblink",
+    "strangermeetup",
+    "chatango",
+    "chatiw"
+  ],
+  "sites": {
+    "minnit": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "deadsimplechat": {
+      "state": "active",
+      "completed_steps": [
+        1
+      ],
+      "evidence": {
+        "1": "research/deadsimplechat-recon-2026-10-16/REPORT.md"
+      }
+    },
+    "rumbletalk": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "chatwee": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "chatblink": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "strangermeetup": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "chatango": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "chatiw": {
+      "state": "locked",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "chatzy": {
+      "state": "restricted",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "chitchat": {
+      "state": "reference",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "joingy": {
+      "state": "reference",
+      "completed_steps": [],
+      "evidence": {}
+    },
+    "isexychat": {
+      "state": "reference",
+      "completed_steps": [],
+      "evidence": {}
+    }
+  }
+}
+```
+</details>
+<!-- site-workflow:end -->
+
+## Completion and unlock rule
+
+`complete-and-next` atomically marks only the active site DONE and unlocks exactly one successor. It requires all eight sequential evidenced steps, all twelve site-specific acceptance gates, fresh passing regression proof and Step 8 ZIP + matching SHA-256. A percentage or operator click cannot bypass these checks. No live gates are complete just because local tests pass.
+
+Root workflow was bootstrapped from existing work; this lock update is not new batch research. Machine state above is canonical; the table is regenerated by the queue tool. Never hand-edit just the table or maintain a second queue.
 
 ## Active-site acceptance
 
-DeadSimpleChat scope: one authorized room/bot, consenting diagnostic interactions, supported APIs. Step 1 delivers fresh official-contract recon plus runnable offline metadata tooling and regression tests. No live connector/send is enabled. Auth-header ambiguity, callback authenticity, unique click occurrence identity and entitlement/egress remain unresolved. A browser HAR cannot normally show backend bot API calls or provider-to-backend webhooks; do not ask for irrelevant captures or claim observed header presence proves necessity.
-
-Evidence: `research/deadsimplechat-recon-2026-10-16/REPORT.md`; runnable result `control-plane/data/deadsimplechat_recon.json`.
+DeadSimpleChat: Step 1 recon complete; Step 2 contract/safety design next. Auth-header ambiguity, webhook authenticity, unique click occurrence, account/plan/egress and consenting peer delivery remain unresolved. Browser HAR normally cannot show server-to-server callbacks. Report: `research/deadsimplechat-recon-2026-10-16/REPORT.md`.

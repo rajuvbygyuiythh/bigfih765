@@ -204,3 +204,23 @@ python -B tools/recon_site.py deadsimplechat --har runtime/authorized.har
 ```
 
 Only fixed metadata for the documented bot-send route is exported; request/response bodies, credentials, cookies and IDs are not retained. This tool performs no network requests. Browser HAR normally cannot contain backend bot-send calls or incoming server-to-server webhooks. Header presence cannot resolve the documented auth-header ambiguity, and HTTP 200 alone is not API acceptance/peer delivery. No capture is requested until the next step establishes exactly what evidence is needed. Raw HAR and `.env.local` are ignored; `.env.local` is not automatically sourced. Details: `research/deadsimplechat-recon-2026-10-16/REPORT.md` in the repository (included in the next Step 8 package as `reports/DEADSIMPLECHAT_RECON.md`).
+
+## Locked target queue — one site at a time
+
+Open **Locked site queue**. **DeadSimpleChat is the only active/unlocked target; seven remaining targets are locked.** Order: DeadSimpleChat → Minnit → RumbleTalk → Chatwee → Chatblink → StrangerMeetup → Chatango → Chatiw. Four restricted/reference records remain outside the unlock sequence. Existing offline inspectors, research and inactive configuration slots are not deleted; unlocking a project is not authorization to run a live connector.
+
+`SITES.md` is the canonical queue, containing a machine-readable block and its generated table. No second database/list competes with it. Restart retains locks and the current site. Do not edit just the display table. Only the active site may record its next sequential delivery step:
+
+```sh
+python -B tools/site_queue.py status
+# Agent records a genuinely completed step, with the current revision:
+python -B tools/site_queue.py complete-step --site deadsimplechat --step 2 --revision 0 --evidence research/YOUR-REPORT/REPORT.md
+# Only after all acceptance/step/release checks pass:
+python -B tools/site_queue.py complete-and-next --site deadsimplechat --revision CURRENT_REVISION
+```
+
+There is **no unlock-all/skip/force override**. Complete-and-next atomically marks the active site DONE and unlocks exactly one successor. It requires all eight evidenced steps, all twelve site-specific acceptance gates, fresh source-bound passing tests and a valid Step 8 ZIP with matching `.zip.sha256`. Steps 6–8 cannot be awarded while live acceptance remains incomplete. Percentages alone never unlock anything. Blocked access means remain on this site, not falsely mark it complete. The owner/agent must supply honest evidence; a filesystem owner can of course edit repository files, so this is a workflow guard, not a security boundary against the repository owner.
+
+Read API: `GET /api/workflow`. Operator completion API: `POST /api/workflow/complete-and-next` with **only** `site` + current integer `revision`, existing Bearer/same-origin/body checks and an operator token of at least 32 characters. Default demo is read-only for queue mutation. Dashboard's **Complete site & unlock next** stays disabled until ready. No public step-write API is exposed. CLI/API updates use a POSIX advisory lock, atomic replacement and revision checks; mutation requires POSIX. Read-only views remain portable. Runtime lock file is ignored. Git backup still requires the agent's explicit tested commit/push, never an automatic server push.
+
+Minnit webhook/arming/approval routes also enforce its project lock; real send dispatch holds the same queue lock as advancement. Completion cannot race an already-dispatched diagnostic send. Operator disarm/Stop remain available even while a site is locked. Previously released ZIPs remain unchanged; the next Step 8 packager includes queue module/tool/tests and SITES as `reports/SITE_WORKFLOW.md`. Packaged queue is a snapshot; active development/step evidence should be managed in the source checkout.

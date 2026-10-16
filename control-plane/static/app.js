@@ -57,7 +57,7 @@ async function refreshLogs() {
   $('log-title').textContent=instance.name; $('log-subtitle').textContent='Recent 100 events · runtime only'; box.replaceChildren();
   for(const event of [...result.logs].reverse()) {const row=el('div','log-row'); row.append(el('time','',new Date(event.at*1000).toLocaleTimeString()),el('span','action',event.action),el('span','message',event.message)); box.append(row);}
 }
-async function refresh() {if(refreshing) return; refreshing=true; try {state=await api('/api/state'); await loadRegistry(); render(); await refreshLogs(); await refreshDiagnostics(); try { researchData=await api('/api/research'); renderResearch(); } catch(error) { $('research-cards').replaceChildren(el('p','error',error.message)); } $('connection-status').textContent='CONNECTED · LOCAL STATE';} catch(error) {$('connection-status').textContent='CONNECTION ERROR'; throw error;} finally {refreshing=false;}}
+async function refresh() {if(refreshing) return; refreshing=true; try {state=await api('/api/state'); await loadRegistry(); render(); await refreshLogs(); await refreshDiagnostics(); await refreshWorkflow(); try { researchData=await api('/api/research'); renderResearch(); } catch(error) { $('research-cards').replaceChildren(el('p','error',error.message)); } $('connection-status').textContent='CONNECTED · LOCAL STATE';} catch(error) {$('connection-status').textContent='CONNECTION ERROR'; throw error;} finally {refreshing=false;}}
 function openCreate() {$('form-error').textContent=''; $('create-dialog').showModal(); $('instance-name').focus();}
 $('add').onclick=openCreate; $('empty-add').onclick=openCreate;
 $('close-dialog').onclick=()=>$('create-dialog').close(); $('cancel-dialog').onclick=()=>$('create-dialog').close();
@@ -70,9 +70,9 @@ for(const tab of document.querySelectorAll('[data-filter]')) tab.onclick=()=>{fi
 for(const nav of document.querySelectorAll('[data-view]')) nav.onclick=async()=>{
   const view=nav.dataset.view;
   for(const b of document.querySelectorAll('[data-view]')) b.classList.toggle('active',b===nav);
-  for(const id of ['fleet','activity','research','diagnostics']) $(`${id}-view`).classList.toggle('hidden',id!==view);
-  const titles={fleet:'Instance fleet',activity:'Workspace activity',research:'Site research',diagnostics:'Minnit diagnostics'};
-  const descriptions={fleet:'Configure your instances. Control every lifecycle.',activity:'A clear timeline of local lifecycle events.',research:'Source-backed analysis, local contract tests, and explicit delivery gates.',diagnostics:'One authorized room. Explicit test requests. Operator-approved sends.'};
+  for(const id of ['fleet','activity','research','diagnostics','queue']) $(`${id}-view`).classList.toggle('hidden',id!==view);
+  const titles={fleet:'Instance fleet',activity:'Workspace activity',research:'Site research',diagnostics:'Minnit diagnostics',queue:'Locked site queue'};
+  const descriptions={fleet:'Configure your instances. Control every lifecycle.',activity:'A clear timeline of local lifecycle events.',research:'Source-backed analysis, local contract tests, and explicit delivery gates.',diagnostics:'One authorized room. Explicit test requests. Operator-approved sends.',queue:'Finish one site. Unlock exactly the next. No skipped acceptance gates.'};
   $('page-title').textContent=titles[view]; $('breadcrumb').textContent=titles[view]; $('page-description').textContent=descriptions[view];
   if(view==='research'&&!fixtures) {try{await loadRegistry();fixtures=(await api('/api/contracts')).fixtures;prepareFixtures();}catch(error){toast(error.message);}}
 };
@@ -114,14 +114,14 @@ async function refreshDiagnostics() {
     $('diagnostic-status').textContent=diagnostic.armed?`Intake armed until ${new Date(diagnostic.expires_at*1000).toLocaleTimeString()}. Each fresh ping needs separate approval. Live validation: not verified.`:'Intake disarmed. Configure the server environment using README instructions, then arm a 15-minute test window.';
     $('diagnostic-blockers').replaceChildren(...diagnostic.blockers.map(message=>el('li','',message)));
     $('diagnostic-controls').replaceChildren(
-      button('Arm test intake','start',async()=>{if(confirm('Confirm this is your authorized test room with consenting participants. Arm intake for 15 minutes?')) await api('/api/diagnostics/minnit/arm','POST');},!diagnostic.configured||diagnostic.armed),
+      button('Arm test intake','start',async()=>{if(confirm('Confirm this is your authorized test room with consenting participants. Arm intake for 15 minutes?')) await api('/api/diagnostics/minnit/arm','POST');},!diagnostic.configured||diagnostic.armed||diagnostic.workflow_locked),
       button('Disarm intake','danger-ghost',async()=>{await api('/api/diagnostics/minnit/disarm','POST');},!diagnostic.armed));
     const box=$('diagnostic-deliveries');box.replaceChildren();
     for(const delivery of ledger.deliveries) {
       const row=el('article','diagnostic-delivery');
       row.append(el('strong','',delivery.status),el('span','muted',` ${delivery.id.slice(0,8)} · peer delivery: ${delivery.peer_delivery} · HTTP ${delivery.http_status??'—'}`));
       const age=Date.now()/1000-delivery.event_at;
-      row.append(button('Approve fixed pong','secondary',async()=>{if(confirm(`Send exactly this reply to the configured test room?\n\n${diagnostic.reply}`)) {const result=await api(`/api/diagnostics/minnit/deliveries/${delivery.id}/approve`,'POST',{run_id:diagnostic.run_id});toast(`${result.status} · peer delivery unverified`);}},!diagnostic.armed||delivery.status!=='pending'||delivery.run_id!==diagnostic.run_id||age>300||age< -30));
+      row.append(button('Approve fixed pong','secondary',async()=>{if(confirm(`Send exactly this reply to the configured test room?\n\n${diagnostic.reply}`)) {const result=await api(`/api/diagnostics/minnit/deliveries/${delivery.id}/approve`,'POST',{run_id:diagnostic.run_id});toast(`${result.status} · peer delivery unverified`);}},diagnostic.workflow_locked||!diagnostic.armed||delivery.status!=='pending'||delivery.run_id!==diagnostic.run_id||age>300||age< -30));
       box.append(row);
     }
     if(!ledger.deliveries.length) box.append(el('p','log-empty','No diagnostic events recorded. No messages sent.'));
@@ -129,5 +129,27 @@ async function refreshDiagnostics() {
     $('diagnostic-status').textContent='Diagnostic status unavailable: '+error.message;
     $('diagnostic-controls').replaceChildren();
     $('diagnostic-deliveries').replaceChildren();
+  }
+}
+
+async function refreshWorkflow() {
+  try {
+    const queue=await api('/api/workflow');
+    $('queue-active').textContent=queue.active_site?`Active: ${adapterNames[queue.active_site]?.split(' · ')[0]||queue.active_site} · next locked: ${queue.next_site||'none'}`:'All target sites completed.';
+    const box=$('queue-cards');box.replaceChildren();
+    for(const id of [...queue.order,...Object.keys(queue.sites).filter(id=>!queue.order.includes(id))]) {
+      const item=queue.sites[id], card=el('article','panel queue-card');card.dataset.site=id;
+      card.append(el('h3','',adapterNames[id]?.split(' · ')[0]||id),el('span',`badge ${item.state}`,item.state==='active'?'UNLOCKED · ACTIVE':item.state.toUpperCase()));
+      card.append(el('p','muted',item.percent===null?'Not an unlock target':`${item.completed_steps.length}/8 delivery steps · ${item.percent}%`));
+      if(item.state==='locked') card.append(el('p','muted','Locked until the current site is fully complete.'));
+      if(item.state==='active') {
+        card.append(button('Complete site & unlock next','primary',async()=>{if(confirm('Complete this site and unlock exactly the next? All eight steps, live evidence and ZIP checksum must pass.')) await api('/api/workflow/complete-and-next','POST',{site:id,revision:queue.revision});},!queue.can_complete||!queue.operator_mutations_enabled));
+      }
+      box.append(card);
+    }
+    $('queue-blockers').replaceChildren(...queue.completion_blockers.map(reason=>el('li','',reason)));
+  } catch(error) {
+    $('queue-active').textContent='Queue unavailable — no unlock permitted.';
+    $('queue-cards').replaceChildren();$('queue-blockers').replaceChildren(el('li','',error.message));
   }
 }
