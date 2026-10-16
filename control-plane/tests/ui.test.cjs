@@ -18,7 +18,7 @@ async function waitFor(predicate, message) {
   let dom, server;
   let checks = 0;
   try {
-    server=spawn('python',['-B','app.py','--host','127.0.0.1','--port','0','--db',path.join(directory,'test.db')],{cwd:path.resolve(__dirname,'..'),env:{...process.env,CONTROL_PLANE_TOKEN:'ui-test-only-token',ORBIT_MINNIT_DIAGNOSTICS:'0',ORBIT_MINNIT_AUTHORIZED:'0'},stdio:['ignore','pipe','pipe']});
+    server=spawn('python',['-B','app.py','--host','127.0.0.1','--port','0','--home','operations','--db',path.join(directory,'test.db')],{cwd:path.resolve(__dirname,'..'),env:{...process.env,CONTROL_PLANE_TOKEN:'ui-test-only-token',ORBIT_MINNIT_DIAGNOSTICS:'0',ORBIT_MINNIT_AUTHORIZED:'0'},stdio:['ignore','pipe','pipe']});
     const base=await new Promise((resolve,reject)=>{
       const timeout=setTimeout(()=>reject(new Error('Local test server startup timeout')),8000);
       server.once('error',reject);

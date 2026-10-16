@@ -24,7 +24,7 @@ from server_env import load_private_env
 STATIC = Path(__file__).resolve().parent / "static"
 
 
-def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="operations", shadow=None):
+def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="planning", shadow=None):
     tester = ReplyTester(controller)
     shadow = shadow or ShadowIntake(controller, token=token)
     workflow = workflow or SiteWorkflow()
@@ -98,7 +98,13 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                 if path == "/api/info" and method == "GET":
                     return self.respond(200, {"auth_required": bool(token), "mode": "control_plane", "fleet_mode": "synthetic", "diagnostics": "minnit_operator_approved"})
                 if not path.startswith("/api/"):
-                    files = {"/": "test.html" if home == "tester" else "index.html", "/operations": "index.html", "/test": "test.html", "/test.js": "test.js", "/test.css": "test.css", "/app.js": "app.js", "/style.css": "style.css"}
+                    landing = "planning.html" if home == "planning" else "test.html" if home == "tester" else "index.html"
+                    files = {"/": landing, "/plan": "planning.html",
+                             "/operations": "planning.html" if home == "planning" else "index.html",
+                             "/test": "planning.html" if home == "planning" else "test.html",
+                             "/legacy/operations": "index.html", "/legacy/test": "test.html",
+                             "/planning.js": "planning.js", "/planning.css": "planning.css",
+                             "/test.js": "test.js", "/test.css": "test.css", "/app.js": "app.js", "/style.css": "style.css"}
                     if method != "GET" or path not in files:
                         raise APIError(404, "Not found")
                     file = STATIC / files[path]
@@ -273,7 +279,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8080)
-    parser.add_argument("--home", choices=["operations", "tester"], default="operations")
+    parser.add_argument("--home", choices=["planning", "operations", "tester"], default="planning", help="Default: read-only planning page; operations/tester are explicit legacy opt-ins")
     parser.add_argument("--db", default=str(Path(__file__).parent / "runtime" / "control.db"))
     parser.add_argument('--env-file',help='Explicit owner-only server env file; never sourced or auto-loaded')
     args = parser.parse_args()

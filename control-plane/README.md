@@ -1,5 +1,9 @@
 # Orbit control plane · v0.4.0
 
+> **Latest owner override — plan-first dashboard reset:** the previous dashboards are retired from the default. Launch now opens a neutral **read-only plan/status page**, not the replacement operational dashboard. `/plan` is always available; default `/test` and `/operations` also show the plan page. Prior code is preserved at explicit `/legacy/test`, `/legacy/operations`, or opt-in `--home tester|operations`. No files deleted, queue unlocked, or provider scope changed.
+>
+> Full screen/form/architecture/delivery plan: `docs/DASHBOARD_MASTER_PLAN.md`. Targeted Go/Wails + EVA desktop + Textual source review: `research/dashboard-review-2026-10-16/REPORT.md`. These are representative static reviews; exact visual preference still proposed. Actual current regression: **150 Python + 39 DOM/local-HTTP PASS**, three JS syntax checks PASS. Historical operational UI instructions below refer to preserved legacy modes, not the current default.
+
 Central web dashboard, SQLite-backed instance configuration, synthetic lifecycles and an **opt-in Minnit single-room diagnostic connector**. **Status: OFFLINE_VALIDATED; live validation pending.** Diagnostic intake and sending are implemented and locally tested, not live-connected or an acquisition operation. Fleet Start is still synthetic-only; use the separate **Minnit diagnostics** view for this narrow test flow.
 
 ## Run
@@ -21,9 +25,9 @@ python -B app.py --host 0.0.0.0 --port 8080
 
 The browser uses relative `/api/` URLs; the server accepts the preview host. No browser request targets sandbox localhost.
 
-Default launch is an **unauthenticated synthetic demo**. Do not expose it as a production or privileged service. For operator-token protection, set `CONTROL_PLANE_TOKEN` in the server environment before starting; enter it into the dashboard's token dialog. Do not paste a production secret in chat or commit it. The token stays in browser memory (not localStorage); refresh requires login again. Use HTTPS through the deployment proxy.
+Default launch is an **unauthenticated synthetic demo**. Do not expose it as a production or privileged service. For operator-token protection, set `CONTROL_PLANE_TOKEN` in the server environment before starting; enter it into the plan page's token field (or the legacy dashboard's dialog). Do not paste a production secret in chat or commit it. The token stays in browser memory (not localStorage); refresh requires login again. Use HTTPS through the deployment proxy.
 
-Optional flags: `--host`, `--port`, `--db`. The database defaults to `runtime/control.db`, relative to `app.py`, not the working directory. `--port 0` selects a free port and prints the assigned port. Default mode needs no third-party credentials. Optional Minnit credentials are read only from the server environment, never stored in SQLite or accepted through the UI.
+Optional flags: `--host`, `--port`, `--db`, `--home planning|operations|tester` (default planning). The database defaults to `runtime/control.db`, relative to `app.py`, not the working directory. `--port 0` selects a free port and prints the assigned port. Default mode needs no third-party credentials. Optional Minnit credentials are read only from the server environment, never stored in SQLite or accepted through the UI.
 
 ## Implemented
 

@@ -9,3 +9,5 @@
 2026-10-16 | deadsimplechat | Step 3 partial / local self-test | Recorded explicit plan approval; built small TXT reply web lab, one-line-per-user flow, private runtime state and live local report with tests; no provider send/GREEN/unlock.
 
 2026-10-16 | deadsimplechat | Step 3 partial / shadow setup | Added safe opt-in private env loading, disabled no-send shadow receiver, registered-intent durable replay/expiry guards, advanced setup controls and tests; live auth/sender/staging still blocked, next locked.
+
+2026-10-16 | deadsimplechat | Step 3 partial / plan-first UI reset | Reviewed Go/EVA/Textual dashboard patterns, authored full module/form/master queue plan, retired default old dashboards to legacy routes, added read-only authenticated plan queue and150Python/39DOM regression;25%/seven locks unchanged.

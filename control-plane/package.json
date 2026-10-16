@@ -4,7 +4,7 @@
   "private": true,
   "description": "Optional DOM integration tests; the application has no npm runtime dependency.",
   "scripts": {
-    "test": "node tests/ui.test.cjs && node tests/tester.test.cjs"
+    "test": "node tests/ui.test.cjs && node tests/tester.test.cjs && node tests/planning.test.cjs"
   },
   "devDependencies": {
     "jsdom": "26.1.0"
