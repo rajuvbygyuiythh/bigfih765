@@ -1,4 +1,23 @@
-# Locked site queue — source of truth
+# Site workstreams — authorization and evidence
+
+## Latest owner-approved Europe browser workstream
+
+2026-10-16: all eight shortlisted websites are approved for assessment/implementation work, with no repeated owner-approval prompt. Work is **UNLOCKED**, not live-enabled. Current runnable source of truth for this separate backlog: `control-plane/data/europe_assessment.json` and `python -B control-plane/tools/europe_tasks.py`.
+
+| Website | Work authorization | Next evidence/task | Live |
+| --- | --- | --- | --- |
+| 6obcy | APPROVED / UNLOCKED | Administrator permission: unofficial-client restriction | NOT READY |
+| Bazoocam | APPROVED / UNLOCKED | Permitted scope: commercial/advertising restrictions | NOT READY |
+| Chatroom2000 | APPROVED / UNLOCKED | Current automation policy review | NOT READY |
+| Knuddels | APPROVED / UNLOCKED | Current policy + browser feature limits | NOT READY |
+| Chaat | APPROVED / UNLOCKED | Connection/event/ACK/close contract; bots conditionally tolerated with+B | NOT READY |
+| Tchatche | APPROVED / UNLOCKED | Current automation policy review | NOT READY |
+| Deutscher-Chat | APPROVED / UNLOCKED | Current automation policy review | NOT READY |
+| Chat4free | APPROVED / UNLOCKED | Current automation policy review; do not bypass challenge | NOT READY |
+
+Next technical priority: **Chaat contract investigation**, selected by primary policy evidence rather than traffic alone. No live adapter implemented. The historical provider-delivery machine block below is unchanged and applies only to that earlier queue; it does not relock this approved research/backlog.
+
+## Historical provider delivery queue (runtime gates preserved)
 
 **Active: DeadSimpleChat — PLAN APPROVED / NEW OPERATOR WORKSPACE IMPLEMENTED. All seven remaining target sites are LOCKED.** Complete the active site before unlocking exactly the next site. No skip/unlock-all path. Restricted/reference sites never enter the unlock queue.
 

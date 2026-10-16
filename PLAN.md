@@ -1,4 +1,8 @@
-# Single-site roadmap
+# Work roadmap
+
+## Latest workstream override — Europe browser shortlist, 2026-10-16
+
+Owner approved all eight Europe website tasks and requested no repeated approval/unlock prompts. Their assessment/implementation backlog is now unlocked independently of the historical runtime queue below. Use `tools/europe_tasks.py` to read all packets. Public recon is documented; no adapter or live contract is established. Three primary policy pages reviewed: 6obcy unofficial-client/ads restrictions, Bazoocam commercial/advertising restrictions, Chaat conditional bot tolerance with+B and resource/session rules. Next is Chaat contract investigation; review the remaining five policies independently. Never convert owner work approval into third-party permission or bypass restrictions. Preserve GOALS and historical DS/other-provider acceptance gates. No auth/demo loop.
 
 Scope: supported/authorized integrations and consenting tests. Mission remains unchanged in `GOALS.md` (alias to the existing knowledge-pack mission). Active queue and percentages: `SITES.md`. No batch research, file deletion, force push or rebasing published work.
 

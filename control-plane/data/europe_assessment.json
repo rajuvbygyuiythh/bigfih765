@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "approval": {
+    "reference": "owner-chat-2026-10-16-approve-all-europe-tasks",
+    "date": "2026-10-16",
+    "scope": "all_eight_public_assessment_and_implementation_tasks",
+    "repeat_approval_required": false,
+    "provider_permission_established": false
+  },
+  "sites": [
+    {
+      "id": "6obcy",
+      "url": "https://6obcy.org/",
+      "mode": "random_text",
+      "entry": "guest",
+      "browser_source": "https://6obcy.org/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/6obcy.org/overview/",
+        "total_visits_estimate": 824070,
+        "listed_europe_countries": [
+          {
+            "country": "PL",
+            "share_percent": "90.78"
+          }
+        ]
+      },
+      "policy": {
+        "status": "restricted_client",
+        "source": "https://6obcy.org/regulamin",
+        "summary": "Sections 8-9 prohibit user advertising and reserve blocking of unofficial clients; administrator permission would be needed for a non-official integration. Not an adult-only environment.",
+        "reviewed_on": "2026-10-16"
+      }
+    },
+    {
+      "id": "bazoocam",
+      "url": "https://bazoocam.org/",
+      "mode": "random_video",
+      "entry": "guest_or_account",
+      "browser_source": "https://bazoocam.org/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Camera/microphone required for the advertised video experience.",
+      "traffic": {
+        "provider": "Similarweb",
+        "period": "2026-08",
+        "scope": "desktop_web",
+        "evidence": "search_extract",
+        "source": "https://www.similarweb.com/pt/website/bazoocam.org/",
+        "total_visits_estimate": null,
+        "listed_europe_countries": [
+          {
+            "country": "FR",
+            "share_percent": "27.07"
+          },
+          {
+            "country": "ES",
+            "share_percent": "14.85"
+          },
+          {
+            "country": "BE",
+            "share_percent": "7.67"
+          },
+          {
+            "country": "IT",
+            "share_percent": "7.39"
+          }
+        ]
+      },
+      "policy": {
+        "status": "noncommercial_restrictions",
+        "source": "https://bazoocam.org/cgu_en.html",
+        "summary": "Article 5 prohibits professional/commercial use, advertising other websites, and mass-message disruption; no general bot permission established. Homepage and terms differ on under-18 access.",
+        "reviewed_on": "2026-10-16"
+      }
+    },
+    {
+      "id": "chatroom2000",
+      "url": "https://www.chatroom2000.de/",
+      "mode": "community",
+      "entry": "guest",
+      "browser_source": "https://www.chatroom2000.de/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Not established as a random-next queue; entry says 16+.",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/chatroom2000.de/overview/",
+        "total_visits_estimate": 811010,
+        "listed_europe_countries": [
+          {
+            "country": "DE",
+            "share_percent": "86.84"
+          },
+          {
+            "country": "CH",
+            "share_percent": "7.49"
+          },
+          {
+            "country": "AT",
+            "share_percent": "2.02"
+          }
+        ]
+      },
+      "policy": {
+        "status": "not_reviewed",
+        "source": null,
+        "summary": "Current automation terms have not yet been reviewed; browser availability is not integration permission.",
+        "reviewed_on": null
+      }
+    },
+    {
+      "id": "knuddels",
+      "url": "https://www.knuddels.de/",
+      "mode": "community",
+      "entry": "account_required",
+      "browser_source": "https://hilfe.knuddels.de/de/articles/2925699-wie-kann-ich-knuddels-nutzen",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Official browser Mini-Chat help is dated 2020 and describes limited features; current parity unverified.",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/knuddels.de/overview/",
+        "total_visits_estimate": 1620000,
+        "listed_europe_countries": [
+          {
+            "country": "DE",
+            "share_percent": "85.84"
+          },
+          {
+            "country": "AT",
+            "share_percent": "2.61"
+          },
+          {
+            "country": "RO",
+            "share_percent": "2.29"
+          },
+          {
+            "country": "CH",
+            "share_percent": "1.51"
+          }
+        ]
+      },
+      "policy": {
+        "status": "not_reviewed",
+        "source": null,
+        "summary": "Current automation terms have not yet been reviewed; browser availability is not integration permission.",
+        "reviewed_on": null
+      }
+    },
+    {
+      "id": "chaat",
+      "url": "https://www.chaat.fr/",
+      "mode": "community",
+      "entry": "guest",
+      "browser_source": "https://www.chaat.fr/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Rooms/private chat; not established as random-next.",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/chaat.fr/overview/",
+        "total_visits_estimate": 963410,
+        "listed_europe_countries": [
+          {
+            "country": "FR",
+            "share_percent": "77.64"
+          },
+          {
+            "country": "CH",
+            "share_percent": "7.73"
+          }
+        ]
+      },
+      "policy": {
+        "status": "conditional_bot_tolerance",
+        "source": "https://www.chaat.fr/conditions",
+        "summary": "Section 6 tolerates bots with mode +B, subject to all terms and resource limits. Section 4 prohibits spam, flood and sanction bypass; maximum three sessions without an operator exception. Age clauses conflict; use strict adult-only scope pending clarification.",
+        "reviewed_on": "2026-10-16"
+      }
+    },
+    {
+      "id": "tchatche",
+      "url": "https://www.tchatche.com/",
+      "mode": "community",
+      "entry": "account_required",
+      "browser_source": "https://www.tchatche.com/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Account required; not established as random-next.",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/tchatche.com/overview/",
+        "total_visits_estimate": 565190,
+        "listed_europe_countries": [
+          {
+            "country": "FR",
+            "share_percent": "64.61"
+          },
+          {
+            "country": "BE",
+            "share_percent": "13.59"
+          }
+        ]
+      },
+      "policy": {
+        "status": "not_reviewed",
+        "source": null,
+        "summary": "Current automation terms have not yet been reviewed; browser availability is not integration permission.",
+        "reviewed_on": null
+      }
+    },
+    {
+      "id": "deutscher_chat",
+      "url": "https://deutscher-chat.de/",
+      "mode": "community",
+      "entry": "guest_or_account",
+      "browser_source": "https://deutscher-chat.de/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Community rooms/private messages, not random-next.",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/deutscher-chat.de/overview/",
+        "total_visits_estimate": 181170,
+        "listed_europe_countries": [
+          {
+            "country": "DE",
+            "share_percent": "95.18"
+          },
+          {
+            "country": "AT",
+            "share_percent": "2.35"
+          }
+        ]
+      },
+      "policy": {
+        "status": "not_reviewed",
+        "source": null,
+        "summary": "Current automation terms have not yet been reviewed; browser availability is not integration permission.",
+        "reviewed_on": null
+      }
+    },
+    {
+      "id": "chat4free",
+      "url": "https://chat4free.net/",
+      "mode": "community",
+      "entry": "guest",
+      "browser_source": "https://chat4free.net/",
+      "browser_evidence": "official_description_not_live_test",
+      "browser_limit": "Entry advertises 18+ and an arithmetic challenge; no bypass implemented.",
+      "traffic": {
+        "provider": "Semrush",
+        "period": "2026-09",
+        "scope": "all_devices_web",
+        "evidence": "fetched_profile",
+        "source": "https://www.semrush.com/website/chat4free.net/overview/",
+        "total_visits_estimate": 234170,
+        "listed_europe_countries": [
+          {
+            "country": "DE",
+            "share_percent": "91.34"
+          },
+          {
+            "country": "AT",
+            "share_percent": "0.53"
+          }
+        ]
+      },
+      "policy": {
+        "status": "not_reviewed",
+        "source": null,
+        "summary": "Current automation terms have not yet been reviewed; browser availability is not integration permission.",
+        "reviewed_on": null
+      }
+    }
+  ]
+}

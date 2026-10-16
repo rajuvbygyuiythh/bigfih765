@@ -300,3 +300,16 @@ Messages reuses ReplyTester with native one-file upload/editor/local report and 
 Normal full regression: `python -B control-plane/tools/run_checks.py --ui`. Optional actual Chromium: externally install `playwright-core` (not an app dependency), set `NODE_PATH` for that install and `CHROMIUM_EXECUTABLE` for an installed compatible Chromium, then run `python -B control-plane/tools/run_checks.py --ui --browser`. Host Chromium libraries must exist. Sandbox tooling, binary/libs and screenshots are ignored `.runtime` data, excluded from packages. Browser smoke boots a separate synthetic temporary DB/server; checks auth/keyboard/native upload/Bangla/Stop, seven pages at1440/390/320px, no page errors/foreign page requests or document overflow. It does not exercise provider egress or substitute for full accessibility/security/load verification.
 
 Self-hosted Noto Sans Bengali supports Bangla without a CDN; full SIL OFL license is `static/OFL-NotoSansBengali.txt`. Source commit/provenance in workspace report. No remote asset request required. New UI/source/test/font/approval/report are explicit future package entries; private env/runtime/browser tooling never included. No new Step8 ZIP yet.
+
+
+## Owner-approved Europe browser work (2026-10-16)
+
+The eight Europe-focused websites have a separate approved assessment/implementation backlog, not live adapter entries. No new approval is required per site. Read all task packets or one site:
+
+```sh
+python -B control-plane/tools/europe_tasks.py
+python -B control-plane/tools/europe_tasks.py --json
+python -B control-plane/tools/europe_tasks.py --site chaat
+```
+
+Run from repository root. This CLI is read-only/no-network and does not change the historical provider queue, configure accounts, join chats or send messages. Packet fields are core-evidence requirements, not guessed wire schemas. Public audience estimates keep provider/month/device scope separate; visits are not active people. Primary policies already reviewed for6obcy/Bazoocam/Chaat; Chaat tolerates bots with+B subject to rules, resource/session limits and no spam/flood/bypass, so its still-unknown technical contract is the next priority. Sixobcy unofficial-client restrictions and Bazoocam commercial/advertising restrictions are not overridable by project approval. Five other policies remain unreviewed. No runtime integration or release ZIP is claimed by this assessment tool. See `research/europe-work-2026-10-16/REPORT.md` from repository root.

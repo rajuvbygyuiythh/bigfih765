@@ -13,3 +13,5 @@
 2026-10-16 | deadsimplechat | Step 3 partial / plan-first UI reset | Reviewed Go/EVA/Textual dashboard patterns, authored full module/form/master queue plan, retired default old dashboards to legacy routes, added read-only authenticated plan queue and150Python/39DOM regression;25%/seven locks unchanged.
 
 2026-10-16 | deadsimplechat | Step3partial / approved operator dashboard | Recorded master-plan approval; implemented default seven-page operator shell, migrated local TXT tools, metadata session index, private preflight/DS controls and bound-slot Stop;159Python+55DOM+7realChromium PASS, no provider sending/unlock.
+
+2026-10-16 | Europe browser8 | Owner-approved bulk work | Added no-network/read-only approved worklist, source-backed audience/browser packets, three primary policy reviews and per-site core-contract gaps; work unlocked without runtime bypass, Chaat contract next; regression outcomes in research/europe-work-2026-10-16/REPORT.md. Legacy provider queue and GOALS unchanged.
