@@ -24,7 +24,7 @@ from server_env import load_private_env
 STATIC = Path(__file__).resolve().parent / "static"
 
 
-def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="planning", shadow=None):
+def make_server(host, port, controller, token="", diagnostics=None, workflow=None, home="workspace", shadow=None):
     tester = ReplyTester(controller)
     shadow = shadow or ShadowIntake(controller, token=token)
     workflow = workflow or SiteWorkflow()
@@ -98,10 +98,12 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                 if path == "/api/info" and method == "GET":
                     return self.respond(200, {"auth_required": bool(token), "mode": "control_plane", "fleet_mode": "synthetic", "diagnostics": "minnit_operator_approved"})
                 if not path.startswith("/api/"):
-                    landing = "planning.html" if home == "planning" else "test.html" if home == "tester" else "index.html"
+                    landing = {"workspace": "workspace.html", "planning": "planning.html", "tester": "test.html", "operations": "index.html"}[home]
                     files = {"/": landing, "/plan": "planning.html",
-                             "/operations": "planning.html" if home == "planning" else "index.html",
-                             "/test": "planning.html" if home == "planning" else "test.html",
+                             "/operations": landing if home in ("planning", "workspace") else "index.html",
+                             "/test": landing if home in ("planning", "workspace") else "test.html",
+                             "/noto-sans-bengali.ttf": "noto-sans-bengali.ttf", "/OFL-NotoSansBengali.txt": "OFL-NotoSansBengali.txt",
+                             "/workspace": "workspace.html", "/workspace.js": "workspace.js", "/workspace.css": "workspace.css",
                              "/legacy/operations": "index.html", "/legacy/test": "test.html",
                              "/planning.js": "planning.js", "/planning.css": "planning.css",
                              "/test.js": "test.js", "/test.css": "test.css", "/app.js": "app.js", "/style.css": "style.css"}
@@ -135,6 +137,8 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                         if set(data) != {'question_id','test_user_id','run_id'}:
                             raise APIError(400,'Only question_id, test_user_id and current run_id accepted')
                         return self.respond(201,shadow.register(data.get('question_id'),data.get('test_user_id'),data.get('run_id')))
+                if path == "/api/reply-test/sessions" and method == "GET":
+                    return self.respond(200, tester.sessions())
                 if path == "/api/reply-test/sessions" and method == "POST":
                     with workflow._exclusive():
                         workflow.require_setup_approved('deadsimplechat')
@@ -234,6 +238,8 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                         with diagnostics.lock:
                             if ident == diagnostics.settings.instance_id:
                                 diagnostics.disarm()
+                            if ident == shadow.settings.instance_id:
+                                shadow.disarm()
                             controller.delete(ident)
                         return self.respond(200, {"deleted": True})
                     if len(parts) == 4:
@@ -246,6 +252,8 @@ def make_server(host, port, controller, token="", diagnostics=None, workflow=Non
                             with diagnostics.lock:
                                 if ident == diagnostics.settings.instance_id:
                                     diagnostics.disarm()
+                                if ident == shadow.settings.instance_id:
+                                    shadow.disarm()
                                 result = controller.stop(ident)
                             return self.respond(200, result)
                         if action == "check" and method == "POST":
@@ -279,7 +287,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8080)
-    parser.add_argument("--home", choices=["planning", "operations", "tester"], default="planning", help="Default: read-only planning page; operations/tester are explicit legacy opt-ins")
+    parser.add_argument("--home", choices=["workspace", "planning", "operations", "tester"], default="workspace", help="Default: approved operator workspace; planning is read-only, operations/tester are legacy opt-ins")
     parser.add_argument("--db", default=str(Path(__file__).parent / "runtime" / "control.db"))
     parser.add_argument('--env-file',help='Explicit owner-only server env file; never sourced or auto-loaded')
     args = parser.parse_args()
@@ -303,7 +311,7 @@ def main():
 
     thread = threading.Thread(target=heartbeat, daemon=True)
     thread.start()
-    print(f"Control plane listening on {args.host}:{server.server_port}; simulator + opt-in Minnit diagnostic intake; auth={'enabled' if token else 'disabled (demo only)'}", flush=True)
+    print(f"Control plane listening on {args.host}:{server.server_port}; home={args.home}; provider integrations opt-in/guarded; auth={'enabled' if token else 'disabled (demo only)'}", flush=True)
     def terminate(_signum, _frame):
         raise KeyboardInterrupt
 

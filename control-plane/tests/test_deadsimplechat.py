@@ -160,6 +160,9 @@ class ShadowTests(unittest.TestCase):
             self.assertEqual(call(local_route)[1]['cursor'],0)
             with self.assertRaises(ValueError):
                 make_server('127.0.0.1',0,self.controller,'',workflow=workflow,shadow=self.shadow)
+            self.assertEqual(call('/api/instances/'+self.instance['id']+'/stop',{})[0],200)
+            self.assertFalse(self.shadow.status()['armed'])
+            self.assertEqual(call('/api/deadsimplechat/shadow/arm',{})[0],200)
             self.assertEqual(call('/api/stop-all',{})[0],200)
             self.assertFalse(self.shadow.status()['armed'])
             self.assertEqual(call('/hooks/deadsimplechat/'+HOOK,self.payload(),token='')[0],409)

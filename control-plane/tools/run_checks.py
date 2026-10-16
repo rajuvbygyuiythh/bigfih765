@@ -17,21 +17,25 @@ from contracts import FIXTURES
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--ui', action='store_true', help='Also run npm/jsdom tests after npm ci')
+    parser.add_argument('--browser', action='store_true', help='Also run optional real Chromium smoke; requires external playwright-core + CHROMIUM_EXECUTABLE')
     args = parser.parse_args()
     fingerprint = source_fingerprint()
     commands = [('python_suite', [sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v']),
                 ('js_syntax', ['node', '--check', 'static/app.js']),
                 ('tester_js_syntax', ['node', '--check', 'static/test.js']),
-                ('planning_js_syntax', ['node', '--check', 'static/planning.js'])]
+                ('planning_js_syntax', ['node', '--check', 'static/planning.js']),
+                ('workspace_js_syntax', ['node', '--check', 'static/workspace.js'])]
     if args.ui:
         commands.append(('dom_http_suite', ['npm', 'test']))
+    if args.browser:
+        commands.append(('browser_smoke', ['node', 'tools/browser_smoke.cjs']))
     results = []
     for ident, command in commands:
         try:
             result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, timeout=120)
             output = result.stdout + result.stderr
             print(output, end='')
-            matches = re.findall(r'Ran (\d+) tests|PASS: (\d+) DOM', output)
+            matches = re.findall(r'Ran (\d+) tests|PASS: (\d+) (?:DOM|BROWSER)', output)
             count = sum(int(a or b) for a, b in matches)
             results.append({'id': ident, 'exit_code': result.returncode, 'tests_ran': count})
         except (OSError, subprocess.TimeoutExpired):

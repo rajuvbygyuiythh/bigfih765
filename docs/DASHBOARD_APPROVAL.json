@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "plan_path": "docs/DASHBOARD_MASTER_PLAN.md",
+  "plan_sha256": "23da052a4007f00b2c4a29447bda04d7bf0130447877fdef4453a64ae3fe4d93",
+  "approval_reference": "owner-chat-2026-10-16-ok-approve-operator-dashboard",
+  "owner_decision": "ok approve",
+  "scope": "Operator workspace implementation from master plan. No provider-scope expansion, site unlock or live acceptance."
+}

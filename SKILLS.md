@@ -4,9 +4,11 @@ These are inspected local tools/methods, not installed model plugins or guarante
 
 | Skill | Entry point | Boundary |
 | --- | --- | --- |
+| Operator workspace | `/workspace` (default), `static/workspace.*` | Approved seven-page operator UI, real local TXT/session/status/Stop; DS only, no sender/unlock |
+| Rendered Chromium smoke | `tools/run_checks.py --ui --browser` | External playwright-core/NODE_PATH + CHROMIUM_EXECUTABLE required; synthetic DB/layout/keyboard only, no provider proof |
 | Plan-first dashboard review | `/plan`, `docs/DASHBOARD_MASTER_PLAN.md` | Representative UI source review; read-only real locked queue, no write/unlock controls |
-| DS shadow setup | Legacy Advanced panel / `--env-file` | Independent URL-secret shadow intake + hashed one-shot intent; NO sender/vendor-auth proof, private values never chat |
-| TXT web self-test | `/legacy/test` or explicit `app.py --home tester` | One local user message → one next TXT line, local live report; not provider chat/delivery |
+| DS shadow setup | Workspace Settings / `--env-file` | Independent URL-secret shadow intake + hashed one-shot intent; NO sender/vendor-auth proof, private values never chat |
+| TXT web self-test | Workspace Messages (old `/legacy/test` retained) | One local user message → one next TXT line, local live report; not provider chat/delivery |
 | Scope/approval review | `python -B control-plane/tools/site_queue.py read-plan` | Read current plan/hash; no setup until explicit owner approval; changed plan requires re-approval |
 | Sequential lock queue | `python -B control-plane/tools/site_queue.py status` | SITES is canonical; sequential evidence-backed steps, complete-and-next only; no override |
 | One-site recon | `python -B control-plane/tools/recon_site.py deadsimplechat` | Official-documentation summary; no network/send |

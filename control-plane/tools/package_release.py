@@ -16,12 +16,14 @@ from research import catalog
 SOURCE_FILES = [
     '.gitignore', 'README.md', 'BUILD_REPORT.md', 'app.py', 'core.py', 'contracts.py',
     'research.py', 'platforms.py', 'workspace.py', 'minnit.py', 'recon_deadsimplechat.py', 'site_workflow.py', 'reply_tester.py', 'deadsimplechat.py', 'server_env.py', 'package.json', 'package-lock.json',
-    'static/planning.html', 'static/planning.js', 'static/planning.css', 'static/index.html', 'static/app.js', 'static/style.css', 'static/test.html', 'static/test.js', 'static/test.css',
-    'tests/planning.test.cjs', 'tests/test_planning.py', 'tests/test_control_plane.py', 'tests/test_contracts.py', 'tests/test_minnit.py', 'tests/test_recon.py', 'tests/test_site_workflow.py', 'tests/test_reply_tester.py', 'tests/test_deadsimplechat.py', 'tests/ui.test.cjs', 'tests/tester.test.cjs',
+    'static/noto-sans-bengali.ttf', 'static/OFL-NotoSansBengali.txt', 'static/workspace.html', 'static/workspace.js', 'static/workspace.css', 'static/planning.html', 'static/planning.js', 'static/planning.css', 'static/index.html', 'static/app.js', 'static/style.css', 'static/test.html', 'static/test.js', 'static/test.css',
+    'tests/test_operator_workspace.py', 'tests/workspace.test.cjs', 'tests/planning.test.cjs', 'tests/test_planning.py', 'tests/test_control_plane.py', 'tests/test_contracts.py', 'tests/test_minnit.py', 'tests/test_recon.py', 'tests/test_site_workflow.py', 'tests/test_reply_tester.py', 'tests/test_deadsimplechat.py', 'tests/ui.test.cjs', 'tests/tester.test.cjs',
     'data/site_catalog.json', 'data/deadsimplechat_recon.json', 'data/test_results.json', 'tools/run_checks.py',
-    'tools/package_release.py', 'tools/seed_workspace.py', 'tools/recon_site.py', 'tools/site_queue.py'
+    'tools/browser_smoke.cjs', 'tools/package_release.py', 'tools/seed_workspace.py', 'tools/recon_site.py', 'tools/site_queue.py'
 ]
 REPORTS = {
+    'DASHBOARD_APPROVAL.json': 'docs/DASHBOARD_APPROVAL.json',
+    'OPERATOR_WORKSPACE.md': 'research/operator-workspace-2026-10-16/REPORT.md',
     'DASHBOARD_MASTER_PLAN.md': 'docs/DASHBOARD_MASTER_PLAN.md',
     'DASHBOARD_SOURCE_REVIEW.md': 'research/dashboard-review-2026-10-16/REPORT.md',
     'SUPPORTED_INTEGRATIONS.md': 'research/supported-integrations-2026-10-16/REPORT.md',

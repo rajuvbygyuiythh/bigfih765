@@ -10,14 +10,14 @@ async function waitFor(predicate,label){const end=Date.now()+8000;while(Date.now
  const tmp=await mkdtemp(path.join(tmpdir(),'orbit-plan-'));let server,dom,checks=0;
  try{
   const token='planning-test-token';
-  server=spawn('python',['-B','app.py','--host','127.0.0.1','--port','0','--db',path.join(tmp,'test.db')],{cwd:path.resolve(__dirname,'..'),env:{...process.env,CONTROL_PLANE_TOKEN:token,ORBIT_MINNIT_DIAGNOSTICS:'0',ORBIT_MINNIT_AUTHORIZED:'0',DS_SHADOW_ENABLED:'0'},stdio:['ignore','pipe','pipe']});
+  server=spawn('python',['-B','app.py','--host','127.0.0.1','--port','0','--home','planning','--db',path.join(tmp,'test.db')],{cwd:path.resolve(__dirname,'..'),env:{...process.env,CONTROL_PLANE_TOKEN:token,ORBIT_MINNIT_DIAGNOSTICS:'0',ORBIT_MINNIT_AUTHORIZED:'0',DS_SHADOW_ENABLED:'0'},stdio:['ignore','pipe','pipe']});
   const base=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(new Error('startup timeout')),8000);server.once('error',reject);server.stdout.on('data',chunk=>{const match=chunk.toString().match(/listening on 127\.0\.0\.1:(\d+)/);if(match){clearTimeout(timeout);resolve('http://127.0.0.1:'+match[1]);}});server.once('exit',()=>{clearTimeout(timeout);reject(new Error('server exited'));});});
   const errors=[],requests=[],vc=new VirtualConsole();vc.on('jsdomError',error=>errors.push(error));
   dom=await JSDOM.fromURL(base,{runScripts:'dangerously',resources:'usable',virtualConsole:vc,beforeParse(w){w.fetch=(url,options)=>{requests.push({url,method:options?.method||'GET'});return fetch(new URL(url,base),options);};}});
   const w=dom.window,d=w.document,$=id=>d.getElementById(id);
   await waitFor(()=>$('plan-status').textContent.includes('Authenticate'),'auth required');
   assert.equal(d.querySelector('h1').textContent,'One site. One finished delivery.');assert.equal($('script-file'),null);assert.equal($('stop-all'),null);
-  checks++;console.log('PASS PLAN: CLI default retires previous dashboards and explains plan-only scope');
+  checks++;console.log('PASS PLAN: explicit planning mode retires previous dashboards and explains plan-only scope');
   function login(value){$('plan-token').value=value;$('plan-auth').dispatchEvent(new w.SubmitEvent('submit',{bubbles:true,cancelable:true}));}
   login('wrong');await waitFor(()=>$('plan-status').textContent.includes('required'),'wrong token rejected');assert.equal($('plan-queue').children.length,0);
   checks++;console.log('PASS PLAN: auth fails closed without exposing saved workflow');

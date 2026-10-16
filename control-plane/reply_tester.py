@@ -79,6 +79,17 @@ class ReplyTester:
                                        (ident, json.dumps(lines), 'ready', now, now))
             return self._view(self._row(ident))
 
+    def sessions(self):
+        """Bounded metadata index only; no scripts, messages, input hashes or events."""
+        with self.controller.lock:
+            self.controller._ensure_open()
+            rows = self.controller.db.execute('SELECT id,script,cursor,status,run_id,duplicates,created_at,updated_at FROM reply_test_sessions ORDER BY updated_at DESC,rowid DESC LIMIT ?', (MAX_SESSIONS,)).fetchall()
+            return {'mode': 'local_self_test', 'sessions': [
+                {'id': row[0], 'total_lines': len(json.loads(row[1])), 'cursor': row[2],
+                 'status': row[3], 'run_id': row[4], 'duplicates': row[5],
+                 'created_at': row[6], 'updated_at': row[7], 'external_messages_sent': 0}
+                for row in rows]}
+
     def state(self, ident):
         with self.controller.lock:
             return self._view(self._row(ident))

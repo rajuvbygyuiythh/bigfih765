@@ -14,7 +14,7 @@ class PlanningTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory()
         self.controller=Controller(Path(self.tmp.name)/'test.db')
-        self.server=make_server('127.0.0.1',0,self.controller,'planning-test-token')
+        self.server=make_server('127.0.0.1',0,self.controller,'planning-test-token',home='planning')
         self.thread=threading.Thread(target=self.server.serve_forever,daemon=True);self.thread.start()
         self.base='http://127.0.0.1:'+str(self.server.server_port)
     def tearDown(self):
