@@ -1,5 +1,9 @@
 # Project context for incoming agents
 
+## Latest owner override — 2026-10-17 (read first)
+
+Read `docs/PROJECT_CONTINUATION_RULES.md` before applying older workflow text. Website terms/unofficial-client notes are INFORMATIONAL for public research, contract analysis and local engineering, not hard-locks or reasons to ask for repeated approval. All8 Europe sites continue with contract work in approved order (6obcy first); policy review is parallel. This supersedes earlier permission/policy-first engineering stops, including the Chaat-priority instruction below. Keep evidence truthful and preserve actual account/access/auth/test/Stop/privacy checks; no CAPTCHA/auth bypass or fake live success. Do not resume the rejected auth/demo loop.
+
 Read `PROJECT_MEMORY.md`, then `knowledge-pack/GOALS.md`, `knowledge-pack/docs/DAILY_SITE_DELIVERY.md`, `knowledge-pack/docs/CHAT_SYSTEM.md` and `knowledge-pack/docs/SECURITY_AND_LIMITATIONS.md` before planning or coding.
 
 ## Owner-confirmed working goal
@@ -46,4 +50,4 @@ Latest owner dashboard override (2026-10-16): plan all forms first, remove curre
 
 Latest dashboard approval/delivery: owner said “ok approve”, recorded in `docs/DASHBOARD_APPROVAL.json` without editing the approved master plan. Default is now original seven-page `workspace` (Home/Sites/Messages/Sessions/Live Chat/Settings/Logs), not planning or legacy UI. Reused local TXT engine, new authenticated metadata-only session index, DS-only non-secret slots/private setup/shadow controls, visible Stop. Read `research/operator-workspace-2026-10-16/REPORT.md`.159Python+55DOM+7realChromium smoke PASS; optional browser requires external tooling/binary, runtime remains stdlib. Noto Bengali font self-hosted with OFL. No provider sender/traffic, Step3partial25%/seven locked. Do not restore old default, award out-of-order steps, expand TXT provider scope, or call local/layout tests live GREEN.
 
-Latest owner override (2026-10-16, Europe shortlist): all8 browser-site assessment/implementation tasks approved without repeated prompts; use new ACTIVE SESSION and `tools/europe_tasks.py`. The old no-batch/one-target lock does not govern this separately approved work backlog. Preserve existing runtime guards and GOALS. Three policy pages actually reviewed; Chaat bot+B tolerance makes its unresolved connection/event/ACK/close contract the next priority. 6obcy unofficial-client and Bazoocam commercial/ads restrictions must not be bypassed. No eight-adapter/live-success claim, no rejected auth/demo loop.
+Latest owner override (2026-10-16, Europe shortlist): all8 browser-site assessment/implementation tasks approved without repeated prompts; use new ACTIVE SESSION and `tools/europe_tasks.py`. The old no-batch/one-target lock does not govern this separately approved work backlog. Preserve existing runtime guards and GOALS. Historical initial policy-based dispatch is superseded by the 2026-10-17 continuation rule: policy facts remain evidence, but cannot lock or reorder public/local engineering. Actual technical access and live-test results remain separate. No eight-adapter/live-success claim, no rejected auth/demo loop.

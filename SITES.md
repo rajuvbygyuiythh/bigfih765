@@ -6,16 +6,16 @@
 
 | Website | Work authorization | Next evidence/task | Live |
 | --- | --- | --- | --- |
-| 6obcy | APPROVED / UNLOCKED | Administrator permission: unofficial-client restriction | NOT READY |
-| Bazoocam | APPROVED / UNLOCKED | Permitted scope: commercial/advertising restrictions | NOT READY |
-| Chatroom2000 | APPROVED / UNLOCKED | Current automation policy review | NOT READY |
-| Knuddels | APPROVED / UNLOCKED | Current policy + browser feature limits | NOT READY |
-| Chaat | APPROVED / UNLOCKED | Connection/event/ACK/close contract; bots conditionally tolerated with+B | NOT READY |
-| Tchatche | APPROVED / UNLOCKED | Current automation policy review | NOT READY |
-| Deutscher-Chat | APPROVED / UNLOCKED | Current automation policy review | NOT READY |
-| Chat4free | APPROVED / UNLOCKED | Current automation policy review; do not bypass challenge | NOT READY |
+| 6obcy | APPROVED / UNLOCKED | Connection/event/ACK/next/Stop contract | NOT READY |
+| Bazoocam | APPROVED / UNLOCKED | Connection/event/ACK/next/Stop contract | NOT READY |
+| Chatroom2000 | APPROVED / UNLOCKED | Connection/event/ACK/close/Stop contract | NOT READY |
+| Knuddels | APPROVED / UNLOCKED | Connection/event/ACK/close/Stop contract; browser feature limits | NOT READY |
+| Chaat | APPROVED / UNLOCKED | Connection/event/ACK/close/Stop contract | NOT READY |
+| Tchatche | APPROVED / UNLOCKED | Connection/event/ACK/close/Stop contract | NOT READY |
+| Deutscher-Chat | APPROVED / UNLOCKED | Connection/event/ACK/close/Stop contract | NOT READY |
+| Chat4free | APPROVED / UNLOCKED | Connection/event/ACK/close/Stop contract | NOT READY |
 
-Next technical priority: **Chaat contract investigation**, selected by primary policy evidence rather than traffic alone. No live adapter implemented. The historical provider-delivery machine block below is unchanged and applies only to that earlier queue; it does not relock this approved research/backlog.
+2026-10-17 owner override: terms/client-policy notes are **INFORMATIONAL / NONBLOCKING for public/local engineering**. Policy review runs in parallel, never moves work into a repeated approval wait. Next: **6obcy contract investigation**, original approved order. See `docs/PROJECT_CONTINUATION_RULES.md`. No live adapter or connection is claimed; actual authentication/access/test evidence remains separate. The historical provider-delivery machine block below is unchanged and applies only to that earlier queue.
 
 ## Historical provider delivery queue (runtime gates preserved)
 

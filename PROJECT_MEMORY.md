@@ -1,6 +1,15 @@
 # Project memory — শুরু এখান থেকে
 
-## ACTIVE SESSION — 2026-10-16 Europe browser work approved in bulk
+## ACTIVE SESSION — 2026-10-17 policy notes no longer lock engineering
+
+- Latest owner explicitly requested not to let unofficial-client/policy notes stop the project or create loops, and to add this firmly to logic/rules. Implemented `docs/PROJECT_CONTINUATION_RULES.md` and hard-coded `WORK_POLICY` in `control-plane/europe_workflow.py`.
+- All8 approved Europe work items now retain `next_task=contract`, regardless of restricted/unreviewed/conditional policy status; policy review is parallel/nonblocking. No repeated owner approval. Removed terms-derived `permission`/`policy_review` dispatch and policy-based Chaat prioritization. **6obcy contract work first** in the approved shortlist order. Existing policy facts/URLs are retained, not suppressed.
+- Scope: terms notes do not gate public research, contract analysis, synthetic fixtures/local core-adapter engineering or regression. Actual account/room access, auth failure, unknown transport contracts and live-test evidence stay honest; no CAPTCHA/auth bypass or automatic retries were added. No provider requests/sends/adapters/live GREEN.
+- Tests cover every policy classification, attempted input overrides, retention of facts, unchanged task order, no repeat prompt, independent outputs and live guards. Executed focused17PASS; final full176Python+55DOM/local-HTTP+4JS syntaxPASS; receipt freshly verified. No current Chromium/live-provider tests. Report: `research/continuation-rules-2026-10-17/REPORT.md`. Canonical queue/GOALS/frozen plans unchanged; diff-checkPASS.
+- Root AGENTS/PLAN/SITES/SKILLS/README updated to avoid conflicting active instructions. Earlier reports are historical. GOALS/frozen plans/historical canonical provider queue remain unchanged; new rule is not a credential-access override.
+- Git checkout again appeared at9a7c7b3 with published files untracked. Fetched published session branch3fd0323; verified every file/symlink against tree before a mixed fast-forward reset, preserving all working files. Continue only arena/d73f03f8-bigfih765; no force push/rebase/delete.
+
+## PREVIOUS SESSION — 2026-10-16 Europe browser work approved in bulk
 
 - Latest owner: “approve fill next of all task no need to tell me unlock all task”. Applied to the immediately preceding eight-site Europe browser shortlist: all assessment/implementation work is approved without repeated per-site approval. This supersedes the old no-batch-research/target-selection requirement for this workstream, not actual provider permission or test evidence.
 - Do not resume the rejected auth/demo loop. No demo/auth changes or requests for credentials. New executable worklist is `python -B control-plane/tools/europe_tasks.py`; `--json` covers all eight, `--site chaat` outputs one filled recon/core-evidence packet.

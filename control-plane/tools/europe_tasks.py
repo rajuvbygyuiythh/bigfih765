@@ -32,7 +32,8 @@ def main():
         for site in data['sites']:
             print(f"{site['id']:17} {site['mode']:13} UNLOCKED   {site['next_task']:13} NOT_READY")
         print('Next:', data['summary']['next_site'], '/ connection/event/ACK/close/Stop contract.')
-        print('Policy pages reviewed:', data['summary']['policy_pages_reviewed'], '/ 8; Chaat tolerates disclosed +B bots subject to terms.')
+        print('Terms notes: INFORMATIONAL ONLY; no engineering lock or repeated approval.')
+        print('Policy review runs in parallel; actual access/test readiness remains separate.')
         print('No network requests, provider adapters, messages or legacy queue changes.')
     return 0
 

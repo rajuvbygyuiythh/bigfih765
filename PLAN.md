@@ -1,6 +1,10 @@
 # Work roadmap
 
-## Latest workstream override — Europe browser shortlist, 2026-10-16
+## Latest owner override — 2026-10-17: keep engineering moving
+
+`docs/PROJECT_CONTINUATION_RULES.md` supersedes the earlier policy-first engineering dispatch. Website terms/client-restriction notes are informational, never a public-research/local-coding hard-lock or repeat-approval trigger. Policy review proceeds in parallel; all8 approved Europe tasks continue at contract work in original order, **6obcy first**. Preserve actual account/auth/technical-access checks, Stop/privacy/consent and honest test evidence. No blind retries or CAPTCHA/auth bypass added. Historical provider-runtime gates/frozen plans/GOALS unchanged.
+
+## Historical workstream approval — Europe browser shortlist, 2026-10-16
 
 Owner approved all eight Europe website tasks and requested no repeated approval/unlock prompts. Their assessment/implementation backlog is now unlocked independently of the historical runtime queue below. Use `tools/europe_tasks.py` to read all packets. Public recon is documented; no adapter or live contract is established. Three primary policy pages reviewed: 6obcy unofficial-client/ads restrictions, Bazoocam commercial/advertising restrictions, Chaat conditional bot tolerance with+B and resource/session rules. Next is Chaat contract investigation; review the remaining five policies independently. Never convert owner work approval into third-party permission or bypass restrictions. Preserve GOALS and historical DS/other-provider acceptance gates. No auth/demo loop.
 

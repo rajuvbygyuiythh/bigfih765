@@ -35,7 +35,7 @@ class EuropeWorkflowTests(unittest.TestCase):
         for site in result['sites']:
             self.assertTrue(site['work_unlocked'])
             self.assertTrue(all(task['owner_approved'] for task in site['tasks']))
-            self.assertIn(site['next_task'], ('contract', 'policy_review', 'permission'))
+            self.assertEqual(site['next_task'], 'contract')
 
     def test_work_approval_never_enables_runtime_or_awards_completion(self):
         result = worklist()
@@ -170,22 +170,62 @@ class EuropeWorkflowTests(unittest.TestCase):
         manifest.write_text('{"changed":true}')
         self.assertNotEqual(source_fingerprint(root), before)
 
-    def test_policy_review_changes_priority_without_claiming_live_permission(self):
+    def test_policy_notes_never_block_or_reorder_engineering(self):
         result = worklist()
         rows = {site['id']: site for site in result['sites']}
         self.assertEqual(result['summary']['policy_pages_reviewed'], 3)
-        self.assertEqual(result['summary']['next_site'], 'chaat')
+        self.assertEqual(result['summary']['next_site'], '6obcy')
         self.assertEqual(rows['6obcy']['policy']['status'], 'restricted_client')
-        self.assertEqual(rows['6obcy']['next_task'], 'permission')
-        self.assertEqual(rows['bazoocam']['next_task'], 'permission')
-        self.assertEqual(rows['chaat']['next_task'], 'contract')
+        self.assertEqual(rows['bazoocam']['policy']['status'], 'noncommercial_restrictions')
         self.assertIn('+B', rows['chaat']['policy']['summary'])
-        self.assertEqual(rows['knuddels']['next_task'], 'policy_review')
+        for site in result['sites']:
+            self.assertEqual(site['next_task'], 'contract')
+            self.assertFalse(site['policy']['blocks_engineering'])
+            self.assertFalse(site['policy_review']['blocking'])
+            self.assertEqual(site['engineering_blockers'], [])
+            self.assertEqual(site['core_contract']['permission']['state'], 'unknown')
         self.assertFalse(result['approval']['provider_permission_established'])
         data = copy.deepcopy(self.data)
         data['sites'][0]['policy']['source'] = 'http://example.test/'
         with self.assertRaises(APIError):
             self.load(data)
+
+    def test_every_policy_status_preserves_task_and_approval_invariants(self):
+        for status in ('restricted_client', 'noncommercial_restrictions',
+                       'conditional_bot_tolerance', 'not_reviewed'):
+            data = copy.deepcopy(self.data)
+            for site in data['sites']:
+                site['policy'].update(status=status,
+                    source=None if status == 'not_reviewed' else site['url'],
+                    reviewed_on=None if status == 'not_reviewed' else '2026-10-16')
+            result = self.load(data)
+            with self.subTest(status=status):
+                self.assertEqual(result['summary']['next_site'], '6obcy')
+                self.assertEqual(result['summary']['next_task'], 'contract')
+                self.assertFalse(result['work_policy']['repeat_owner_approval_required'])
+                self.assertFalse(result['work_policy']['terms_notes_block_engineering'])
+                self.assertTrue(all(s['next_task'] == 'contract' and s['work_unlocked']
+                                    for s in result['sites']))
+                self.assertFalse(result['live_enabled'])
+
+    def test_manifest_cannot_override_continuation_policy_or_force_live(self):
+        data = copy.deepcopy(self.data)
+        data['work_policy'] = {'terms_notes_block_engineering': True,
+                               'repeat_owner_approval_required': True,
+                               'preserve_actual_access_and_test_gates': False}
+        data['sites'][0]['next_task'] = 'wait_for_owner'
+        data['sites'][0]['policy']['blocks_engineering'] = True
+        data['sites'][0]['live_enabled'] = True
+        result = self.load(data)
+        self.assertFalse(result['work_policy']['terms_notes_block_engineering'])
+        self.assertFalse(result['work_policy']['repeat_owner_approval_required'])
+        self.assertTrue(result['work_policy']['preserve_actual_access_and_test_gates'])
+        self.assertFalse(result['work_policy']['automatic_retries'])
+        self.assertEqual(result['sites'][0]['next_task'], 'contract')
+        self.assertFalse(result['sites'][0]['policy']['blocks_engineering'])
+        self.assertFalse(result['sites'][0]['live_enabled'])
+        result['work_policy']['terms_notes_block_engineering'] = True
+        self.assertFalse(worklist()['work_policy']['terms_notes_block_engineering'])
 
     def test_calls_return_independent_packets(self):
         result = worklist()

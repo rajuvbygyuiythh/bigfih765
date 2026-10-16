@@ -4,7 +4,7 @@ These are inspected local tools/methods, not installed model plugins or guarante
 
 | Skill | Entry point | Boundary |
 | --- | --- | --- |
-| Europe approved task packets | `python -B control-plane/tools/europe_tasks.py [--json / --site chaat]` | All8 work approved; public evidence/policy + core requirements, no network/live adapter or legacy unlock |
+| Europe approved task packets | `python -B control-plane/tools/europe_tasks.py [--json / --site chaat]` | All8 approved; terms notes informational/nonblocking, original order/contract next, no network/live adapter or legacy unlock |
 | Operator workspace | `/workspace` (default), `static/workspace.*` | Approved seven-page operator UI, real local TXT/session/status/Stop; DS only, no sender/unlock |
 | Rendered Chromium smoke | `tools/run_checks.py --ui --browser` | External playwright-core/NODE_PATH + CHROMIUM_EXECUTABLE required; synthetic DB/layout/keyboard only, no provider proof |
 | Plan-first dashboard review | `/plan`, `docs/DASHBOARD_MASTER_PLAN.md` | Representative UI source review; read-only real locked queue, no write/unlock controls |

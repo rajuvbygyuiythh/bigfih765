@@ -15,3 +15,5 @@
 2026-10-16 | deadsimplechat | Step3partial / approved operator dashboard | Recorded master-plan approval; implemented default seven-page operator shell, migrated local TXT tools, metadata session index, private preflight/DS controls and bound-slot Stop;159Python+55DOM+7realChromium PASS, no provider sending/unlock.
 
 2026-10-16 | Europe browser8 | Owner-approved bulk work | Added no-network/read-only approved worklist, source-backed audience/browser packets, three primary policy reviews and per-site core-contract gaps; work unlocked without runtime bypass, Chaat contract next; regression outcomes in research/europe-work-2026-10-16/REPORT.md. Legacy provider queue and GOALS unchanged.
+
+2026-10-17 | Europe work continuation | Owner override | Removed terms-note-derived permission/policy-review waiting and Chaat-only priority; all8 approved sites continue contract work in original order (6obcy first). Added hard-coded WORK_POLICY, explicit nonblocking policy fields, four-status/override regression and durable continuation rules. Actual auth/access/live checks and canonical legacy state preserved; no bypass or provider sends.

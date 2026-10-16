@@ -14,9 +14,19 @@ from core import APIError
 DATA = Path(__file__).resolve().parent / 'data/europe_assessment.json'
 SITE_IDS = ('6obcy', 'bazoocam', 'chatroom2000', 'knuddels', 'chaat',
             'tchatche', 'deutscher_chat', 'chat4free')
+# Hard project invariant: terms notes never control the engineering scheduler.
+WORK_POLICY = {
+    'reference': 'owner-chat-2026-10-17-no-policy-note-work-lock',
+    'terms_notes_role': 'informational',
+    'terms_notes_block_engineering': False,
+    'repeat_owner_approval_required': False,
+    'policy_review_is_parallel': True,
+    'preserve_actual_access_and_test_gates': True,
+    'automatic_retries': False,
+}
 EUROPE_COUNTRIES = frozenset(('PL', 'FR', 'ES', 'BE', 'IT', 'DE', 'CH', 'AT', 'RO'))
 CONTRACT_REQUIREMENTS = {
-    'permission': 'Current platform rules and permitted automated diagnostic scope',
+    'permission': 'Actual account/room access and test scope when needed; terms notes do not gate research or local engineering',
     'connection_session': 'Documented or authorized-observed connection, authentication and session expiry',
     'conversation_identity': 'Session, room, partner and conversation identity; rotation boundaries',
     'incoming_events': 'Synthetic/consented event schema, sender attribution and event occurrence ID',
@@ -128,7 +138,7 @@ def worklist(path=DATA):
                   'reference', 'date', 'scope', 'repeat_approval_required',
                   'provider_permission_established')}, 'sites': [],
               'external_requests': 0, 'messages_sent': 0, 'live_enabled': False,
-              'legacy_delivery_queue_modified': False}
+              'legacy_delivery_queue_modified': False, 'work_policy': deepcopy(WORK_POLICY)}
     # Project a closed set of public fields; arbitrary input fields never echo.
     for item in data['sites']:
         site = {key: deepcopy(item[key]) for key in (
@@ -149,22 +159,23 @@ def worklist(path=DATA):
         site['policy'] = {key: item['policy'][key] for key in (
             'status', 'source', 'summary', 'reviewed_on')}
         policy_status = site['policy']['status']
-        site['next_task'] = ('contract' if policy_status == 'conditional_bot_tolerance' else
-                             'policy_review' if policy_status == 'not_reviewed' else 'permission')
+        # Policy text/status cannot hold, reorder or re-approve engineering work.
+        site['policy']['blocks_engineering'] = False
+        site['policy_review'] = {
+            'state': 'pending' if policy_status == 'not_reviewed' else 'documented',
+            'blocking': False}
+        site['engineering_blockers'] = []
+        site['next_task'] = 'contract'
         site['random_next'] = ('advertised' if site['mode'].startswith('random_') else 'not_established')
         site['tasks'] = [{'id': key, 'label': label, 'state': state,
                           'owner_approved': True} for key, label, state in TASKS]
         site['core_contract'] = {key: {'state': 'unknown', 'required_evidence': value}
                                  for key, value in CONTRACT_REQUIREMENTS.items()}
-        if policy_status != 'not_reviewed':
-            site['core_contract']['permission']['state'] = 'policy_reviewed_not_live_authorized'
-            site['core_contract']['permission']['source'] = site['policy']['source']
         result['sites'].append(site)
     result['summary'] = {'approved_sites': len(result['sites']),
                          'work_unlocked': len(result['sites']),
                          'adapters_implemented': 0, 'live_connected': 0,
                          'policy_pages_reviewed': sum(s['policy']['status'] != 'not_reviewed' for s in result['sites']),
-                         'next_site': next((s['id'] for s in result['sites']
-                                            if s['policy']['status'] == 'conditional_bot_tolerance'), None),
+                         'next_site': SITE_IDS[0],
                          'next_task': 'contract'}
     return result
