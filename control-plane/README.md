@@ -1,4 +1,4 @@
-# Orbit control plane · v0.1.0
+# Orbit control plane · v0.2.0
 
 Runnable first milestone: a central web dashboard, SQLite-backed instance configuration and isolated synthetic worker lifecycles. **Status: OFFLINE_VALIDATED.** This is a local control-plane implementation, not a completed Minnit/DeadSimpleChat connector or acquisition operation.
 
@@ -39,6 +39,22 @@ Optional flags: `--host`, `--port`, `--db`. The database defaults to `runtime/co
 
 A single local scheduler maintains virtual worker heartbeats; workers are **not separate OS processes**, browser sessions or live platform connections. Synthetic checks do not generate chat conversations or acquisition counts.
 
+## Site research and contract workbench (v0.2)
+
+Open **Site research** in the sidebar. Each site has six completed documentation/design gates, two local regression gates and four pending live gates. With a current passing receipt, **8/12 = 67% checklist completion**, not success probability or production readiness. Both live adapters remain disabled.
+
+The offline inspector accepts only authored/synthetic fixtures. Minnit handles documented message batches; DeadSimpleChat handles the documented button-action scope, not an invented ordinary-message schema. No incoming payload is treated as an authenticated webhook and no outbound request is made. `describe-send` returns a secret-free specification, not delivery.
+
+Run and save actual test evidence:
+
+```sh
+python -B tools/run_checks.py --ui
+```
+
+Use `npm ci --ignore-scripts --no-audit --no-fund` first if jsdom is not installed, or omit `--ui` to run Python and JS-syntax checks only. The receipt at `data/test_results.json` is bound to a fingerprint of source/tests/catalog. Changed code or failed/missing proof reopens the local-test gates. The dashboard reloads catalog/receipt on its two-second refresh; it does not perform background research or automatically push to GitHub.
+
+Current selected scopes and unresolved provider details are in `data/site_catalog.json`. In the repository, detailed reports are `research/supported-integrations-2026-10-16/REPORT.md` and `research/multiplechat-review-2026-10-16/REPORT.md`. The v0.2 ZIP includes copies under `reports/`. They are authorship/review artifacts, not source ZIP imports.
+
 ## Try it
 
 1. Click **New instance**, select **Synthetic sandbox**, and save a name.
@@ -65,7 +81,7 @@ npm test
 
 Node/jsdom is a **test-only** dependency; the app itself requires no npm packages. The pinned version and transitive dependencies are in `package-lock.json`. `tests/ui.test.cjs` starts a temporary authenticated local server and closes it afterwards. It tests DOM interactions against real local HTTP endpoints, **not real-browser layout/rendering or third-party chat**.
 
-Verified in the development environment: **15 Python unit/HTTP tests + 8 DOM/local-HTTP checks passed**, JS syntax passed. The Python tests exercise persistence/no-auto-resume, isolation, idempotency, duplicate/stale events, bounded memory, concurrent deduplication, lifecycle APIs, token checks, preview-origin behavior, payload rejection, and unsupported adapter refusal. A 100-config creation test is not a concurrent-load benchmark.
+Verified in the development environment: **43 Python unit/HTTP/contract/research tests + 12 DOM/local-HTTP checks passed**, JS syntax passed. The Python tests exercise persistence/no-auto-resume, isolation, idempotency, duplicate/stale events, bounded memory, concurrent deduplication, lifecycle APIs, token checks, preview-origin behavior, payload rejection, and unsupported adapter refusal. A 100-config creation test is not a concurrent-load benchmark.
 
 ## API
 
@@ -81,6 +97,10 @@ Verified in the development environment: **15 Python unit/HTTP tests + 8 DOM/loc
 | GET | `/api/instances/{id}/logs` | Bounded runtime-only events |
 | DELETE | `/api/instances/{id}` | `{}`; must be stopped |
 | POST | `/api/stop-all` | `{}`; stop every local worker |
+| GET | `/api/research` | Source-backed catalog, derived gates and test-receipt freshness |
+| GET | `/api/contracts` | Synthetic fixtures; offline mode |
+| POST | `/api/contracts/{platform}/inspect` | `payload` + `expected_room_id`; normalize locally, zero external requests |
+| POST | `/api/contracts/{platform}/describe-send` | Secret-free shape specification only, `transmitted: false` |
 
 Mutation body limit is 16 KiB; JSON objects only. Browser mutations must be same-origin. Static paths are allowlisted; there is no generic file server, proxy or webhook receiver.
 
@@ -89,7 +109,10 @@ Mutation body limit is 16 KiB; JSON objects only. Browser mutations must be same
 - `app.py`: HTTP transport, request/auth/origin validation and scheduler lifecycle.
 - `core.py`: SQLite config repository, atomic instance state, bounded logs, synthetic event checks.
 - `static/`: dependency-free UI; no external CDN requests.
-- `tests/`: core/HTTP tests and optional DOM integration.
+- `contracts.py`: pure offline inspectors/specifications; no network I/O.
+- `research.py`, `data/`: evidence catalog and source-bound test receipt.
+- `tools/run_checks.py`: real-test runner/receipt writer.
+- `tests/`: core/HTTP/contract/research tests and optional DOM integration.
 
 New live adapters must supply their actual authentication, event normalization, supported inbound verification, rate/expiry handling, delivery acknowledgement and cancellation contracts. Keep secrets server-side and separate from this configuration API. Add tests and authorized delivery evidence before enabling a live start path. No private endpoints are guessed here.
 

@@ -202,6 +202,31 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request('/api/instances','POST',body,headers)[0],201)
         self.assertIsNone(self.request('/api/state')[2].get('Access-Control-Allow-Origin'))
 
+    def test_research_and_contract_api_auth_and_local_only(self):
+        self.assertEqual(self.request('/api/research', auth=False)[0], 401)
+        status, research, _ = self.request('/api/research')
+        self.assertEqual(status, 200)
+        self.assertEqual(len(research['sites']), 2)
+        for site in research['sites']:
+            self.assertFalse(site['can_start_live'])
+        fixtures = self.request('/api/contracts')[1]['fixtures']
+        for platform, fixture in fixtures.items():
+            path = '/api/contracts/' + platform + '/inspect'
+            self.assertEqual(self.request(path, 'POST', fixture, auth=False)[0], 401)
+            self.assertEqual(self.request(path, 'POST', fixture, {'Origin':'https://evil.example'})[0], 403)
+            status, result, _ = self.request(path, 'POST', fixture)
+            self.assertEqual(status, 200)
+            self.assertEqual(result['external_requests'], 0)
+            self.assertEqual(result['messages_sent'], 0)
+        self.assertEqual(self.request('/api/contracts/unknown/inspect', 'POST', {})[0], 404)
+
+    def test_secret_free_specification_endpoint(self):
+        body = {'bot_id':'bot','room_id':'room','message':'Synthetic only'}
+        status, spec, _ = self.request('/api/contracts/deadsimplechat/describe-send', 'POST', body)
+        self.assertEqual(status, 200)
+        self.assertFalse(spec['transmitted'])
+        self.assertNotIn('?auth=', spec['endpoint'])
+
     def test_payload_validation_and_static_allowlist(self):
         self.assertEqual(self.request('/api/instances','POST',{'name':None,'adapter':'simulator'})[0],400)
         self.assertEqual(self.request('/api/instances','POST',{'name':'X','adapter':'simulator'},{'Content-Type':'text/plain'})[0],415)

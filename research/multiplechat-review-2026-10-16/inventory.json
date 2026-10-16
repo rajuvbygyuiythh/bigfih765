@@ -1,0 +1,6705 @@
+{
+  "repository": "sff96918-byte/multiplechat",
+  "commit": "c24e1f94174b458860f0a16c4725adc59a6fe40e",
+  "classification": "static_inventory_not_execution",
+  "file_count": 740,
+  "python_files": 26,
+  "files": [
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/BrowserMetrics/BrowserMetrics-6ACA90C2-148C.pma",
+      "bytes": 4194304,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/BrowserMetrics-spare.pma",
+      "bytes": 4194304,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/component_crx_cache/metadata.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Crashpad/metadata",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Crashpad/settings.dat",
+      "bytes": 40,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/CrashpadMetrics-active.pma",
+      "bytes": 1048576,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Account Web Data",
+      "bytes": 77824,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Account Web Data-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Affiliation Database",
+      "bytes": 86016,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Affiliation Database-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/AutofillAiModelCache/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/AutofillAiModelCache/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/AutofillStrikeDatabase/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/AutofillStrikeDatabase/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/BookmarkMergedSurfaceOrdering",
+      "bytes": 6,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/BudgetDatabase/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/BudgetDatabase/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/data_0",
+      "bytes": 45056,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/data_1",
+      "bytes": 270336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/data_2",
+      "bytes": 2105344,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/data_3",
+      "bytes": 4202496,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000001",
+      "bytes": 68865,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000002",
+      "bytes": 20284,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000003",
+      "bytes": 45146,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000004",
+      "bytes": 106305,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000005",
+      "bytes": 48240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000006",
+      "bytes": 81512,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000007",
+      "bytes": 23167,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000008",
+      "bytes": 22206,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000009",
+      "bytes": 17246,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_00000a",
+      "bytes": 104497,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_00000b",
+      "bytes": 192684,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_00000c",
+      "bytes": 458417,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_00000d",
+      "bytes": 51218,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_00000e",
+      "bytes": 47741,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_00000f",
+      "bytes": 27845,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000010",
+      "bytes": 44704,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000011",
+      "bytes": 46278,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000012",
+      "bytes": 19225,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000013",
+      "bytes": 52661,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000014",
+      "bytes": 36053,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000015",
+      "bytes": 90108,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/f_000016",
+      "bytes": 25956,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/Cache_Data/index",
+      "bytes": 524656,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/No_Vary_Search/journal.baj",
+      "bytes": 4,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Cache/No_Vary_Search/snapshot.baf",
+      "bytes": 20,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/chrome_cart_db/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/chrome_cart_db/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/ClientCertificates/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/ClientCertificates/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/00830e62f7d1c411_0",
+      "bytes": 228,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/00e429fbfaf60cd8_0",
+      "bytes": 248,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/01e52ad1621f5da2_0",
+      "bytes": 246,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/028aa5882832085e_0",
+      "bytes": 229,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/0cdfcc4e5f0af972_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/0e5db9c3ec617705_0",
+      "bytes": 243,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/0f7a63071c36f83a_0",
+      "bytes": 230,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/101861c66ee28278_0",
+      "bytes": 248,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/1083451287f7e2da_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/12991b4046c6e899_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/14128600e7e49ad4_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/183539de50cba994_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/1abefe0de60b1b6c_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/1dcf60293cc8ce3a_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/1e41cf709324810c_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/1fdd540da3e35d7a_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/20a810774073f9d4_0",
+      "bytes": 228,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/215d6547560593db_0",
+      "bytes": 243,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/2242027fe5f194a5_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/25669a806926ad3a_0",
+      "bytes": 243,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/26dc7e2c67248e4a_0",
+      "bytes": 241,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/2881b2980aa355da_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/2f8593f3eec9c67c_0",
+      "bytes": 245,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/32e93d025c9c89db_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/3324fff78f669ca8_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/35d24a7b2555527d_0",
+      "bytes": 230,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/384629ec60ac116f_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/39119904e8e03696_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/3ac0f8ee18673cb4_0",
+      "bytes": 238,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/3bc9852f4a291e77_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/3c9aff1a4d72224d_0",
+      "bytes": 245,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/3e0c3691ccbad6a2_0",
+      "bytes": 238,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/40cee07c7287d50f_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/41b41c1a9cad9246_0",
+      "bytes": 247,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4242e3e29d4591b8_0",
+      "bytes": 311,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/45071892bcb5c377_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4615a9b464cf893a_0",
+      "bytes": 249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4839b17f0d0291a9_0",
+      "bytes": 241,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/49e7fd95ae5a04d4_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4a48dd042f0c90a1_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4a6a545f395c4074_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4ae696bd78683bf3_0",
+      "bytes": 249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4cebfe10f98246f2_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4d62df54adb087c4_0",
+      "bytes": 243,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4d67c69ff16dc12c_0",
+      "bytes": 1063,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4deffe473857f8ae_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4eacd868f8e476f2_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/4f4e901b6c50cf52_0",
+      "bytes": 249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/507569436eaa46c0_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/515847d2cb238376_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/51ce2eb3793d1682_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/526d2ff1b7b5c1e9_0",
+      "bytes": 251,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5379dea726deee68_0",
+      "bytes": 249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5578c7ba9aeed786_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5658f63958d48cba_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/56dcd8d2052b104c_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/577d8d1bff463080_0",
+      "bytes": 244,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5ab9e30fdca04ebc_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5b7774faf1f7179e_0",
+      "bytes": 257,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5d349fcb1034d8b9_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/5fab893b5deb3ef8_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/633e11c2b8b2de02_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/6429dd898b101ce8_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/6ef736345e5a8b77_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/6f42ecb12916ae41_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/6f67d56624908072_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/6f740646b98f1e44_0",
+      "bytes": 231,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/7034528be1d33f19_0",
+      "bytes": 248,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/73435d31634c122f_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/7375ae6f3b68b75b_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/73c6bbc8fdcc1afb_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/74cb45bd7f15ec55_0",
+      "bytes": 231,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/75c1f74b38bc9388_0",
+      "bytes": 245,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/788c1e6b9ddd9b9d_0",
+      "bytes": 302,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/7d293ed8b03ae4f6_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/7f00a1108ff34572_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/815573b6064a6025_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8285c60b934af886_0",
+      "bytes": 244,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/834f83c0f9d532ce_0",
+      "bytes": 232,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8661e7de1c671d94_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/899238300d7ca57f_0",
+      "bytes": 249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/89a7ad741676d851_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8a428459a3e1a8db_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8ac8be25b9d67682_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8b045f74b324e600_0",
+      "bytes": 232,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8c1020b4809c4162_0",
+      "bytes": 244,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8d673fafac7a97b2_0",
+      "bytes": 250,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8e44edced2959b2f_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/8f606e0e95757e39_0",
+      "bytes": 243,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9002d0be52418d26_0",
+      "bytes": 230,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9329ab028f911ca9_0",
+      "bytes": 231,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/94dc83195c509b38_0",
+      "bytes": 587,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/98cfc4bdbc9857c7_0",
+      "bytes": 229,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9b5463f4f524d933_0",
+      "bytes": 248,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9c743a69b581ba22_0",
+      "bytes": 232,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9c79a2467191670d_0",
+      "bytes": 254,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9d963625fdefa3ea_0",
+      "bytes": 249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/9e276f32ea8d0872_0",
+      "bytes": 229,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a04b4391ebc540e1_0",
+      "bytes": 251,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a16c34155e527c25_0",
+      "bytes": 227,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a20ade1913e64433_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a3a7bc0b5ba30f34_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a4628f53a781d89f_0",
+      "bytes": 231,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a5f4cefd695cb368_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/a7ae950312817a5e_0",
+      "bytes": 241,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/aab71f45928e9762_0",
+      "bytes": 244,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/abc00a0f638ce61c_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/abc957838a82912a_0",
+      "bytes": 234,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/ad4e8aa9bdb19547_0",
+      "bytes": 264,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/adacee6eb5c65c2a_0",
+      "bytes": 246,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/ae20d02d81e2a84e_0",
+      "bytes": 233,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/b0af83f5b05c2b50_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/b6090e01caf5103b_0",
+      "bytes": 238,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/b971df584aef48c3_0",
+      "bytes": 241,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c0913fcc034bfc31_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c11b6cae8bd878cd_0",
+      "bytes": 230,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c1e8f6274046a817_0",
+      "bytes": 23192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c5e7e92976276887_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c720d604f0ce64ae_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c86a518610a20a7e_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/c8a9327bccbeeb77_0",
+      "bytes": 336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/ca20f1dfbb303dc1_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/ccd31c81d01d10bc_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/cd9cd7afd421a8ac_0",
+      "bytes": 232,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/cf40405ebfd0bcbb_0",
+      "bytes": 238,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/d002a88d7282a296_0",
+      "bytes": 237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/d6ee6cfd676ffe75_0",
+      "bytes": 245,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/db16310d31354c67_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/db174528c46ec051_0",
+      "bytes": 193240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/e22ed3238b83403c_0",
+      "bytes": 250,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/e40b550bcf10f09d_0",
+      "bytes": 230,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/e50ccc3cc015c06d_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/ea8b394c11df83f0_0",
+      "bytes": 231,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/eb147972e57c5244_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/f08f03c35452a853_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/f48cd134a0ad8013_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/f6cca96c45f8f585_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/f82e8a47bc2f01a0_0",
+      "bytes": 236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/f8a81212f0bed4b0_0",
+      "bytes": 244,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fad2e66238d8c52e_0",
+      "bytes": 235,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fae5322d36364f09_0",
+      "bytes": 239,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fc374ff5c1d8b077_0",
+      "bytes": 247,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fc96943a55d49b0c_0",
+      "bytes": 240,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fca71c0f2292004a_0",
+      "bytes": 248,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fd0ca7fbf0976c87_0",
+      "bytes": 242,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fe38306dd172ee7b_0",
+      "bytes": 229,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/fec93d7f79e84a0d_0",
+      "bytes": 238,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/ff0634ee4a645a1a_0",
+      "bytes": 238,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/index",
+      "bytes": 24,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/js/index-dir/the-real-index",
+      "bytes": 3600,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/wasm/index",
+      "bytes": 24,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Code Cache/wasm/index-dir/the-real-index",
+      "bytes": 48,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/commerce_subscription_db/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/commerce_subscription_db/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnGraphiteCache/data_0",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnGraphiteCache/data_1",
+      "bytes": 270336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnGraphiteCache/data_2",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnGraphiteCache/data_3",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnGraphiteCache/index",
+      "bytes": 262512,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnWebGPUCache/data_0",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnWebGPUCache/data_1",
+      "bytes": 270336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnWebGPUCache/data_2",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnWebGPUCache/data_3",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DawnWebGPUCache/index",
+      "bytes": 262512,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/declarative_performance_observer.db",
+      "bytes": 32768,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/declarative_performance_observer.db-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/DIPS",
+      "bytes": 36864,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/discounts_db/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/discounts_db/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/discount_infos_db/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/discount_infos_db/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Rules/000003.log",
+      "bytes": 19,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Rules/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Rules/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Rules/LOG",
+      "bytes": 305,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Rules/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Scripts/000003.log",
+      "bytes": 19,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Scripts/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Scripts/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Scripts/LOG",
+      "bytes": 309,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension Scripts/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension State/000003.log",
+      "bytes": 57,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension State/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension State/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension State/LOG",
+      "bytes": 307,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Extension State/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Favicons",
+      "bytes": 34816,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Favicons-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Feature Engagement Tracker/AvailabilityDB/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Feature Engagement Tracker/AvailabilityDB/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Feature Engagement Tracker/EventDB/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Feature Engagement Tracker/EventDB/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GCM Store/000003.log",
+      "bytes": 1157,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GCM Store/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GCM Store/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GCM Store/LOG",
+      "bytes": 295,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GCM Store/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GPUCache/data_0",
+      "bytes": 45056,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GPUCache/data_1",
+      "bytes": 270336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GPUCache/data_2",
+      "bytes": 1056768,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GPUCache/data_3",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/GPUCache/index",
+      "bytes": 262512,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/heavy_ad_intervention_opt_out.db",
+      "bytes": 16384,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/heavy_ad_intervention_opt_out.db-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/History",
+      "bytes": 204800,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/History-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/IndexedDB/https_app.chitchat.gg_0.indexeddb.leveldb/000003.log",
+      "bytes": 3714,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/IndexedDB/https_app.chitchat.gg_0.indexeddb.leveldb/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/IndexedDB/https_app.chitchat.gg_0.indexeddb.leveldb/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/IndexedDB/https_app.chitchat.gg_0.indexeddb.leveldb/LOG",
+      "bytes": 379,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/IndexedDB/https_app.chitchat.gg_0.indexeddb.leveldb/MANIFEST-000001",
+      "bytes": 23,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Local Storage/leveldb/000003.log",
+      "bytes": 34348,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Local Storage/leveldb/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Local Storage/leveldb/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Local Storage/leveldb/LOG",
+      "bytes": 319,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Local Storage/leveldb/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Login Data",
+      "bytes": 40960,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Login Data For Account",
+      "bytes": 40960,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Login Data For Account-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Login Data-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/MediaDeviceSalts",
+      "bytes": 24576,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/MediaDeviceSalts-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Cookies",
+      "bytes": 20480,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Cookies-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Device Bound Sessions",
+      "bytes": 20480,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Device Bound Sessions-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Network Persistent State",
+      "bytes": 6140,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/NetworkDataMigrated",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Reporting and NEL",
+      "bytes": 36864,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Reporting and NEL-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/TransportSecurity",
+      "bytes": 1685,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Trust Tokens",
+      "bytes": 36864,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network/Trust Tokens-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network Action Predictor",
+      "bytes": 53248,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Network Action Predictor-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/parcel_tracking_db/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/parcel_tracking_db/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/PersistentOriginTrials/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/PersistentOriginTrials/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Preferences",
+      "bytes": 9569,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/PreferredApps",
+      "bytes": 33,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/README",
+      "bytes": 180,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Safe Browsing Network/NetworkDataMigrated",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Secure Preferences",
+      "bytes": 7837,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Segmentation Platform/SegmentInfoDB/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Segmentation Platform/SegmentInfoDB/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Segmentation Platform/SignalDB/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Segmentation Platform/SignalDB/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Segmentation Platform/SignalStorageConfigDB/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Segmentation Platform/SignalStorageConfigDB/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/ServerCertificate",
+      "bytes": 20480,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/ServerCertificate-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Service Worker/CacheStorage/65dfcacdea28ddc05e672e3a4fab060a9966b8cf/index.txt",
+      "bytes": 70,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Session Storage/000003.log",
+      "bytes": 3984,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Session Storage/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Session Storage/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Session Storage/LOG",
+      "bytes": 307,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Session Storage/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sessions/Session_13436133828999214",
+      "bytes": 122294,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sessions/Tabs_13436134163067888",
+      "bytes": 23724,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Shared Dictionary/cache/index",
+      "bytes": 24,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Shared Dictionary/cache/index-dir/the-real-index",
+      "bytes": 48,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Shared Dictionary/db",
+      "bytes": 45056,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Shared Dictionary/db-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/000003.log",
+      "bytes": 13821,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/LOG",
+      "bytes": 307,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/metadata/000003.log",
+      "bytes": 1050,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/metadata/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/metadata/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/metadata/LOG",
+      "bytes": 325,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/shared_proto_db/metadata/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Shortcuts",
+      "bytes": 20480,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Shortcuts-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Site Characteristics Database/000003.log",
+      "bytes": 112,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Site Characteristics Database/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Site Characteristics Database/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Site Characteristics Database/LOG",
+      "bytes": 335,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Site Characteristics Database/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sync Data/LevelDB/000003.log",
+      "bytes": 118,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sync Data/LevelDB/CURRENT",
+      "bytes": 16,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sync Data/LevelDB/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sync Data/LevelDB/LOG",
+      "bytes": 311,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Sync Data/LevelDB/MANIFEST-000001",
+      "bytes": 41,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Top Sites",
+      "bytes": 20480,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Top Sites-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/VideoDecodeStats/LOCK",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/VideoDecodeStats/LOG",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Web Data",
+      "bytes": 159744,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/Web Data-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/WebStorage/QuotaManager",
+      "bytes": 40960,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Default/WebStorage/QuotaManager-journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/extensions_crx_cache/metadata.json",
+      "bytes": 13,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GPUPersistentCache/DawnGraphiteCache/NR2GNA44OGQUBFRRNDBXIX2VC7JXKYAS/cache.db",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GPUPersistentCache/DawnGraphiteCache/NR2GNA44OGQUBFRRNDBXIX2VC7JXKYAS/cache.db-wal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GPUPersistentCache/DawnGraphiteCache/NR2GNA44OGQUBFRRNDBXIX2VC7JXKYAS/cache.journal",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/data_0",
+      "bytes": 45056,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/data_1",
+      "bytes": 270336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/data_2",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/data_3",
+      "bytes": 4202496,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000001",
+      "bytes": 16472,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000002",
+      "bytes": 18736,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000003",
+      "bytes": 17152,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000004",
+      "bytes": 19652,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000005",
+      "bytes": 19196,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000006",
+      "bytes": 25816,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000007",
+      "bytes": 17420,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000008",
+      "bytes": 17836,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000009",
+      "bytes": 17384,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00000a",
+      "bytes": 18896,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00000b",
+      "bytes": 19044,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00000c",
+      "bytes": 19108,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00000d",
+      "bytes": 24960,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00000e",
+      "bytes": 16388,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00000f",
+      "bytes": 17632,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000010",
+      "bytes": 16564,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000011",
+      "bytes": 21536,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000012",
+      "bytes": 21488,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000013",
+      "bytes": 20356,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000014",
+      "bytes": 21816,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000015",
+      "bytes": 18072,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000016",
+      "bytes": 19280,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000017",
+      "bytes": 19028,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000018",
+      "bytes": 18924,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000019",
+      "bytes": 19296,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00001a",
+      "bytes": 17420,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00001b",
+      "bytes": 18856,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00001c",
+      "bytes": 18500,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00001d",
+      "bytes": 19044,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00001e",
+      "bytes": 18656,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00001f",
+      "bytes": 18312,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000020",
+      "bytes": 18948,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000021",
+      "bytes": 17092,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000022",
+      "bytes": 18940,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000023",
+      "bytes": 19852,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000024",
+      "bytes": 18420,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000025",
+      "bytes": 18712,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000026",
+      "bytes": 16676,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000027",
+      "bytes": 19912,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000028",
+      "bytes": 18312,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000029",
+      "bytes": 19024,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00002a",
+      "bytes": 26036,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00002b",
+      "bytes": 24916,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00002c",
+      "bytes": 26852,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00002d",
+      "bytes": 19840,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00002e",
+      "bytes": 19360,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_00002f",
+      "bytes": 19640,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000030",
+      "bytes": 21804,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000031",
+      "bytes": 20380,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/f_000032",
+      "bytes": 19552,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/GrShaderCache/index",
+      "bytes": 262512,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Last Browser",
+      "bytes": 106,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Last Version",
+      "bytes": 13,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Local State",
+      "bytes": 4911,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/laya_solution_config.binarypb",
+      "bytes": 0,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/manifest.binarypb",
+      "bytes": 12147,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/manifest.json",
+      "bytes": 84,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/prompt_gemma4_12b_solution_config.binarypb",
+      "bytes": 949,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/prompt_gemma4_4b_solution_config.binarypb",
+      "bytes": 949,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/prompt_gemma4_solution_config.binarypb",
+      "bytes": 949,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/prompt_solution_config.binarypb",
+      "bytes": 949,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/proofreader_small_expert_model_solution_config.binarypb",
+      "bytes": 498,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/scam_detection_solution_config.binarypb",
+      "bytes": 1010,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/speech_recognition_small_expert_model_solution_config.binarypb",
+      "bytes": 12,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/summarizer_gemma4_12b_solution_config.binarypb",
+      "bytes": 15298,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/summarizer_gemma4_4b_solution_config.binarypb",
+      "bytes": 15298,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/summarizer_gemma4_solution_config.binarypb",
+      "bytes": 15298,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/summarizer_nano_v3_solution_config.binarypb",
+      "bytes": 15294,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/summarizer_small_expert_model_solution_config.binarypb",
+      "bytes": 1027,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/writing_assistance_gemma4_12b_solution_config.binarypb",
+      "bytes": 11670,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/writing_assistance_gemma4_4b_solution_config.binarypb",
+      "bytes": 11670,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/writing_assistance_gemma4_solution_config.binarypb",
+      "bytes": 11670,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/writing_assistance_solution_config.binarypb",
+      "bytes": 11670,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/OptimizationGuideModelsManifest/1.20261005.5/_metadata/verified_contents.json",
+      "bytes": 4382,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/segmentation_platform/ukm_db",
+      "bytes": 49152,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/ShaderCache/data_0",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/ShaderCache/data_1",
+      "bytes": 270336,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/ShaderCache/data_2",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/ShaderCache/data_3",
+      "bytes": 8192,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/ShaderCache/index",
+      "bytes": 262512,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/Variations",
+      "bytes": 85,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/VariationsSafeSeedV2",
+      "bytes": 19,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "browser_profile/VariationsSeedV2",
+      "bytes": 11,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0001.html",
+      "bytes": 4500,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0001.json",
+      "bytes": 7155,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0002.html",
+      "bytes": 5008,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0002.json",
+      "bytes": 9652,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0003.html",
+      "bytes": 4932,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0003.json",
+      "bytes": 8879,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0004.html",
+      "bytes": 5008,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0004.json",
+      "bytes": 9652,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0005.html",
+      "bytes": 5008,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0005.json",
+      "bytes": 9544,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0006.html",
+      "bytes": 5008,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0006.json",
+      "bytes": 9960,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0007.html",
+      "bytes": 6376,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0007.json",
+      "bytes": 12143,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0008.html",
+      "bytes": 6451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0008.json",
+      "bytes": 12660,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0009.html",
+      "bytes": 6356,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0009.json",
+      "bytes": 12143,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0010.html",
+      "bytes": 6451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0010.json",
+      "bytes": 12918,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0011.html",
+      "bytes": 6451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0011.json",
+      "bytes": 13091,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0012.html",
+      "bytes": 6451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0012.json",
+      "bytes": 12660,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0013.html",
+      "bytes": 6356,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0013.json",
+      "bytes": 12143,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0014.html",
+      "bytes": 6451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0014.json",
+      "bytes": 15847,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0015.html",
+      "bytes": 6451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0015.json",
+      "bytes": 16596,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0016.html",
+      "bytes": 5010,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0016.json",
+      "bytes": 9926,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0017.html",
+      "bytes": 5010,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0017.json",
+      "bytes": 9597,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0018.html",
+      "bytes": 5123,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0018.json",
+      "bytes": 10052,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0019.html",
+      "bytes": 2872,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0019.json",
+      "bytes": 9338,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0020.html",
+      "bytes": 2872,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0020.json",
+      "bytes": 9608,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0021.html",
+      "bytes": 5223,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0021.json",
+      "bytes": 13680,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0022.html",
+      "bytes": 2861,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0022.json",
+      "bytes": 9347,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0023.html",
+      "bytes": 2861,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0023.json",
+      "bytes": 9617,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0024.html",
+      "bytes": 5506,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0024.json",
+      "bytes": 12260,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0025.html",
+      "bytes": 7740,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0025.json",
+      "bytes": 14646,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0026.html",
+      "bytes": 9134,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0026.json",
+      "bytes": 16249,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0027.html",
+      "bytes": 10430,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0027.json",
+      "bytes": 16703,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0028.html",
+      "bytes": 10430,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0028.json",
+      "bytes": 16697,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0029.html",
+      "bytes": 12859,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0029.json",
+      "bytes": 18930,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0030.html",
+      "bytes": 12859,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0030.json",
+      "bytes": 18924,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0031.html",
+      "bytes": 15120,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0031.json",
+      "bytes": 21979,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0032.html",
+      "bytes": 16414,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0032.json",
+      "bytes": 22431,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0033.html",
+      "bytes": 17615,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0033.json",
+      "bytes": 24194,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0034.html",
+      "bytes": 17462,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0034.json",
+      "bytes": 23716,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0035.html",
+      "bytes": 17462,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0035.json",
+      "bytes": 23710,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0036.html",
+      "bytes": 19696,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0036.json",
+      "bytes": 26101,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0037.html",
+      "bytes": 21090,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0037.json",
+      "bytes": 26137,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0038.html",
+      "bytes": 22154,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0038.json",
+      "bytes": 26333,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0039.html",
+      "bytes": 26531,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0039.json",
+      "bytes": 31773,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0040.html",
+      "bytes": 27732,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0040.json",
+      "bytes": 31959,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0041.html",
+      "bytes": 30817,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0041.json",
+      "bytes": 33935,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0042.html",
+      "bytes": 31704,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0042.json",
+      "bytes": 33946,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0043.html",
+      "bytes": 34787,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0043.json",
+      "bytes": 36991,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0044.html",
+      "bytes": 37023,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0044.json",
+      "bytes": 37189,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0045.html",
+      "bytes": 38417,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0045.json",
+      "bytes": 37375,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0046.html",
+      "bytes": 39722,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0046.json",
+      "bytes": 37396,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0047.html",
+      "bytes": 44015,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0047.json",
+      "bytes": 37595,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0048.html",
+      "bytes": 45077,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0048.json",
+      "bytes": 37783,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0049.html",
+      "bytes": 46471,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0049.json",
+      "bytes": 37969,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0050.html",
+      "bytes": 48451,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0050.json",
+      "bytes": 38020,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0051.html",
+      "bytes": 50690,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0051.json",
+      "bytes": 38221,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0052.html",
+      "bytes": 52084,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0052.json",
+      "bytes": 38408,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0053.html",
+      "bytes": 54078,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0053.json",
+      "bytes": 38473,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0054.html",
+      "bytes": 56552,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0054.json",
+      "bytes": 38717,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0055.html",
+      "bytes": 62892,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0055.json",
+      "bytes": 38903,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0056.html",
+      "bytes": 65227,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0056.json",
+      "bytes": 38927,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0057.html",
+      "bytes": 66428,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0057.json",
+      "bytes": 39113,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0058.html",
+      "bytes": 67321,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0058.json",
+      "bytes": 39130,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0059.html",
+      "bytes": 70666,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0059.json",
+      "bytes": 39354,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0060.html",
+      "bytes": 2849,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0060.json",
+      "bytes": 9306,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0061.html",
+      "bytes": 2849,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0061.json",
+      "bytes": 9576,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0062.html",
+      "bytes": 2849,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0062.json",
+      "bytes": 9570,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0063.html",
+      "bytes": 5426,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0063.json",
+      "bytes": 12230,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0064.html",
+      "bytes": 6619,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0064.json",
+      "bytes": 13993,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0065.html",
+      "bytes": 8998,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0065.json",
+      "bytes": 16200,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0066.html",
+      "bytes": 8862,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0066.json",
+      "bytes": 15732,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0067.html",
+      "bytes": 8862,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0067.json",
+      "bytes": 15726,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0068.html",
+      "bytes": 11293,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0068.json",
+      "bytes": 17955,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0069.html",
+      "bytes": 11293,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0069.json",
+      "bytes": 17961,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0070.html",
+      "bytes": 13353,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0070.json",
+      "bytes": 20819,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0071.html",
+      "bytes": 13546,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0071.json",
+      "bytes": 21004,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0072.html",
+      "bytes": 14608,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0072.json",
+      "bytes": 22297,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0073.html",
+      "bytes": 15806,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0073.json",
+      "bytes": 22747,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0074.html",
+      "bytes": 19237,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0074.json",
+      "bytes": 25344,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0075.html",
+      "bytes": 20623,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0075.json",
+      "bytes": 25684,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0076.html",
+      "bytes": 21816,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0076.json",
+      "bytes": 25870,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0077.html",
+      "bytes": 20623,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0077.json",
+      "bytes": 25684,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0078.html",
+      "bytes": 22681,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/dom/0078.json",
+      "bytes": 29527,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/events.jsonl",
+      "bytes": 449647,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/REPORT.md",
+      "bytes": 7736,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0001_new_message.jpg",
+      "bytes": 33196,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0002_new_message.jpg",
+      "bytes": 46993,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0003_new_message.jpg",
+      "bytes": 37784,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0004_new_message.jpg",
+      "bytes": 39583,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0005_new_message.jpg",
+      "bytes": 40963,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0006_new_message.jpg",
+      "bytes": 43316,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0007_new_message.jpg",
+      "bytes": 43868,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0008_new_message.jpg",
+      "bytes": 45222,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0009_new_message.jpg",
+      "bytes": 47257,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0010_new_message.jpg",
+      "bytes": 46582,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0011_new_message.jpg",
+      "bytes": 45846,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0012_new_message.jpg",
+      "bytes": 44601,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0013_new_message.jpg",
+      "bytes": 44888,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0014_new_message.jpg",
+      "bytes": 45236,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0015_new_message.jpg",
+      "bytes": 46788,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0016_new_message.jpg",
+      "bytes": 46957,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0017_new_message.jpg",
+      "bytes": 45846,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0018_new_message.jpg",
+      "bytes": 48400,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0019_new_message.jpg",
+      "bytes": 49136,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0020_new_message.jpg",
+      "bytes": 54913,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0021_new_message.jpg",
+      "bytes": 53760,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0022_new_message.jpg",
+      "bytes": 55355,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0023_new_message.jpg",
+      "bytes": 57515,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0024_new_message.jpg",
+      "bytes": 38580,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0025_new_message.jpg",
+      "bytes": 39493,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0026_new_message.jpg",
+      "bytes": 41342,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0027_new_message.jpg",
+      "bytes": 42017,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0028_new_message.jpg",
+      "bytes": 43875,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0029_new_message.jpg",
+      "bytes": 43673,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0030_new_message.jpg",
+      "bytes": 47424,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/screens/0031_new_message.jpg",
+      "bytes": 47699,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/share_bundle.json",
+      "bytes": 292575,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "capture_out/session_20261011_012346/summary.json",
+      "bytes": 26544,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/00_session_info.json",
+      "bytes": 596,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/01_send_messages.json",
+      "bytes": 161027,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/02_next_skip.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/03_leave_match.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/04_typing_outgoing.json",
+      "bytes": 18859,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/05_incoming_messages.json",
+      "bytes": 36448,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/06_incoming_typing.json",
+      "bytes": 6974,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/07_match_updates.json",
+      "bytes": 130830,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/08_presence_events.json",
+      "bytes": 4548,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/09_friend_events.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/10_auth_login.json",
+      "bytes": 19987,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/11_profile_updates.json",
+      "bytes": 96587,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/12_reactions.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/13_media_uploads.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/14_reports_blocks.json",
+      "bytes": 21838,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/15_websocket_all.json",
+      "bytes": 326767,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/16_http_all.json",
+      "bytes": 440821,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/17_endpoints_summary.json",
+      "bytes": 12021,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/18_cookies_tokens.json",
+      "bytes": 958,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/19_api_schemas.json",
+      "bytes": 7475,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/20_timing_analysis.json",
+      "bytes": 159775,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/full_log.txt",
+      "bytes": 22825,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/old data.txt",
+      "bytes": 58881,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "session_20261009_052631/old ws.txt",
+      "bytes": 71823,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/00_session_info.json",
+      "bytes": 596,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/01_send_messages.json",
+      "bytes": 161027,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/02_next_skip.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/03_leave_match.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/04_typing_outgoing.json",
+      "bytes": 18859,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/05_incoming_messages.json",
+      "bytes": 36448,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/06_incoming_typing.json",
+      "bytes": 6974,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/07_match_updates.json",
+      "bytes": 130830,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/08_presence_events.json",
+      "bytes": 4548,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/09_friend_events.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/10_auth_login.json",
+      "bytes": 19987,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/11_profile_updates.json",
+      "bytes": 96587,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/12_reactions.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/13_media_uploads.json",
+      "bytes": 2,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/14_reports_blocks.json",
+      "bytes": 21838,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/15_websocket_all.json",
+      "bytes": 326767,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/16_http_all.json",
+      "bytes": 440821,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/17_endpoints_summary.json",
+      "bytes": 12021,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/18_cookies_tokens.json",
+      "bytes": 958,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/19_api_schemas.json",
+      "bytes": 7475,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/20_timing_analysis.json",
+      "bytes": 159775,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/full_log.txt",
+      "bytes": 22825,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/old data.txt",
+      "bytes": 58881,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "capture_tool.zip",
+      "path": "web socket info/old ws.txt",
+      "bytes": 71823,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": ".gitignore",
+      "bytes": 76,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/chatib_net_20261003_132503.json",
+      "bytes": 66897,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/chatib_net_deep_20261003_133856.json",
+      "bytes": 50570,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/chitchat_gg_20261003_132644.json",
+      "bytes": 2561,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/cybersex_chat_deep_20261003_134126.json",
+      "bytes": 349,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/dirtyroulette_com_20261003_132721.json",
+      "bytes": 109764,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/emeraldchat_com_20261003_132554.json",
+      "bytes": 253439,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/flingster_com_20261003_132759.json",
+      "bytes": 109625,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/iframe_coomeet_com_deep_20261003_135956.json",
+      "bytes": 21767,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/isexychat_com_deep_20261003_134402.json",
+      "bytes": 3138364,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/roleplay_chat_deep_20261003_134207.json",
+      "bytes": 10191,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "captures/shagle_com_deep_20261003_134046.json",
+      "bytes": 22786,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "dashboard/cli.py",
+      "bytes": 63578,
+      "review": "static_syntax_inventory",
+      "sha256": "80b7681dc3a5024c6881fb15c51d8d2a02aa101edbc81bc9021f7c0ed3c8c0a6",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "_ts",
+          "line": 39,
+          "end": 45,
+          "async": false
+        },
+        {
+          "name": "run_dashboard",
+          "line": 1319,
+          "end": 1323,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 74,
+          "end": 90,
+          "async": false
+        },
+        {
+          "name": "compose",
+          "line": 93,
+          "end": 353,
+          "async": false
+        },
+        {
+          "name": "on_mount",
+          "line": 356,
+          "end": 396,
+          "async": false
+        },
+        {
+          "name": "_async_init",
+          "line": 398,
+          "end": 401,
+          "async": true
+        },
+        {
+          "name": "_build_site_cards",
+          "line": 404,
+          "end": 432,
+          "async": false
+        },
+        {
+          "name": "_build_per_site_settings",
+          "line": 434,
+          "end": 477,
+          "async": true
+        },
+        {
+          "name": "_refresh",
+          "line": 480,
+          "end": 488,
+          "async": true
+        },
+        {
+          "name": "_gather_stats",
+          "line": 490,
+          "end": 505,
+          "async": true
+        },
+        {
+          "name": "_update_header",
+          "line": 507,
+          "end": 524,
+          "async": false
+        },
+        {
+          "name": "_update_overview",
+          "line": 526,
+          "end": 560,
+          "async": false
+        },
+        {
+          "name": "_update_control",
+          "line": 562,
+          "end": 587,
+          "async": false
+        },
+        {
+          "name": "_update_breakdown",
+          "line": 589,
+          "end": 603,
+          "async": false
+        },
+        {
+          "name": "_refresh_logs",
+          "line": 606,
+          "end": 627,
+          "async": true
+        },
+        {
+          "name": "_refresh_leads",
+          "line": 630,
+          "end": 654,
+          "async": true
+        },
+        {
+          "name": "_refresh_fsm",
+          "line": 657,
+          "end": 687,
+          "async": true
+        },
+        {
+          "name": "_refresh_debug",
+          "line": 690,
+          "end": 758,
+          "async": true
+        },
+        {
+          "name": "on_button_pressed",
+          "line": 761,
+          "end": 797,
+          "async": false
+        },
+        {
+          "name": "_start_all",
+          "line": 799,
+          "end": 803,
+          "async": false
+        },
+        {
+          "name": "_stop_all",
+          "line": 805,
+          "end": 809,
+          "async": false
+        },
+        {
+          "name": "_toggle_site",
+          "line": 811,
+          "end": 819,
+          "async": false
+        },
+        {
+          "name": "_restart_site",
+          "line": 821,
+          "end": 828,
+          "async": false
+        },
+        {
+          "name": "_save_global",
+          "line": 830,
+          "end": 856,
+          "async": false
+        },
+        {
+          "name": "_save_site_settings",
+          "line": 858,
+          "end": 883,
+          "async": false
+        },
+        {
+          "name": "_save_config",
+          "line": 885,
+          "end": 894,
+          "async": false
+        },
+        {
+          "name": "_clear_logs",
+          "line": 896,
+          "end": 903,
+          "async": false
+        },
+        {
+          "name": "_fsm_toggle",
+          "line": 906,
+          "end": 916,
+          "async": false
+        },
+        {
+          "name": "_fsm_set_folder",
+          "line": 918,
+          "end": 935,
+          "async": false
+        },
+        {
+          "name": "_fsm_set_snap",
+          "line": 937,
+          "end": 949,
+          "async": false
+        },
+        {
+          "name": "_browse_folder",
+          "line": 951,
+          "end": 957,
+          "async": false
+        },
+        {
+          "name": "_pick_folder_dialog",
+          "line": 960,
+          "end": 966,
+          "async": false
+        },
+        {
+          "name": "_browse_snap_file",
+          "line": 968,
+          "end": 974,
+          "async": false
+        },
+        {
+          "name": "_pick_file_dialog",
+          "line": 977,
+          "end": 984,
+          "async": false
+        },
+        {
+          "name": "_run_health_check",
+          "line": 987,
+          "end": 1002,
+          "async": false
+        },
+        {
+          "name": "_force_gc",
+          "line": 1004,
+          "end": 1009,
+          "async": false
+        },
+        {
+          "name": "_set_debug_level",
+          "line": 1011,
+          "end": 1019,
+          "async": false
+        },
+        {
+          "name": "_clear_crashes",
+          "line": 1021,
+          "end": 1032,
+          "async": false
+        },
+        {
+          "name": "_export_debug",
+          "line": 1034,
+          "end": 1045,
+          "async": false
+        },
+        {
+          "name": "_refresh_mode",
+          "line": 1048,
+          "end": 1061,
+          "async": true
+        },
+        {
+          "name": "_init_mood_site_select",
+          "line": 1063,
+          "end": 1067,
+          "async": false
+        },
+        {
+          "name": "_apply_mode",
+          "line": 1069,
+          "end": 1084,
+          "async": false
+        },
+        {
+          "name": "_set_mood",
+          "line": 1086,
+          "end": 1101,
+          "async": false
+        },
+        {
+          "name": "_cycle_mood",
+          "line": 1103,
+          "end": 1114,
+          "async": false
+        },
+        {
+          "name": "_refresh_dbbank",
+          "line": 1117,
+          "end": 1139,
+          "async": true
+        },
+        {
+          "name": "_reset_dbbank",
+          "line": 1141,
+          "end": 1150,
+          "async": false
+        },
+        {
+          "name": "_refresh_threads",
+          "line": 1153,
+          "end": 1171,
+          "async": true
+        },
+        {
+          "name": "_cleanup_threads",
+          "line": 1173,
+          "end": 1182,
+          "async": false
+        },
+        {
+          "name": "_refresh_proxy_tab",
+          "line": 1185,
+          "end": 1204,
+          "async": true
+        },
+        {
+          "name": "_reload_proxies",
+          "line": 1206,
+          "end": 1214,
+          "async": false
+        },
+        {
+          "name": "_refresh_snap_tab",
+          "line": 1217,
+          "end": 1237,
+          "async": true
+        },
+        {
+          "name": "_apply_snap",
+          "line": 1239,
+          "end": 1255,
+          "async": false
+        },
+        {
+          "name": "_refresh_sms_tab",
+          "line": 1258,
+          "end": 1277,
+          "async": true
+        },
+        {
+          "name": "_apply_sms",
+          "line": 1279,
+          "end": 1293,
+          "async": false
+        },
+        {
+          "name": "on_select_changed",
+          "line": 1296,
+          "end": 1303,
+          "async": false
+        },
+        {
+          "name": "on_switch_changed",
+          "line": 1305,
+          "end": 1306,
+          "async": false
+        },
+        {
+          "name": "_notify",
+          "line": 1309,
+          "end": 1312,
+          "async": false
+        },
+        {
+          "name": "action_refresh",
+          "line": 1314,
+          "end": 1316,
+          "async": false
+        },
+        {
+          "name": "_do",
+          "line": 824,
+          "end": 826,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 897,
+          "end": 901,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 927,
+          "end": 934,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 945,
+          "end": 948,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 952,
+          "end": 956,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 969,
+          "end": 973,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 988,
+          "end": 1001,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1022,
+          "end": 1031,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1035,
+          "end": 1044,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1070,
+          "end": 1083,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1090,
+          "end": 1100,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1107,
+          "end": 1113,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1145,
+          "end": 1149,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1177,
+          "end": 1181,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1207,
+          "end": 1213,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1240,
+          "end": 1254,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 1283,
+          "end": 1292,
+          "async": true
+        },
+        {
+          "name": "_do",
+          "line": 875,
+          "end": 878,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "dashboard/__pycache__/cli.cpython-314.pyc",
+      "bytes": 103068,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "DASHBOARD_GUIDE.txt",
+      "bytes": 5708,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "data/bot_data.db",
+      "bytes": 139264,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "docs/PROJECT_MAP.md",
+      "bytes": 37802,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "docs/PROTOCOL_ANALYSIS.md",
+      "bytes": 7408,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "PROJECT_MAP.md",
+      "bytes": 5742,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_deep.py",
+      "bytes": 10236,
+      "review": "static_syntax_inventory",
+      "sha256": "a4c9ab848a21f2af22ba844ab8d0f682e8aa00d0a53487855397de520b506cb4",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "rand_nick",
+          "line": 18,
+          "end": 19,
+          "async": false
+        },
+        {
+          "name": "capture_deep",
+          "line": 22,
+          "end": 259,
+          "async": true
+        },
+        {
+          "name": "on_request",
+          "line": 51,
+          "end": 85,
+          "async": true
+        },
+        {
+          "name": "on_response",
+          "line": 89,
+          "end": 104,
+          "async": true
+        },
+        {
+          "name": "on_ws",
+          "line": 109,
+          "end": 132,
+          "async": false
+        },
+        {
+          "name": "on_console",
+          "line": 136,
+          "end": 141,
+          "async": false
+        },
+        {
+          "name": "on_ws_send",
+          "line": 114,
+          "end": 119,
+          "async": false
+        },
+        {
+          "name": "on_ws_recv",
+          "line": 121,
+          "end": 126,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_isc_direct.py",
+      "bytes": 5335,
+      "review": "static_syntax_inventory",
+      "sha256": "798d25d2abf417cd2fb6da98b024886fb7609a3c52d2e6d447febf95ee26bd6d",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "rand_id",
+          "line": 8,
+          "end": 9,
+          "async": false
+        },
+        {
+          "name": "log",
+          "line": 11,
+          "end": 13,
+          "async": false
+        },
+        {
+          "name": "main",
+          "line": 16,
+          "end": 130,
+          "async": true
+        },
+        {
+          "name": "on_ws",
+          "line": 39,
+          "end": 41,
+          "async": false
+        },
+        {
+          "name": "on_req",
+          "line": 46,
+          "end": 48,
+          "async": false
+        },
+        {
+          "name": "on_resp",
+          "line": 50,
+          "end": 52,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_isexychat.py",
+      "bytes": 6385,
+      "review": "static_syntax_inventory",
+      "sha256": "2673573fa7a80136d697f9e71606fd3822b97854fc9f1d4f1712de9ece2f186a",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "rand_id",
+          "line": 13,
+          "end": 14,
+          "async": false
+        },
+        {
+          "name": "log",
+          "line": 16,
+          "end": 17,
+          "async": false
+        },
+        {
+          "name": "isexychat_playwright",
+          "line": 20,
+          "end": 162,
+          "async": true
+        },
+        {
+          "name": "main",
+          "line": 165,
+          "end": 170,
+          "async": true
+        },
+        {
+          "name": "on_websocket",
+          "line": 57,
+          "end": 60,
+          "async": false
+        },
+        {
+          "name": "on_request",
+          "line": 68,
+          "end": 71,
+          "async": false
+        },
+        {
+          "name": "on_response",
+          "line": 73,
+          "end": 76,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_protocol.py",
+      "bytes": 8570,
+      "review": "static_syntax_inventory",
+      "sha256": "043102970996b43d8c4e31653318a772704bb4edd5bcb62f4a2a05ced47153da",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "capture_site",
+          "line": 17,
+          "end": 226,
+          "async": true
+        },
+        {
+          "name": "on_request",
+          "line": 39,
+          "end": 72,
+          "async": true
+        },
+        {
+          "name": "on_response",
+          "line": 77,
+          "end": 96,
+          "async": true
+        },
+        {
+          "name": "on_ws",
+          "line": 101,
+          "end": 140,
+          "async": false
+        },
+        {
+          "name": "on_console",
+          "line": 146,
+          "end": 151,
+          "async": false
+        },
+        {
+          "name": "on_ws_send",
+          "line": 110,
+          "end": 118,
+          "async": false
+        },
+        {
+          "name": "on_ws_recv",
+          "line": 120,
+          "end": 128,
+          "async": false
+        },
+        {
+          "name": "on_ws_close",
+          "line": 130,
+          "end": 136,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_test.py",
+      "bytes": 15572,
+      "review": "static_syntax_inventory",
+      "sha256": "325db1596f1d82dfa4105e0f5ed9ba154f003c7fff669a4584d964ee85a4775e",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "socks5_connector",
+          "line": 20,
+          "end": 28,
+          "async": false
+        },
+        {
+          "name": "http_connector",
+          "line": 30,
+          "end": 38,
+          "async": false
+        },
+        {
+          "name": "rand_nick",
+          "line": 40,
+          "end": 41,
+          "async": false
+        },
+        {
+          "name": "log",
+          "line": 43,
+          "end": 45,
+          "async": false
+        },
+        {
+          "name": "test_isexychat_irc",
+          "line": 50,
+          "end": 120,
+          "async": true
+        },
+        {
+          "name": "test_joingy_api",
+          "line": 126,
+          "end": 193,
+          "async": true
+        },
+        {
+          "name": "test_chatib",
+          "line": 199,
+          "end": 233,
+          "async": true
+        },
+        {
+          "name": "test_adultchat",
+          "line": 239,
+          "end": 269,
+          "async": true
+        },
+        {
+          "name": "test_chatrandom",
+          "line": 275,
+          "end": 311,
+          "async": true
+        },
+        {
+          "name": "main",
+          "line": 317,
+          "end": 343,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_test2.py",
+      "bytes": 16767,
+      "review": "static_syntax_inventory",
+      "sha256": "892b6dea0422bae277bbb0efe453b25b4adf3e70d73087f8ad718858ee0ad599",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "socks5_conn",
+          "line": 22,
+          "end": 23,
+          "async": false
+        },
+        {
+          "name": "http_conn",
+          "line": 25,
+          "end": 26,
+          "async": false
+        },
+        {
+          "name": "rand_nick",
+          "line": 28,
+          "end": 29,
+          "async": false
+        },
+        {
+          "name": "log",
+          "line": 31,
+          "end": 32,
+          "async": false
+        },
+        {
+          "name": "test_isexychat_webirc",
+          "line": 38,
+          "end": 143,
+          "async": true
+        },
+        {
+          "name": "test_joingy_full",
+          "line": 149,
+          "end": 236,
+          "async": true
+        },
+        {
+          "name": "test_chatib_parse",
+          "line": 242,
+          "end": 285,
+          "async": true
+        },
+        {
+          "name": "test_chatrandom_parse",
+          "line": 291,
+          "end": 336,
+          "async": true
+        },
+        {
+          "name": "main",
+          "line": 340,
+          "end": 362,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/capture_test3.py",
+      "bytes": 12840,
+      "review": "static_syntax_inventory",
+      "sha256": "8887eef96e5646d930fdcc8931efcb24e6da1041b631394bcb97b72d9fb4250d",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "socks5_conn",
+          "line": 20,
+          "end": 21,
+          "async": false
+        },
+        {
+          "name": "rand_id",
+          "line": 23,
+          "end": 24,
+          "async": false
+        },
+        {
+          "name": "log",
+          "line": 26,
+          "end": 27,
+          "async": false
+        },
+        {
+          "name": "joingy_conversation",
+          "line": 33,
+          "end": 150,
+          "async": true
+        },
+        {
+          "name": "isexychat_playwright",
+          "line": 156,
+          "end": 273,
+          "async": true
+        },
+        {
+          "name": "main",
+          "line": 277,
+          "end": 292,
+          "async": true
+        },
+        {
+          "name": "on_request",
+          "line": 182,
+          "end": 185,
+          "async": true
+        },
+        {
+          "name": "on_response",
+          "line": 187,
+          "end": 190,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "scripts/read_capture.py",
+      "bytes": 1144,
+      "review": "static_syntax_inventory",
+      "sha256": "797f364beafe8c0be120501593cbac67679370f54bd79d138bc56434448f352d",
+      "syntax": "parsed",
+      "declarations": []
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "sites/isexychat.py",
+      "bytes": 18335,
+      "review": "static_syntax_inventory",
+      "sha256": "e547d0d57c19d4e65978820e02d58df90cd7e0b6b94671a1f6f671c372f53b33",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "rand_nick",
+          "line": 33,
+          "end": 34,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 40,
+          "end": 65,
+          "async": false
+        },
+        {
+          "name": "start",
+          "line": 67,
+          "end": 137,
+          "async": true
+        },
+        {
+          "name": "_connect",
+          "line": 139,
+          "end": 191,
+          "async": true
+        },
+        {
+          "name": "_chat_loop",
+          "line": 193,
+          "end": 263,
+          "async": true
+        },
+        {
+          "name": "_send",
+          "line": 265,
+          "end": 286,
+          "async": true
+        },
+        {
+          "name": "_cleanup",
+          "line": 288,
+          "end": 300,
+          "async": true
+        },
+        {
+          "name": "__init__",
+          "line": 306,
+          "end": 327,
+          "async": false
+        },
+        {
+          "name": "start",
+          "line": 329,
+          "end": 350,
+          "async": true
+        },
+        {
+          "name": "_run_session",
+          "line": 352,
+          "end": 376,
+          "async": true
+        },
+        {
+          "name": "health_check",
+          "line": 378,
+          "end": 392,
+          "async": true
+        },
+        {
+          "name": "stop",
+          "line": 394,
+          "end": 401,
+          "async": true
+        },
+        {
+          "name": "stats",
+          "line": 403,
+          "end": 409,
+          "async": false
+        },
+        {
+          "name": "update_config",
+          "line": 411,
+          "end": 426,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "sites/joingy.py",
+      "bytes": 19062,
+      "review": "static_syntax_inventory",
+      "sha256": "0fbd860c921544debf64da71d11ee2be14fa5cad635cc9d1c977c36b01a30bc5",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "rand_id",
+          "line": 39,
+          "end": 40,
+          "async": false
+        },
+        {
+          "name": "rand_hash",
+          "line": 43,
+          "end": 44,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 50,
+          "end": 78,
+          "async": false
+        },
+        {
+          "name": "start",
+          "line": 80,
+          "end": 138,
+          "async": true
+        },
+        {
+          "name": "_event_loop",
+          "line": 140,
+          "end": 233,
+          "async": true
+        },
+        {
+          "name": "_send_opening",
+          "line": 235,
+          "end": 240,
+          "async": true
+        },
+        {
+          "name": "_reply",
+          "line": 242,
+          "end": 260,
+          "async": true
+        },
+        {
+          "name": "_send",
+          "line": 262,
+          "end": 287,
+          "async": true
+        },
+        {
+          "name": "_disconnect",
+          "line": 289,
+          "end": 300,
+          "async": true
+        },
+        {
+          "name": "stop",
+          "line": 302,
+          "end": 318,
+          "async": true
+        },
+        {
+          "name": "__init__",
+          "line": 324,
+          "end": 345,
+          "async": false
+        },
+        {
+          "name": "start",
+          "line": 347,
+          "end": 365,
+          "async": true
+        },
+        {
+          "name": "_run_session",
+          "line": 367,
+          "end": 391,
+          "async": true
+        },
+        {
+          "name": "health_check",
+          "line": 393,
+          "end": 412,
+          "async": true
+        },
+        {
+          "name": "stop",
+          "line": 414,
+          "end": 421,
+          "async": true
+        },
+        {
+          "name": "stats",
+          "line": 423,
+          "end": 429,
+          "async": false
+        },
+        {
+          "name": "update_config",
+          "line": 431,
+          "end": 446,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "sites/__init__.py",
+      "bytes": 0,
+      "review": "static_syntax_inventory",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "syntax": "parsed",
+      "declarations": []
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "sites/__pycache__/isexychat.cpython-314.pyc",
+      "bytes": 31019,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "sites/__pycache__/joingy.cpython-314.pyc",
+      "bytes": 33761,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "sites/__pycache__/__init__.cpython-314.pyc",
+      "bytes": 153,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/config.json",
+      "bytes": 1954,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/db.py",
+      "bytes": 16967,
+      "review": "static_syntax_inventory",
+      "sha256": "1890ea0ac33d5ed1912d80191c103aa4653b516f275b8a0dfc1d78eda6299504",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "__init__",
+          "line": 106,
+          "end": 108,
+          "async": false
+        },
+        {
+          "name": "init",
+          "line": 110,
+          "end": 117,
+          "async": true
+        },
+        {
+          "name": "close",
+          "line": 119,
+          "end": 121,
+          "async": true
+        },
+        {
+          "name": "conn",
+          "line": 124,
+          "end": 127,
+          "async": false
+        },
+        {
+          "name": "upsert_user",
+          "line": 129,
+          "end": 138,
+          "async": true
+        },
+        {
+          "name": "increment_user_msg",
+          "line": 140,
+          "end": 145,
+          "async": true
+        },
+        {
+          "name": "mark_snap_shared",
+          "line": 147,
+          "end": 152,
+          "async": true
+        },
+        {
+          "name": "log_message",
+          "line": 154,
+          "end": 160,
+          "async": true
+        },
+        {
+          "name": "log_snap_lead",
+          "line": 162,
+          "end": 167,
+          "async": true
+        },
+        {
+          "name": "get_message_count",
+          "line": 169,
+          "end": 175,
+          "async": true
+        },
+        {
+          "name": "init_site_stats",
+          "line": 177,
+          "end": 182,
+          "async": true
+        },
+        {
+          "name": "set_site_running",
+          "line": 184,
+          "end": 190,
+          "async": true
+        },
+        {
+          "name": "increment_stat",
+          "line": 192,
+          "end": 197,
+          "async": true
+        },
+        {
+          "name": "set_site_error",
+          "line": 199,
+          "end": 204,
+          "async": true
+        },
+        {
+          "name": "get_all_stats",
+          "line": 206,
+          "end": 209,
+          "async": true
+        },
+        {
+          "name": "get_recent_leads",
+          "line": 211,
+          "end": 216,
+          "async": true
+        },
+        {
+          "name": "get_total_leads",
+          "line": 218,
+          "end": 221,
+          "async": true
+        },
+        {
+          "name": "get_total_messages",
+          "line": 223,
+          "end": 226,
+          "async": true
+        },
+        {
+          "name": "get_recent_messages",
+          "line": 228,
+          "end": 233,
+          "async": true
+        },
+        {
+          "name": "get_messages_by_site",
+          "line": 235,
+          "end": 240,
+          "async": true
+        },
+        {
+          "name": "get_leads_by_site",
+          "line": 242,
+          "end": 247,
+          "async": true
+        },
+        {
+          "name": "get_total_leads_by_site",
+          "line": 249,
+          "end": 254,
+          "async": true
+        },
+        {
+          "name": "get_total_messages_by_site",
+          "line": 256,
+          "end": 261,
+          "async": true
+        },
+        {
+          "name": "get_total_users_by_site",
+          "line": 263,
+          "end": 268,
+          "async": true
+        },
+        {
+          "name": "get_conversation_count_by_site",
+          "line": 270,
+          "end": 275,
+          "async": true
+        },
+        {
+          "name": "get_all_sites_summary",
+          "line": 277,
+          "end": 293,
+          "async": true
+        },
+        {
+          "name": "init_site_settings",
+          "line": 295,
+          "end": 305,
+          "async": true
+        },
+        {
+          "name": "get_site_settings",
+          "line": 307,
+          "end": 312,
+          "async": true
+        },
+        {
+          "name": "get_all_site_settings",
+          "line": 314,
+          "end": 317,
+          "async": true
+        },
+        {
+          "name": "update_site_settings",
+          "line": 319,
+          "end": 332,
+          "async": true
+        },
+        {
+          "name": "add_live_log",
+          "line": 334,
+          "end": 340,
+          "async": true
+        },
+        {
+          "name": "get_live_logs",
+          "line": 342,
+          "end": 352,
+          "async": true
+        },
+        {
+          "name": "get_live_logs_since",
+          "line": 354,
+          "end": 364,
+          "async": true
+        },
+        {
+          "name": "clear_live_logs",
+          "line": 366,
+          "end": 371,
+          "async": true
+        },
+        {
+          "name": "get_global_settings",
+          "line": 373,
+          "end": 376,
+          "async": true
+        },
+        {
+          "name": "get_session_assignment",
+          "line": 379,
+          "end": 386,
+          "async": true
+        },
+        {
+          "name": "set_session_assignment",
+          "line": 388,
+          "end": 400,
+          "async": true
+        },
+        {
+          "name": "update_session_line",
+          "line": 402,
+          "end": 408,
+          "async": true
+        },
+        {
+          "name": "get_folder_assignments",
+          "line": 410,
+          "end": 417,
+          "async": true
+        },
+        {
+          "name": "clear_folder_assignments",
+          "line": 419,
+          "end": 425,
+          "async": true
+        },
+        {
+          "name": "upsert_file_pool",
+          "line": 427,
+          "end": 438,
+          "async": true
+        },
+        {
+          "name": "get_file_pool",
+          "line": 440,
+          "end": 447,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/db_reply_engine.py",
+      "bytes": 13883,
+      "review": "static_syntax_inventory",
+      "sha256": "bb65f8595ac24ac57775f9e041264fc8cbe7bb80ec842a129f764adfeb3e9c70",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "__init__",
+          "line": 46,
+          "end": 50,
+          "async": false
+        },
+        {
+          "name": "init",
+          "line": 52,
+          "end": 57,
+          "async": true
+        },
+        {
+          "name": "reply",
+          "line": 59,
+          "end": 79,
+          "async": true
+        },
+        {
+          "name": "_load_state",
+          "line": 81,
+          "end": 98,
+          "async": true
+        },
+        {
+          "name": "_save_state",
+          "line": 100,
+          "end": 118,
+          "async": true
+        },
+        {
+          "name": "reset",
+          "line": 120,
+          "end": 131,
+          "async": false
+        },
+        {
+          "name": "get_stats",
+          "line": 133,
+          "end": 144,
+          "async": true
+        },
+        {
+          "name": "get_conversations",
+          "line": 146,
+          "end": 158,
+          "async": true
+        },
+        {
+          "name": "__init__",
+          "line": 181,
+          "end": 186,
+          "async": false
+        },
+        {
+          "name": "ensure_schema",
+          "line": 188,
+          "end": 194,
+          "async": false
+        },
+        {
+          "name": "reload",
+          "line": 196,
+          "end": 211,
+          "async": false
+        },
+        {
+          "name": "get_reply",
+          "line": 213,
+          "end": 241,
+          "async": false
+        },
+        {
+          "name": "_weighted_pick",
+          "line": 243,
+          "end": 260,
+          "async": false
+        },
+        {
+          "name": "add_row",
+          "line": 262,
+          "end": 286,
+          "async": false
+        },
+        {
+          "name": "stats",
+          "line": 288,
+          "end": 293,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/debug_utils.py",
+      "bytes": 21012,
+      "review": "static_syntax_inventory",
+      "sha256": "a30de6ab31d23f29c142c24eafa7ee4c197d5ce0abcc0b598e183e6f198c813b",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "_level_value",
+          "line": 178,
+          "end": 187,
+          "async": false
+        },
+        {
+          "name": "get_debug_level",
+          "line": 190,
+          "end": 191,
+          "async": false
+        },
+        {
+          "name": "set_debug_level",
+          "line": 194,
+          "end": 203,
+          "async": false
+        },
+        {
+          "name": "read_jsonl",
+          "line": 206,
+          "end": 229,
+          "async": false
+        },
+        {
+          "name": "_ts",
+          "line": 531,
+          "end": 535,
+          "async": false
+        },
+        {
+          "name": "get_trace_capture",
+          "line": 545,
+          "end": 549,
+          "async": false
+        },
+        {
+          "name": "get_crash_tracker",
+          "line": 552,
+          "end": 556,
+          "async": false
+        },
+        {
+          "name": "get_state_inspector",
+          "line": 559,
+          "end": 563,
+          "async": false
+        },
+        {
+          "name": "export_debug_dump",
+          "line": 566,
+          "end": 602,
+          "async": false
+        },
+        {
+          "name": "format",
+          "line": 35,
+          "end": 53,
+          "async": false
+        },
+        {
+          "name": "format",
+          "line": 59,
+          "end": 71,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 84,
+          "end": 111,
+          "async": false
+        },
+        {
+          "name": "level",
+          "line": 114,
+          "end": 115,
+          "async": false
+        },
+        {
+          "name": "change_level",
+          "line": 117,
+          "end": 123,
+          "async": false
+        },
+        {
+          "name": "_log",
+          "line": 125,
+          "end": 139,
+          "async": false
+        },
+        {
+          "name": "debug",
+          "line": 141,
+          "end": 142,
+          "async": false
+        },
+        {
+          "name": "info",
+          "line": 144,
+          "end": 145,
+          "async": false
+        },
+        {
+          "name": "warning",
+          "line": 147,
+          "end": 148,
+          "async": false
+        },
+        {
+          "name": "error",
+          "line": 150,
+          "end": 151,
+          "async": false
+        },
+        {
+          "name": "critical",
+          "line": 153,
+          "end": 154,
+          "async": false
+        },
+        {
+          "name": "trace",
+          "line": 156,
+          "end": 158,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 250,
+          "end": 251,
+          "async": false
+        },
+        {
+          "name": "record",
+          "line": 253,
+          "end": 267,
+          "async": false
+        },
+        {
+          "name": "get_recent",
+          "line": 269,
+          "end": 292,
+          "async": false
+        },
+        {
+          "name": "session",
+          "line": 294,
+          "end": 296,
+          "async": false
+        },
+        {
+          "name": "errors_only",
+          "line": 298,
+          "end": 313,
+          "async": false
+        },
+        {
+          "name": "clear",
+          "line": 315,
+          "end": 316,
+          "async": false
+        },
+        {
+          "name": "total",
+          "line": 318,
+          "end": 319,
+          "async": false
+        },
+        {
+          "name": "total_errors",
+          "line": 321,
+          "end": 322,
+          "async": false
+        },
+        {
+          "name": "stats",
+          "line": 324,
+          "end": 349,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 369,
+          "end": 371,
+          "async": false
+        },
+        {
+          "name": "record",
+          "line": 373,
+          "end": 383,
+          "async": true
+        },
+        {
+          "name": "can_retry",
+          "line": 385,
+          "end": 398,
+          "async": true
+        },
+        {
+          "name": "get_recent",
+          "line": 400,
+          "end": 416,
+          "async": false
+        },
+        {
+          "name": "clear",
+          "line": 418,
+          "end": 426,
+          "async": false
+        },
+        {
+          "name": "reset",
+          "line": 428,
+          "end": 434,
+          "async": false
+        },
+        {
+          "name": "crash_count_window",
+          "line": 436,
+          "end": 441,
+          "async": false
+        },
+        {
+          "name": "flapping",
+          "line": 443,
+          "end": 452,
+          "async": false
+        },
+        {
+          "name": "stats",
+          "line": 454,
+          "end": 466,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 477,
+          "end": 479,
+          "async": false
+        },
+        {
+          "name": "update",
+          "line": 481,
+          "end": 491,
+          "async": true
+        },
+        {
+          "name": "touch",
+          "line": 493,
+          "end": 498,
+          "async": true
+        },
+        {
+          "name": "remove",
+          "line": 500,
+          "end": 502,
+          "async": true
+        },
+        {
+          "name": "snapshot",
+          "line": 504,
+          "end": 508,
+          "async": false
+        },
+        {
+          "name": "dead_sessions",
+          "line": 510,
+          "end": 513,
+          "async": false
+        },
+        {
+          "name": "stats",
+          "line": 515,
+          "end": 526,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/fixed_sms_engine.py",
+      "bytes": 14814,
+      "review": "static_syntax_inventory",
+      "sha256": "18496149e07f488f581c5876e56324be06fd767fd6a74f9256daf35a7957cc77",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "__init__",
+          "line": 26,
+          "end": 41,
+          "async": false
+        },
+        {
+          "name": "is_enabled",
+          "line": 44,
+          "end": 45,
+          "async": false
+        },
+        {
+          "name": "set_enabled",
+          "line": 47,
+          "end": 48,
+          "async": false
+        },
+        {
+          "name": "set_folder",
+          "line": 50,
+          "end": 85,
+          "async": true
+        },
+        {
+          "name": "get_reply",
+          "line": 87,
+          "end": 146,
+          "async": true
+        },
+        {
+          "name": "peek_reply",
+          "line": 148,
+          "end": 177,
+          "async": true
+        },
+        {
+          "name": "load_snap_username",
+          "line": 179,
+          "end": 211,
+          "async": true
+        },
+        {
+          "name": "replace_username",
+          "line": 213,
+          "end": 216,
+          "async": false
+        },
+        {
+          "name": "get_status",
+          "line": 218,
+          "end": 237,
+          "async": true
+        },
+        {
+          "name": "get_assignments",
+          "line": 239,
+          "end": 252,
+          "async": true
+        },
+        {
+          "name": "_pick_file",
+          "line": 255,
+          "end": 271,
+          "async": true
+        },
+        {
+          "name": "_load_lines",
+          "line": 273,
+          "end": 289,
+          "async": true
+        },
+        {
+          "name": "_read_lines",
+          "line": 292,
+          "end": 302,
+          "async": false
+        },
+        {
+          "name": "_smoke",
+          "line": 311,
+          "end": 379,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/logs/isexychat.jsonl",
+      "bytes": 11720,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/logs/joingy.jsonl",
+      "bytes": 8522,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/main.py",
+      "bytes": 8030,
+      "review": "static_syntax_inventory",
+      "sha256": "9f4fe5fd1303c682f981d68445fcd9165c10d6e239dc0075e5db5a1fa7907a51",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "parse_args",
+          "line": 20,
+          "end": 25,
+          "async": false
+        },
+        {
+          "name": "load_config",
+          "line": 38,
+          "end": 41,
+          "async": false
+        },
+        {
+          "name": "main",
+          "line": 44,
+          "end": 210,
+          "async": true
+        },
+        {
+          "name": "health_loop",
+          "line": 180,
+          "end": 191,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/mood_manager.py",
+      "bytes": 6284,
+      "review": "static_syntax_inventory",
+      "sha256": "675c4f97569751a36338b34a76450fdac069b5eaaf44e7562515081cd5395213",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "__init__",
+          "line": 46,
+          "end": 49,
+          "async": false
+        },
+        {
+          "name": "init",
+          "line": 51,
+          "end": 66,
+          "async": true
+        },
+        {
+          "name": "get_mood",
+          "line": 68,
+          "end": 76,
+          "async": true
+        },
+        {
+          "name": "set_mood",
+          "line": 78,
+          "end": 93,
+          "async": true
+        },
+        {
+          "name": "set_auto_cycle",
+          "line": 95,
+          "end": 108,
+          "async": true
+        },
+        {
+          "name": "cycle",
+          "line": 110,
+          "end": 130,
+          "async": true
+        },
+        {
+          "name": "get_all_moods",
+          "line": 132,
+          "end": 140,
+          "async": true
+        },
+        {
+          "name": "_init_site",
+          "line": 142,
+          "end": 149,
+          "async": true
+        },
+        {
+          "name": "_smoke",
+          "line": 156,
+          "end": 184,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/proxy_manager.py",
+      "bytes": 4296,
+      "review": "static_syntax_inventory",
+      "sha256": "855e11d92051fcc969feb3d64683bedecc90754aee7ed4ee5e4bbbe05f3a4917",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "key",
+          "line": 28,
+          "end": 29,
+          "async": false
+        },
+        {
+          "name": "__init__",
+          "line": 33,
+          "end": 37,
+          "async": false
+        },
+        {
+          "name": "_load",
+          "line": 39,
+          "end": 51,
+          "async": false
+        },
+        {
+          "name": "_parse",
+          "line": 54,
+          "end": 85,
+          "async": false
+        },
+        {
+          "name": "get",
+          "line": 87,
+          "end": 98,
+          "async": true
+        },
+        {
+          "name": "release",
+          "line": 100,
+          "end": 108,
+          "async": true
+        },
+        {
+          "name": "get_playwright_config",
+          "line": 110,
+          "end": 117,
+          "async": false
+        },
+        {
+          "name": "get_aiohttp_connector",
+          "line": 119,
+          "end": 132,
+          "async": false
+        },
+        {
+          "name": "total",
+          "line": 135,
+          "end": 136,
+          "async": false
+        },
+        {
+          "name": "available_count",
+          "line": 139,
+          "end": 140,
+          "async": false
+        },
+        {
+          "name": "stats",
+          "line": 142,
+          "end": 147,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/reply_engine.py",
+      "bytes": 15321,
+      "review": "static_syntax_inventory",
+      "sha256": "def76695245b21bbd7971d036952acc3f93b71058599de9979a1e7dea18dbdef",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "__init__",
+          "line": 44,
+          "end": 54,
+          "async": false
+        },
+        {
+          "name": "_load_data",
+          "line": 57,
+          "end": 96,
+          "async": false
+        },
+        {
+          "name": "_load_input",
+          "line": 98,
+          "end": 111,
+          "async": false
+        },
+        {
+          "name": "_load_output",
+          "line": 113,
+          "end": 126,
+          "async": false
+        },
+        {
+          "name": "reply",
+          "line": 129,
+          "end": 156,
+          "async": false
+        },
+        {
+          "name": "get_state",
+          "line": 158,
+          "end": 159,
+          "async": false
+        },
+        {
+          "name": "reset",
+          "line": 161,
+          "end": 171,
+          "async": false
+        },
+        {
+          "name": "template_count",
+          "line": 174,
+          "end": 175,
+          "async": false
+        },
+        {
+          "name": "category_count",
+          "line": 178,
+          "end": 179,
+          "async": false
+        },
+        {
+          "name": "_handle_greeting",
+          "line": 182,
+          "end": 198,
+          "async": false
+        },
+        {
+          "name": "_handle_age_gender",
+          "line": 200,
+          "end": 223,
+          "async": false
+        },
+        {
+          "name": "_handle_country",
+          "line": 225,
+          "end": 243,
+          "async": false
+        },
+        {
+          "name": "_handle_country_reply",
+          "line": 245,
+          "end": 250,
+          "async": false
+        },
+        {
+          "name": "_handle_middle_chat",
+          "line": 252,
+          "end": 315,
+          "async": false
+        },
+        {
+          "name": "_handle_share_snap",
+          "line": 317,
+          "end": 321,
+          "async": false
+        },
+        {
+          "name": "_match",
+          "line": 324,
+          "end": 343,
+          "async": false
+        },
+        {
+          "name": "_pick",
+          "line": 345,
+          "end": 356,
+          "async": false
+        },
+        {
+          "name": "_fill",
+          "line": 358,
+          "end": 359,
+          "async": false
+        },
+        {
+          "name": "_init_conv",
+          "line": 361,
+          "end": 365,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/requirements.txt",
+      "bytes": 70,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/thread_manager.py",
+      "bytes": 8876,
+      "review": "static_syntax_inventory",
+      "sha256": "2874ddbdbc75080aa53129fa0f194eabedbacf64c475cbbebc951bc7ef930a66",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "__init__",
+          "line": 45,
+          "end": 49,
+          "async": false
+        },
+        {
+          "name": "init",
+          "line": 51,
+          "end": 73,
+          "async": true
+        },
+        {
+          "name": "configure",
+          "line": 75,
+          "end": 78,
+          "async": true
+        },
+        {
+          "name": "acquire",
+          "line": 80,
+          "end": 110,
+          "async": true
+        },
+        {
+          "name": "release",
+          "line": 112,
+          "end": 138,
+          "async": true
+        },
+        {
+          "name": "_update_db_status",
+          "line": 140,
+          "end": 145,
+          "async": true
+        },
+        {
+          "name": "get_pool_stats",
+          "line": 147,
+          "end": 164,
+          "async": true
+        },
+        {
+          "name": "get_active_threads",
+          "line": 166,
+          "end": 182,
+          "async": true
+        },
+        {
+          "name": "cleanup",
+          "line": 184,
+          "end": 197,
+          "async": true
+        },
+        {
+          "name": "_smoke",
+          "line": 204,
+          "end": 246,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/db.cpython-314.pyc",
+      "bytes": 29630,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/db_reply_engine.cpython-314.pyc",
+      "bytes": 21829,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/debug_utils.cpython-314.pyc",
+      "bytes": 45038,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/fixed_sms_engine.cpython-314.pyc",
+      "bytes": 25102,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/main.cpython-314.pyc",
+      "bytes": 12758,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/mood_manager.cpython-314.pyc",
+      "bytes": 12767,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/proxy_manager.cpython-314.pyc",
+      "bytes": 9422,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/reply_engine.cpython-314.pyc",
+      "bytes": 22686,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "src/__pycache__/thread_manager.cpython-314.pyc",
+      "bytes": 17568,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "TASK_MAP.md",
+      "bytes": 9683,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tests/test_db_reply_engine.py",
+      "bytes": 8880,
+      "review": "static_syntax_inventory",
+      "sha256": "c6c82641ab4c8b6fce014cc1aa06c7771f839fec3cbfd67f982a5eedd546bf73",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "test_ensure_schema",
+          "line": 12,
+          "end": 26,
+          "async": false
+        },
+        {
+          "name": "test_add_row_returns_id",
+          "line": 29,
+          "end": 47,
+          "async": false
+        },
+        {
+          "name": "test_reload_from_disk",
+          "line": 50,
+          "end": 72,
+          "async": false
+        },
+        {
+          "name": "test_exact_match",
+          "line": 75,
+          "end": 93,
+          "async": false
+        },
+        {
+          "name": "test_like_match",
+          "line": 96,
+          "end": 110,
+          "async": false
+        },
+        {
+          "name": "test_weighted_pick",
+          "line": 113,
+          "end": 131,
+          "async": false
+        },
+        {
+          "name": "test_fallback_engine",
+          "line": 134,
+          "end": 149,
+          "async": false
+        },
+        {
+          "name": "test_stats",
+          "line": 152,
+          "end": 171,
+          "async": false
+        },
+        {
+          "name": "test_no_match_no_fallback",
+          "line": 174,
+          "end": 187,
+          "async": false
+        },
+        {
+          "name": "test_cross_stage_no_match",
+          "line": 190,
+          "end": 203,
+          "async": false
+        },
+        {
+          "name": "test_weight_default_zero",
+          "line": 206,
+          "end": 219,
+          "async": false
+        },
+        {
+          "name": "test_empty_incoming_msg",
+          "line": 222,
+          "end": 239,
+          "async": false
+        },
+        {
+          "name": "test_multiple_like_candidates_weighted",
+          "line": 242,
+          "end": 259,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tests/test_debug_utils.py",
+      "bytes": 7048,
+      "review": "static_syntax_inventory",
+      "sha256": "14560eabeab28c08662286e0185e1888245bba693769d124083980db6cb67be4",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "check",
+          "line": 20,
+          "end": 27,
+          "async": false
+        },
+        {
+          "name": "main",
+          "line": 30,
+          "end": 177,
+          "async": false
+        },
+        {
+          "name": "crash_tests",
+          "line": 110,
+          "end": 134,
+          "async": true
+        },
+        {
+          "name": "insp_tests",
+          "line": 142,
+          "end": 157,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tests/test_fixed_integration.py",
+      "bytes": 5783,
+      "review": "static_syntax_inventory",
+      "sha256": "98bc25bb893b66c71192a3789207310b56d56bc4f4df9f0428707d6ae5684162",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "main",
+          "line": 18,
+          "end": 158,
+          "async": true
+        },
+        {
+          "name": "check",
+          "line": 27,
+          "end": 34,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tests/test_fixed_state.py",
+      "bytes": 3826,
+      "review": "static_syntax_inventory",
+      "sha256": "12a9e2220993f5b1b3d176147610d3c368098fa5818346929b4c3b22c05f042b",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "main",
+          "line": 17,
+          "end": 101,
+          "async": true
+        },
+        {
+          "name": "check",
+          "line": 26,
+          "end": 33,
+          "async": false
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tests/test_irc.py",
+      "bytes": 7529,
+      "review": "static_syntax_inventory",
+      "sha256": "c487de99d87f015f6c6e15dc4b93dabe9ec2ed02d3af7566df9a341fa741e49f",
+      "syntax": "parsed",
+      "declarations": [
+        {
+          "name": "rand_nick",
+          "line": 13,
+          "end": 14,
+          "async": false
+        },
+        {
+          "name": "log",
+          "line": 16,
+          "end": 18,
+          "async": false
+        },
+        {
+          "name": "test_direct_irc",
+          "line": 21,
+          "end": 128,
+          "async": true
+        },
+        {
+          "name": "test_webirc_websocket",
+          "line": 131,
+          "end": 191,
+          "async": true
+        },
+        {
+          "name": "main",
+          "line": 194,
+          "end": 212,
+          "async": true
+        }
+      ]
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tests/__pycache__/test_debug_utils.cpython-314.pyc",
+      "bytes": 13806,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tools/install.bat",
+      "bytes": 5638,
+      "review": "metadata_only_sensitive_or_non_source"
+    },
+    {
+      "archive": "multi-site-bot.zip",
+      "path": "tools/run.bat",
+      "bytes": 677,
+      "review": "metadata_only_sensitive_or_non_source"
+    }
+  ]
+}

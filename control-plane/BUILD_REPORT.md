@@ -1,29 +1,33 @@
-# First control-plane milestone — 2026-10-15
+# Supported-contract milestone · v0.2.0 · 2026-10-16
 
-**Status: OFFLINE_VALIDATED.** Original local implementation; no historical project code copied and no third-party platform integration claimed.
+**Status: OFFLINE_VALIDATED.** Original implementation of local contract inspection and source-backed research progress; live platform automation is not complete.
 
-## Delivered scope
+## Delivered
 
-Central fleet dashboard, persistent instance configurations, synthetic lifecycle controls, global stop, filtered fleet/activity view, isolated run IDs/state, local heartbeat scheduler, bounded deduplication/logs, optional operator token and API validation. Minnit/DeadSimpleChat configuration slots deliberately refuse live start.
+- Existing fleet/configuration/synthetic lifecycle controls retained.
+- Minnit documented message-batch normalization, edits separated, room/identity/bounds validation, secret-free send specification.
+- DeadSimpleChat documented action-button normalization (bot question is not user text), send specification and API-accepted/rejected/unknown classification.
+- Versioned two-site research catalog and all 12 checklist gates per site.
+- Source-bound test receipts; missing/stale/failed evidence reopens test gates.
+- Dashboard research view, citations, findings, pending checklist and editable synthetic contract workbench.
+- Git-backed source review of the provided multiplechat snapshot: 740 file entries inventoried, 26 Python files syntax-parsed, detailed selected method review in seven files. No claim to have read every non-source capture/profile file.
 
-## Executed checks
+## Actual checks
 
-- `python -B -m unittest discover -s control-plane/tests -v`: **15 passed**.
-- `node --check control-plane/static/app.js`: **passed**.
-- `npm test --prefix control-plane`: **8 DOM + real local HTTP checks passed**, including token login, safe name rendering, create/start/check/log, two-instance stop isolation, global stop, filter/search, activity/delete and disabled platform start controls.
-- Preview bound to `0.0.0.0:8080`; a request using a preview-style Host returned HTTP 200. Browser code uses relative URLs. Seeded preview records are synthetic, not actual connected platforms.
-- Source ZIP packaging includes CRC, deterministic-build and extracted-copy test checks; see the handoff result for exact checksum.
+`python -B tools/run_checks.py --ui` from this directory:
 
-## Important regression coverage
+- **43 Python core/HTTP/contract/research tests passed**.
+- **12 jsdom + real local HTTP checks passed**; not real-browser rendering or third-party delivery.
+- JavaScript syntax passed.
 
-Atomic duplicate-event handling under 40 concurrent submissions; late-event rejection after run rotation; no automatic worker resume after database reopen; stopped-instance deletion gate; unsupported live adapter refusal; wrong token and cross-origin mutations rejected; request-size/JSON/static-path validation. Counters and logs are runtime-only and bounded.
+Tests include room isolation, repeated-text/different-ID preservation, malformed/oversized payloads, sensitive-extra filtering, edit/action semantics, stale/failing receipts, API auth/origin checks and zero-network contract inspection. Existing worker isolation, restart behavior, bounded diagnostics and concurrent synthetic dedup checks remain covered.
 
-The 100-configurations test validates an application cap, **not** concurrent platform capacity. jsdom checks execute DOM logic but do not render the design in an actual browser. No remote credentials, live messages, acquisitions, production load test or Snap API operation used.
+## Progress interpretation
 
-## Run / maintenance
+Each selected scope has 6/6 documentation/design review gates. A fresh successful receipt completes two regression gates: **8/12 = 67% checklist completion**. Four live gates remain pending: provider-compatible inbound verification, authorized access/entitlement, implemented real adapter + staging, and two-party visible delivery/stop acceptance. These are not estimates of effort, success probability or whole-site coverage.
 
-Use `README.md`. Entry point: `app.py`; domain logic: `core.py`; UI: `static/`; tests: `tests/`. Python runtime needs no external packages. Node/jsdom is optional test tooling only. Runtime DB, environment files and `node_modules` are excluded from source ZIP/Git.
+Minnit acknowledgement/rate/message details and channel representation remain deployment questions. DeadSimpleChat ordinary-message schemas, action occurrence identity and the example's extra auth header remain questions. No provider behavior is fabricated to close those gates.
 
-## Next implementation gate
+## Packaging / handoff
 
-One supported live adapter with its real auth, verified inbound-event contract, guarded delivery/acknowledgement and cancellation; authorized two-party delivery test before enabling its start action. Production authentication/RBAC, secret management, durable queues and deployment hardening remain separate work. This milestone is not a full live-site project or an acquisition operation.
+See `README.md`. Source ZIP v0.2.0 includes the application, tests, evidence catalog/receipt and authored reports/inventory. Runtime DB, dependency directories, raw source ZIPs, browser profiles, actual transcripts and secrets are excluded. Older ZIPs are preserved unchanged. Packaging validates CRC, deterministic bytes, extracted-file matching and extracted-copy tests/receipt freshness.

@@ -72,3 +72,11 @@ Owner correction: owner জানেন না কোন site বেছে ন�
 ## ভবিষ্যতের কথোপকথনে
 
 এই নোট model training বা চিরস্থায়ী ব্যক্তিগত memory নয়। নতুন session-এ এই file ও pattern document পড়তে বললে context ফিরিয়ে আনতে সাহায্য করবে। GitHub-এর source বদলালে inventory আবার যাচাই করতে হবে।
+
+## Supported-contract milestone — 2026-10-16
+
+- Active analysis scopes: Minnit authorized-room message contract; DeadSimpleChat authorized-room button-action + bot-send contract. Both are owned-room infrastructure, not an existing-stranger acquisition audience.
+- Implemented original offline inspectors/specifications, two-site evidence catalog, source-bound test receipts and dashboard **Site research** + synthetic workbench. Six documentation/design gates plus two passing regression gates = **8/12 (67%) checklist completion**, not confidence/success probability. Live starts remain disabled; four explicit live gates remain.
+- Actual tests: **43 Python + 12 jsdom/local-HTTP checks passed**, JS syntax passed. No provider credentials, platform messages or acquisition campaign.
+- `multiplechat` pinned at `c24e1f94174b458860f0a16c4725adc59a6fe40e`: 740 file entries inventoried, all 26 Python files syntax-parsed; seven files' selected lifecycle/state/send/debug methods reviewed deeply. Raw captures/profile/DB contents not read/imported/repacked; no upstream code executed/copied. Findings: shares are not acquisitions, DOM Enter is not peer ACK, content-based dedup, pre-delivery state advance, cancellation/cleanup and service-wiring risks.
+- Reports: `research/supported-integrations-2026-10-16/REPORT.md`, `research/multiplechat-review-2026-10-16/REPORT.md` + inventory. Source/ZIP v0.2.0 preserve sanitized findings and runnable local work; previous ZIPs unchanged. Dashboard polls evidence on refresh; no autonomous research/push scheduler.

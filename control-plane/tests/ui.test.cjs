@@ -70,6 +70,22 @@ async function waitFor(predicate, message) {
     d.querySelector('[data-view=fleet]').click();cards()[0].querySelector('.delete').click();await waitFor(()=>$('configured').textContent==='1','delete instance');checks++;console.log('PASS UI: activity navigation and stopped-instance deletion');
     await create('Minnit configuration','minnit');const platform=cards().find(c=>c.querySelector('h3').textContent==='Minnit configuration');
     assert.equal(platform.querySelector('.start').disabled,true);assert.ok(platform.textContent.includes('Not connected'));checks++;console.log('PASS UI: unimplemented live adapter cannot start');
+    d.querySelector('[data-view=research]').click();
+    await waitFor(()=>$('research-view').classList.contains('hidden')===false&&d.querySelectorAll('.research-card').length===2,'research navigation');
+    for(const card of d.querySelectorAll('.research-card')) {assert.equal(card.querySelectorAll('.gate-list li').length,12);assert.ok(card.textContent.includes('not a success probability'));assert.ok(card.querySelectorAll('.research-sources a').length>=3);}
+    checks++;console.log('PASS UI: source-backed research cards and explicit progress meaning');
+    await waitFor(()=>$('fixture-input').value.includes('chat_message'),'Minnit fixture load');
+    $('inspect-fixture').click();await waitFor(()=>$('fixture-output').textContent.includes('offline_contract_check'),'Minnit fixture inspected');
+    let inspected=JSON.parse($('fixture-output').textContent);assert.equal(inspected.messages_sent,0);assert.equal(inspected.events[0].kind,'message');
+    checks++;console.log('PASS UI: Minnit offline contract inspection');
+    $('fixture-platform').value='deadsimplechat';$('fixture-platform').dispatchEvent(new w.Event('change'));$('inspect-fixture').click();
+    await waitFor(()=>$('fixture-output').textContent.includes('button_action'),'DSC fixture inspected');
+    inspected=JSON.parse($('fixture-output').textContent);assert.equal(inspected.external_requests,0);assert.equal('text' in inspected.events[0],false);
+    checks++;console.log('PASS UI: DSC action distinguished from bot-authored question');
+    const invalid=JSON.parse($('fixture-input').value);invalid.expected_room_id='wrong-room';$('fixture-input').value=JSON.stringify(invalid);$('inspect-fixture').click();
+    await waitFor(()=>$('fixture-output').textContent.includes('Unexpected room ID'),'scope rejection');
+    $('fixture-input').value='{broken';$('inspect-fixture').click();await waitFor(()=>$('fixture-output').textContent.startsWith('Rejected:'),'invalid JSON rejected');
+    checks++;console.log('PASS UI: contract workbench rejects wrong-room and malformed input');
     assert.deepEqual(errors,[]);checks++;console.log('PASS UI: no JavaScript/DOM execution errors');
     console.log(`PASS: ${checks} DOM + local HTTP integration checks. No real browser or third-party chat test.`);
   } finally {

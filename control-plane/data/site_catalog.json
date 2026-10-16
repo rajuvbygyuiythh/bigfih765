@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "progress_definition": "Completed gates / 12, rounded to integer; NOT success probability or security coverage. Documentation review = six explicit desk-review gates. Two regression gates require fresh passing test proof.",
+  "sites": [
+    {
+      "id": "minnit",
+      "name": "Minnit",
+      "scope": "One authorized room/channel; documented message events and send specification",
+      "recommendation": "supported_owned_room_candidate",
+      "sources": [
+        {
+          "id": "minnit_bot",
+          "url": "https://docs.minnit.chat/bot/"
+        },
+        {
+          "id": "minnit_hooks",
+          "url": "https://docs.minnit.chat/chat-settings/webhooks/"
+        },
+        {
+          "id": "minnit_api",
+          "url": "https://docs.minnit.chat/organizations/api/"
+        },
+        {
+          "id": "minnit_guests",
+          "url": "https://docs.minnit.chat/chat-settings/guests/"
+        },
+        {
+          "id": "minnit_cookies",
+          "url": "https://docs.minnit.chat/cookies/"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Documented owned/authorized room integration; no stranger outreach",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "complete",
+          "evidence": "Organization endpoint + X-Key; API Basic+, custom webhooks Community+. Secret kept server-side.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Guests talk/view by default unless owner restricts; disposable guest ID is not provider account signup.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "complete",
+          "evidence": "chat_message -> data[] with msg_id/chat_id/channel/user_id/message. Edits remain a separate kind. Local fixture cap: 100 events.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "complete",
+          "evidence": "POST action=sendmessage, chatname/channel/username/message, form encoding. Endpoint must come from organization dashboard.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Normalize -> instance/room scope -> ID dedup -> explicit user action -> guarded submission -> accepted/failed/unknown; stop invalidates run",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Completion derives from passing test receipt matching current source",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Completion derives from passing test receipt matching current source",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "No signature format assumed; confirm supported secret/signature and replay protection",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "No room/account/secret configured; no purchase approved",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Real adapter receiver/sender is not implemented or live-tested",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "No third-party message sent; API acceptance alone is not peer delivery",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "authentication": "Organization endpoint + X-Key; API Basic+, custom webhooks Community+. Secret kept server-side.",
+        "guest_access": "Guests talk/view by default unless owner restricts; disposable guest ID is not provider account signup.",
+        "receive_contract": "chat_message -> data[] with msg_id/chat_id/channel/user_id/message. Edits remain a separate kind. Local fixture cap: 100 events.",
+        "send_contract": "POST action=sendmessage, chatname/channel/username/message, form encoding. Endpoint must come from organization dashboard.",
+        "storage": "Documented auth/guest/CSRF cookies; our public-API contract should not import browser-profile sessions.",
+        "open_questions": "Confirm vendor message/rate limits, exact API acknowledgement schema, retry contract and inbound authentication. channel example is numeric while table labels it by name; confirm actual deployment value."
+      },
+      "security_runtime": "Headers/TLS/CSP/WAF and browser storage not measured; docs are not a security audit",
+      "can_start_live": false
+    },
+    {
+      "id": "deadsimplechat",
+      "name": "DeadSimpleChat",
+      "scope": "One authorized room; documented button-action event and bot send specification",
+      "recommendation": "supported_owned_room_candidate",
+      "sources": [
+        {
+          "id": "dsc_send",
+          "url": "https://deadsimplechat.com/support/rest-api/bots/post-send-message-bot"
+        },
+        {
+          "id": "dsc_join",
+          "url": "https://deadsimplechat.com/support/platform-guides/new-join-modal-guide"
+        },
+        {
+          "id": "dsc_quiz",
+          "url": "https://deadsimplechat.com/support/bots/quiz-bot-using-action-buttons"
+        }
+      ],
+      "reviewed_at": "2026-10-16",
+      "gates": [
+        {
+          "id": "scope",
+          "label": "Scope and permitted integration route",
+          "status": "complete",
+          "evidence": "Documented owned/authorized room integration; no stranger outreach",
+          "requires_suite": false
+        },
+        {
+          "id": "authentication",
+          "label": "Authentication and entitlement review",
+          "status": "complete",
+          "evidence": "Advanced API Business plan; private key in auth query. Docs examples also show Authorization header without clearly resolving whether it is additional. Verify in staging.",
+          "requires_suite": false
+        },
+        {
+          "id": "guest_access",
+          "label": "Guest/provisioned user flow review",
+          "status": "complete",
+          "evidence": "Public-room nickname join provisions guest_ identity; provisioned/members-only modes differ. Customer managed-user API is not provider signup.",
+          "requires_suite": false
+        },
+        {
+          "id": "receive_contract",
+          "label": "Inbound contract design",
+          "status": "complete",
+          "evidence": "Verified documentation shape here is actionButtonPressed with chatRoom/user/actionButtonPressed. Enclosing message is the bot question, not user text. Ordinary message trigger normalization is not guessed.",
+          "requires_suite": false
+        },
+        {
+          "id": "send_contract",
+          "label": "Outbound contract design",
+          "status": "complete",
+          "evidence": "POST /consumer/api/v2/bot/:botId/chatroom/:roomId/message; JSON message <=1000; documented 200 success:true means API accepted only.",
+          "requires_suite": false
+        },
+        {
+          "id": "lifecycle",
+          "label": "Lifecycle and failure plan",
+          "status": "complete",
+          "evidence": "Normalize -> instance/room scope -> ID dedup -> explicit user action -> guarded submission -> accepted/failed/unknown; stop invalidates run",
+          "requires_suite": false
+        },
+        {
+          "id": "parser_tests",
+          "label": "Offline parser/specification regression suite",
+          "status": "pending",
+          "evidence": "Completion derives from passing test receipt matching current source",
+          "requires_suite": true
+        },
+        {
+          "id": "failure_tests",
+          "label": "Offline malformed/scope/privacy/outcome regression suite",
+          "status": "pending",
+          "evidence": "Completion derives from passing test receipt matching current source",
+          "requires_suite": true
+        },
+        {
+          "id": "inbound_verification",
+          "label": "Provider-compatible inbound authenticity/replay verification",
+          "status": "pending",
+          "evidence": "No signature format assumed; confirm supported secret/signature and replay protection",
+          "requires_suite": false
+        },
+        {
+          "id": "authorized_access",
+          "label": "Authorized room, credentials and required plan",
+          "status": "pending",
+          "evidence": "No room/account/secret configured; no purchase approved",
+          "requires_suite": false
+        },
+        {
+          "id": "staging_contract",
+          "label": "Authenticated staging integration",
+          "status": "pending",
+          "evidence": "Real adapter receiver/sender is not implemented or live-tested",
+          "requires_suite": false
+        },
+        {
+          "id": "peer_delivery",
+          "label": "Consented two-party receive/reply/stop acceptance",
+          "status": "pending",
+          "evidence": "No third-party message sent; API acceptance alone is not peer delivery",
+          "requires_suite": false
+        }
+      ],
+      "findings": {
+        "authentication": "Advanced API Business plan; private key in auth query. Docs examples also show Authorization header without clearly resolving whether it is additional. Verify in staging.",
+        "guest_access": "Public-room nickname join provisions guest_ identity; provisioned/members-only modes differ. Customer managed-user API is not provider signup.",
+        "receive_contract": "Verified documentation shape here is actionButtonPressed with chatRoom/user/actionButtonPressed. Enclosing message is the bot question, not user text. Ordinary message trigger normalization is not guessed.",
+        "send_contract": "POST /consumer/api/v2/bot/:botId/chatroom/:roomId/message; JSON message <=1000; documented 200 success:true means API accepted only.",
+        "storage": "Managed users/member state documented; browser cookie/storage inventory not measured.",
+        "open_questions": "Confirm inbound authenticity/replay handling, mention/new-message schemas, auth-header discrepancy, rate limits and actual entitlement. Button-action IDs may represent button definitions rather than unique click occurrences: confirm before production deduplication."
+      },
+      "security_runtime": "Headers/TLS/CSP/WAF and browser storage not measured; docs are not a security audit",
+      "can_start_live": false
+    }
+  ]
+}

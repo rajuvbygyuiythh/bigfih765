@@ -6,7 +6,7 @@ Read `PROJECT_MEMORY.md`, then `knowledge-pack/GOALS.md`, `knowledge-pack/docs/D
 
 Aim for **one selected site per day with one complete, scoped project**: assess -> plan -> implement -> test -> fix -> package -> handoff. Reuse verified common chat logic/state/lifecycle and implement the site-specific adapter. Do not replace delivery with repeated broad site lists once a target and scope are agreed.
 
-Daily cadence is a target, not a completion guarantee or an automatic background schedule. The next site is not yet selected. Ask only for requirements/access that actually block implementation; do not invent endpoints or claim an offline scaffold is a completed live integration.
+Daily cadence is a target, not a completion guarantee or an automatic background schedule. Current desk-review/local-contract scopes are Minnit and DeadSimpleChat; live access is not configured. Ask only for requirements/access that actually block implementation; do not invent endpoints or claim an offline scaffold is a completed live integration.
 
 ## Larger operation goal — owner update, 2026-10-15
 
